@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La impresora no imprime · Guías de soporte IT N1</title>
+<meta name="description" content="Guía de soporte IT N1: qué hacer cuando una impresora no imprime en un equipo Windows 10/11. Revisión de la cola de impresión, servicio Cola de impresión, solución, cuándo escalar y qué anotar en el ticket.">
+<meta name="author" content="Iván Marcos Couso">
+
+<link rel="canonical" href="https://vantoxik.github.io/guias/impresora-no-imprime.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+<header class="site-header">
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="../index.html#inicio" class="nav__brand">IMC</a>
+    <ul class="nav__links">
+      <li><a href="../index.html#sobre-mi">Sobre mí</a></li>
+      <li><a href="../index.html#competencias">Competencias</a></li>
+      <li><a href="../index.html#proyectos">Proyectos</a></li>
+      <li><a href="index.html" aria-current="true">Guías</a></li>
+      <li><a href="../index.html#experiencia">Experiencia</a></li>
+      <li><a href="../index.html#formacion">Formación</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar a modo claro" aria-pressed="false">
+      <span aria-hidden="true">☀</span>
+    </button>
+  </nav>
+</header>
+
+<main id="contenido">
+  <div class="guide-page">
+    <div class="container">
+
+      <nav class="guide-nav" aria-label="Enlaces de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+      <article class="guide-body">
+        <h1 class="section__title">La impresora no imprime</h1>
+
+        <dl class="guide-meta">
+          <div>
+            <dt>Categoría</dt>
+            <dd>Hardware y periféricos</dd>
+          </div>
+          <div>
+            <dt>Prioridad orientativa</dt>
+            <dd><span class="priority priority--medium">Media</span></dd>
+          </div>
+          <div>
+            <dt>Tiempo estimado</dt>
+            <dd>10–25 min</dd>
+          </div>
+        </dl>
+
+        <p class="guide-intro">
+          Un usuario envía un documento a imprimir y no sale nada. Esta guía sirve para impresoras de red,
+          USB o compartidas desde otro equipo o servidor, en Windows 10/11. Ayuda a separar los fallos físicos
+          de la impresora, los de red y los del propio equipo (cola de impresión atascada, impresora
+          predeterminada equivocada). Donde encaja, se indica la opción de mi herramienta
+          <a href="https://github.com/VanToxiK/it-support-toolkit" target="_blank" rel="noopener noreferrer">IT Support Toolkit</a>
+          y también la alternativa manual de Windows.
+        </p>
+
+        <nav class="guide-toc" aria-labelledby="toc-title">
+          <h2 class="guide-toc__title" id="toc-title">En esta guía</h2>
+          <ol>
+            <li><a href="#sintomas">Síntomas</a></li>
+            <li><a href="#preguntas">Preguntas al usuario</a></li>
+            <li><a href="#comprobaciones">Comprobaciones rápidas</a></li>
+            <li><a href="#diagnostico">Diagnóstico paso a paso</a></li>
+            <li><a href="#solucion">Solución</a></li>
+            <li><a href="#escalar">Cuándo escalar a nivel 2</a></li>
+            <li><a href="#ticket">Qué anotar en el ticket</a></li>
+            <li><a href="#prevencion">Prevención</a></li>
+          </ol>
+        </nav>
+
+        <section class="guide-section" aria-labelledby="sintomas">
+          <h2 id="sintomas">Síntomas</h2>
+          <ul>
+            <li>Al imprimir no sale nada y el documento se queda en la cola con estado «En cola», «Imprimiendo» durante mucho tiempo o «Error».</li>
+            <li>La impresora aparece como «Sin conexión» en <em>Impresoras y escáneres</em>.</li>
+            <li>El programa muestra un error al imprimir, o el trabajo desaparece sin que salga la hoja.</li>
+            <li>La impresora muestra un aviso en su propio panel (atasco, sin papel, sin tóner o tinta).</li>
+            <li>Sale una impresión con hojas en blanco o con caracteres extraños (suele ser un problema de controlador: mira «Cuándo escalar»).</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="preguntas">
+          <h2 id="preguntas">Preguntas al usuario</h2>
+          <ol>
+            <li>¿Qué impresora es (nombre o ubicación) y cómo está conectada: por red, por USB o compartida desde otro equipo o servidor?</li>
+            <li>¿Falla todo lo que imprimes o solo un documento o un programa concreto?</li>
+            <li>¿Tus compañeros pueden imprimir en la misma impresora? <em>Si nadie puede, es más probable que el fallo esté en la impresora, en la red o en el servidor de impresión.</em></li>
+            <li>¿Cuándo funcionó por última vez? ¿Ha cambiado algo: actualización de Windows, traslado del equipo, cambio de contraseña, impresora nueva?</li>
+            <li>¿Qué muestra la pantalla o las luces de la impresora? ¿Aparece algún mensaje o código de error en Windows? Si puede, que haga una captura.</li>
+            <li>¿Has enviado el documento varias veces? <em>Cada intento suma un trabajo más a la cola.</em></li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="comprobaciones">
+          <h2 id="comprobaciones">Comprobaciones rápidas</h2>
+          <ul>
+            <li><strong>La impresora está encendida</strong> y su panel no muestra errores: papel en la bandeja, tóner o tinta, sin atascos y con las tapas cerradas. Si hay un atasco o un consumible agotado, lo resuelve quien gestione la impresora según el procedimiento de la empresa.</li>
+            <li><strong>Conexión.</strong> Cable de red o USB bien conectado, o Wi-Fi activo. Si el propio equipo ha perdido la red, consulta antes la guía <a href="sin-internet.html">No tengo conexión a Internet</a>.</li>
+            <li><strong>Impresora correcta seleccionada</strong> en el cuadro de impresión (hay usuarios con varias impresoras).</li>
+            <li><strong>Otro programa.</strong> Prueba a imprimir desde otra aplicación (por ejemplo el Bloc de notas) para descartar un fallo del programa.</li>
+            <li><strong>Reinicio de la impresora.</strong> Apágala unos 30 segundos y vuelve a encenderla; espera a que termine de arrancar.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="diagnostico">
+          <h2 id="diagnostico">Diagnóstico paso a paso</h2>
+          <ol>
+            <li>
+              <strong>Abre «Impresoras y escáneres».</strong>
+              <div class="callout callout--win">
+                <div class="callout__label"><span aria-hidden="true">⊞</span> Windows 10 / Windows 11</div>
+                <ul>
+                  <li><strong>Windows 10:</strong> <em>Configuración &gt; Dispositivos &gt; Impresoras y escáneres</em>.</li>
+                  <li><strong>Windows 11:</strong> <em>Configuración &gt; Bluetooth y dispositivos &gt; Impresoras y escáneres</em>.</li>
+                </ul>
+              </div>
+              <p>Localiza la impresora del usuario y fíjate en si aparece como «Sin conexión».</p>
+            </li>
+            <li>
+              <strong>Abre la cola de impresión.</strong> Selecciona la impresora y pulsa
+              <em>Abrir cola</em> (Windows 10) o <em>Abrir cola de impresión</em> (Windows 11). Mira el estado de
+              los documentos: un documento en «Error» o «Imprimiendo» que no avanza bloquea todos los siguientes.
+              <ul>
+                <li>En <strong>Windows 10</strong>, en el menú «Impresora» de esa ventana, comprueba que <em>Pausar impresión</em> y <em>Usar la impresora sin conexión</em> no están marcadas.</li>
+                <li>Para quitar un documento atascado: clic derecho sobre él &gt; <em>Cancelar</em>.</li>
+              </ul>
+              <div class="callout callout--warn">
+                <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+                <p>Cancela solo los documentos del usuario afectado, y pregúntale antes si puede volver a imprimirlos. Si la impresora es <strong>compartida desde un servidor</strong>, la cola puede tener trabajos de otros compañeros: no uses «Cancelar todo» ni limpies la cola del servidor; escala.</p>
+              </div>
+            </li>
+            <li>
+              <strong>Comprueba que la impresora responde por red.</strong> Si es una impresora de red, averigua
+              su dirección IP (en el panel de la impresora, en su etiqueta o en la documentación de la empresa;
+              también aparece en las propiedades de la impresora, pestaña «Puertos») y desde el Símbolo del
+              sistema (<kbd>Win</kbd> + <kbd>R</kbd>, escribe <code>cmd</code>) ejecuta <code>ping</code>, un
+              espacio y esa IP.
+              <ul>
+                <li>Si <strong>responde</strong> («Respuesta desde…»), la red hasta la impresora funciona: sigue con el paso 4.</li>
+                <li>Si aparece «Tiempo de espera agotado» o «Host de destino inaccesible», la impresora está apagada, sin red o ha cambiado de IP: revisa su cable o Wi-Fi y, si sigue igual, escala.</li>
+              </ul>
+              Si es una impresora <strong>USB</strong>, comprueba que el cable está firme y prueba otro puerto USB del equipo.
+            </li>
+            <li>
+              <strong>Revisa el servicio «Cola de impresión».</strong>
+              <div class="callout callout--tool">
+                <div class="callout__label"><span aria-hidden="true">🧰</span> Con IT Support Toolkit</div>
+                <p>
+                  Opción <strong>5 · Servicios clave</strong>. Muestra el estado del servicio Cola de impresión (y
+                  de otros como Windows Update, Cliente DNS, Cliente DHCP y Audio). Consultar el estado no
+                  necesita administrador; reiniciar la cola y limpiar trabajos atascados, sí.
+                </p>
+              </div>
+              <div class="callout callout--manual">
+                <div class="callout__label"><span aria-hidden="true">🖱</span> Alternativa manual</div>
+                <p>
+                  Pulsa <kbd>Win</kbd> + <kbd>R</kbd>, escribe <code>services.msc</code> y pulsa Intro. Busca
+                  <strong>Cola de impresión</strong> y mira que su estado sea «En ejecución». Si está detenido,
+                  o si está en ejecución pero la cola sigue atascada, haz clic derecho &gt; «Reiniciar» (o
+                  «Iniciar» si estaba detenido). Pedirá permisos de administrador.
+                </p>
+              </div>
+            </li>
+            <li>
+              <strong>Haz una prueba.</strong> Imprime una página de prueba (abre las propiedades de la
+              impresora —en Windows 10 desde <em>Administrar</em>— y usa <em>Imprimir página de prueba</em>) y
+              vuelve a imprimir desde el programa del usuario. Si en otro equipo la misma impresora funciona
+              pero en este no, el fallo está en el equipo: controlador, permisos o puerto. Eso es de nivel 2.
+            </li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="solucion">
+          <h2 id="solucion">Solución</h2>
+
+          <h3>La impresora tiene un fallo físico</h3>
+          <p>Sin papel, sin tóner o tinta, atasco o aviso de mantenimiento: lo resuelve quien gestiona la impresora (o el proveedor) según el procedimiento de la empresa. Anota el mensaje exacto del panel.</p>
+
+          <h3>Aparece «Sin conexión» pero responde al ping</h3>
+          <p>Reinicia la impresora, y en Windows 10 desmarca <em>Usar la impresora sin conexión</em> en el menú «Impresora» de la cola. Si sigue igual, reinicia el servicio Cola de impresión (paso 4 del diagnóstico).</p>
+
+          <h3>Un documento atascado bloquea la cola</h3>
+          <p>Cancélalo desde la cola (clic derecho &gt; <em>Cancelar</em>). Si se queda en «Eliminando» o no desaparece, reinicia el servicio Cola de impresión y, si sigue ahí, limpia la cola:</p>
+          <div class="callout callout--warn">
+            <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+            <ul>
+              <li>Necesitas permisos de administrador. Si no los tienes, escala.</li>
+              <li>Se pierden <strong>todos</strong> los trabajos pendientes de ese equipo: avisa al usuario.</li>
+              <li>Hazlo solo en el <strong>equipo del usuario</strong>. No lo hagas en un servidor de impresión: eso afectaría a todos los usuarios y lo hace nivel 2.</li>
+              <li>Borra solo los archivos de dentro de la carpeta, no la carpeta ni ninguna otra.</li>
+            </ul>
+          </div>
+          <div class="callout callout--tool">
+            <div class="callout__label"><span aria-hidden="true">🧰</span> Con IT Support Toolkit</div>
+            <p>Opción <strong>5 · Servicios clave</strong>: reiniciar la cola de impresión y limpiar los trabajos atascados. Requiere administrador.</p>
+          </div>
+          <div class="callout callout--manual">
+            <div class="callout__label"><span aria-hidden="true">🖱</span> Alternativa manual</div>
+            <ol>
+              <li>Pulsa <kbd>Win</kbd> + <kbd>R</kbd>, escribe <code>services.msc</code> y pulsa Intro.</li>
+              <li>Busca <strong>Cola de impresión</strong>, clic derecho &gt; «Detener».</li>
+              <li>Abre la carpeta <code>C:\Windows\System32\spool\PRINTERS</code> y elimina todos los archivos que haya dentro.</li>
+              <li>Vuelve a <code>services.msc</code>, clic derecho en <strong>Cola de impresión</strong> &gt; «Iniciar».</li>
+              <li>Comprueba que el estado es «En ejecución» y prueba a imprimir.</li>
+            </ol>
+          </div>
+
+          <h3>Windows imprime en otra impresora</h3>
+          <p>
+            En <em>Impresoras y escáneres</em> selecciona la impresora correcta y establécela como predeterminada
+            (en Windows 10, desde <em>Administrar</em>). Si Windows la cambia solo, desactiva
+            <em>Permitir que Windows administre mi impresora predeterminada</em>: con esa opción activada, Windows
+            elige como predeterminada la última impresora usada.
+          </p>
+
+          <p>
+            <strong>Antes de cerrar:</strong> pide al usuario que confirme que ya imprime lo que necesitaba y
+            que la cola está vacía.
+          </p>
+        </section>
+
+        <section class="guide-section" aria-labelledby="escalar">
+          <h2 id="escalar">Cuándo escalar a nivel 2</h2>
+          <ul>
+            <li>La impresora <strong>no responde al ping</strong> o ha cambiado de IP, o no imprime <strong>ningún usuario</strong> (red, servidor de impresión o impresora).</li>
+            <li>La impresora es compartida desde un <strong>servidor de impresión</strong> y la cola del servidor está atascada.</li>
+            <li>Problemas de <strong>controlador</strong>: hojas en blanco, caracteres extraños, controlador ausente o incompatible. Instalar, actualizar o quitar controladores lo hace nivel 2.</li>
+            <li>Errores al añadir o conectar una impresora compartida con códigos como <code>0x0000011b</code>, <code>0x00000709</code> o <code>0x00000bcb</code>. Suelen aparecer al conectar con servidores de impresión y por las restricciones de seguridad de Windows: anota el código exacto y no cambies nada por tu cuenta.</li>
+            <li>El servicio Cola de impresión no arranca o se detiene solo después de reiniciarlo.</li>
+            <li>No tienes permisos de administrador para reiniciar el servicio o limpiar la cola.</li>
+            <li>El fallo es de hardware (atascos repetidos, cabezal, fusor, error de mantenimiento): avisa al responsable de la impresora o al proveedor.</li>
+          </ul>
+          <div class="callout callout--warn">
+            <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+            <p>
+              No descargues ni instales controladores de fuentes no oficiales, no modifiques el registro ni las
+              directivas de seguridad de Windows para «forzar» una impresora. Lo hace nivel 2 con el controlador
+              aprobado por la empresa.
+            </p>
+          </div>
+        </section>
+
+        <section class="guide-section" aria-labelledby="ticket">
+          <h2 id="ticket">Qué anotar en el ticket</h2>
+          <ul class="checklist">
+            <li>Usuario (con su identidad verificada), nombre del equipo y hora de inicio del problema.</li>
+            <li>Impresora: nombre, modelo, ubicación y tipo de conexión (red, USB o compartida); IP o servidor de impresión si se conocen.</li>
+            <li>Alcance: solo este usuario o varios (indica quiénes), y si imprime desde otro equipo.</li>
+            <li>Mensaje o código de error exacto (en Windows y en el panel de la impresora), con captura si es posible.</li>
+            <li>Estado de la cola (documentos atascados, «Sin conexión») y resultado del ping a la impresora.</li>
+            <li>Acciones realizadas y su resultado: documentos cancelados, servicio reiniciado, cola limpiada, prueba de impresión.</li>
+            <li>Informe HTML del Toolkit (opción 7, que incluye el estado de los servicios) adjunto. Usa la anonimización opcional si el ticket lo va a ver alguien ajeno a la empresa.</li>
+            <li>Estado final: resuelto (y qué lo resolvió) o escalado a nivel 2 o al proveedor, con el motivo.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="prevencion">
+          <h2 id="prevencion">Prevención</h2>
+          <ul>
+            <li>No enviar el mismo documento varias veces si no sale: avisar a soporte en lugar de reintentar, para no llenar la cola.</li>
+            <li>Revisar de forma periódica papel y consumibles, y avisar del mantenimiento antes de que se agoten.</li>
+            <li>Documentar las impresoras de red con su IP (idealmente fija o reservada) y el equipo que las gestiona.</li>
+            <li>Mantener el mismo controlador aprobado en todos los equipos que comparten una impresora.</li>
+            <li>Enseñar al usuario a comprobar el panel de la impresora y a cancelar un documento atascado desde la cola.</li>
+            <li>Mantener Windows actualizado según la política de la empresa.</li>
+          </ul>
+        </section>
+      </article>
+
+      <nav class="guide-nav guide-nav--bottom" aria-label="Enlaces al final de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 Iván Marcos Couso · <a href="../index.html">Web principal</a></p>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

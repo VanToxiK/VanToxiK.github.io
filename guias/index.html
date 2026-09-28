@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guías de soporte IT N1 · Iván Marcos Couso</title>
+<meta name="description" content="Base de conocimiento de soporte IT nivel 1 para equipos Windows 10/11 y Microsoft 365: guías paso a paso con diagnóstico, solución, criterios de escalado y datos para el ticket.">
+<meta name="author" content="Iván Marcos Couso">
+
+<link rel="canonical" href="https://vantoxik.github.io/guias/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+<header class="site-header">
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="../index.html#inicio" class="nav__brand">IMC</a>
+    <ul class="nav__links">
+      <li><a href="../index.html#sobre-mi">Sobre mí</a></li>
+      <li><a href="../index.html#competencias">Competencias</a></li>
+      <li><a href="../index.html#proyectos">Proyectos</a></li>
+      <li><a href="index.html" aria-current="page">Guías</a></li>
+      <li><a href="../index.html#experiencia">Experiencia</a></li>
+      <li><a href="../index.html#formacion">Formación</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar a modo claro" aria-pressed="false">
+      <span aria-hidden="true">☀</span>
+    </button>
+  </nav>
+</header>
+
+<main id="contenido">
+  <div class="guide-page">
+    <div class="container">
+
+      <nav class="guide-nav" aria-label="Enlaces de la sección">
+        <a href="../index.html">← Web principal</a>
+      </nav>
+
+      <h1 class="section__title">Guías de soporte IT N1</h1>
+      <p class="guide-intro">
+        Base de conocimiento con los problemas más habituales de un Service Desk de nivel 1, escrita para
+        equipos Windows 10/11 con Microsoft 365 en un entorno de oficina. Cada guía sigue el mismo esquema:
+        síntomas, preguntas al usuario, comprobaciones, diagnóstico, solución, cuándo escalar a nivel 2,
+        qué anotar en el ticket y prevención.
+      </p>
+      <p class="guide-intro">
+        Cuando encaja, se indica qué opción de mi herramienta
+        <a href="https://github.com/VanToxiK/it-support-toolkit" target="_blank" rel="noopener noreferrer">IT Support Toolkit</a>
+        usar, junto con la alternativa manual de Windows. Según Microsoft, el soporte técnico de Windows&nbsp;10
+        finalizó el 14 de octubre de 2025; por eso las guías indican también los pasos de Windows&nbsp;11.
+      </p>
+
+      <!-- Sin JavaScript este bloque se queda oculto y se ve el listado completo. guias.js lo muestra. -->
+      <div class="guide-search" id="guide-search" hidden>
+        <label class="guide-search__label" for="guide-search-input">Buscar una guía</label>
+        <input class="guide-search__input" id="guide-search-input" type="search" placeholder="Ej.: impresora, DNS, contraseña…" autocomplete="off">
+        <p class="guide-search__status" id="guide-search-status" role="status" aria-live="polite"></p>
+      </div>
+
+      <section class="guide-group" aria-labelledby="cat-red">
+        <h2 class="guide-group__title" id="cat-red">Red</h2>
+        <ul class="guide-list">
+          <li class="guide-item" data-keywords="internet red wifi wi-fi cable adaptador ip dhcp router conectividad sin conexion sin acceso">
+            <a class="guide-item__title" href="sin-internet.html">No tengo conexión a Internet</a>
+            <p class="guide-item__meta">
+              <span class="priority priority--high">Prioridad alta</span>
+              <span>10–20 min</span>
+            </p>
+          </li>
+          <li class="guide-item guide-item--soon" data-keywords="dns paginas web navegador nombres resolucion">
+            <span class="guide-item__title">Tengo red pero no cargan las páginas web (DNS)</span>
+            <span class="badge badge--planned">Próximamente</span>
+          </li>
+          <li class="guide-item guide-item--soon" data-keywords="wifi wi-fi inalambrica cortes lento senal desconexion">
+            <span class="guide-item__title">El Wi-Fi se desconecta o va lento</span>
+            <span class="badge badge--planned">Próximamente</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="guide-group" aria-labelledby="cat-hardware">
+        <h2 class="guide-group__title" id="cat-hardware">Hardware y periféricos</h2>
+        <ul class="guide-list">
+          <li class="guide-item" data-keywords="impresora imprimir impresion cola de impresion spooler papel atasco toner sin conexion offline">
+            <a class="guide-item__title" href="impresora-no-imprime.html">La impresora no imprime</a>
+            <p class="guide-item__meta">
+              <span class="priority priority--medium">Prioridad media</span>
+              <span>10–25 min</span>
+            </p>
+          </li>
+          <li class="guide-item guide-item--soon" data-keywords="audio altavoces auriculares volumen microfono sonido">
+            <span class="guide-item__title">No se escucha el sonido</span>
+            <span class="badge badge--planned">Próximamente</span>
+          </li>
+          <li class="guide-item guide-item--soon" data-keywords="monitor pantalla segundo hdmi displayport proyector duplicar extender">
+            <span class="guide-item__title">No detecta el segundo monitor</span>
+            <span class="badge badge--planned">Próximamente</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="guide-group" aria-labelledby="cat-sistema">
+        <h2 class="guide-group__title" id="cat-sistema">Sistema</h2>
+        <ul class="guide-list">
+          <li class="guide-item guide-item--soon" data-keywords="lento rendimiento lentitud cpu memoria ram arranque">
+            <span class="guide-item__title">El equipo va lento</span>
+            <span class="badge badge--planned">Próximamente</span>
+          </li>
+          <li class="guide-item guide-item--soon" data-keywords="disco espacio almacenamiento lleno temporales limpieza">
+            <span class="guide-item__title">El disco está lleno</span>
+            <span class="badge badge--planned">Próximamente</span>
+          </li>
+          <li class="guide-item guide-item--soon" data-keywords="aplicacion programa se cierra cuelga bloquea error no abre">
+            <span class="guide-item__title">Un programa no se abre o se cierra solo</span>
+            <span class="badge badge--planned">Próximamente</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="guide-group" aria-labelledby="cat-cuentas">
+        <h2 class="guide-group__title" id="cat-cuentas">Cuentas y correo</h2>
+        <ul class="guide-list">
+          <li class="guide-item guide-item--soon" data-keywords="contrasena clave cuenta bloqueada acceso usuario identidad restablecer">
+            <span class="guide-item__title">He olvidado mi contraseña o tengo la cuenta bloqueada</span>
+            <span class="badge badge--planned">Próximamente</span>
+          </li>
+          <li class="guide-item guide-item--soon" data-keywords="outlook correo email microsoft 365 enviar recibir bandeja">
+            <span class="guide-item__title">Outlook no envía ni recibe correos</span>
+            <span class="badge badge--planned">Próximamente</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="guide-group" aria-labelledby="cat-seguridad">
+        <h2 class="guide-group__title" id="cat-seguridad">Seguridad</h2>
+        <ul class="guide-list">
+          <li class="guide-item guide-item--soon" data-keywords="phishing correo sospechoso fraude malware enlace spam suplantacion">
+            <span class="guide-item__title">He recibido un correo sospechoso (phishing)</span>
+            <span class="badge badge--planned">Próximamente</span>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 Iván Marcos Couso · <a href="../index.html">Web principal</a></p>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/guias.js"></script>
+</body>
+</html>

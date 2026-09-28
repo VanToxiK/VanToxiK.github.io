@@ -6,9 +6,11 @@ pensada para publicarse en GitHub Pages.
 ## Estructura
 
 ```
-index.html       Contenido de la página
+index.html       Contenido de la página principal
+guias/           Guías de soporte IT N1 (índice y una página por guía)
 css/styles.css   Estilos y variables de tema (claro/oscuro)
 js/main.js       Lógica del botón de cambio de tema
+js/guias.js      Buscador del índice de guías
 ```
 
 ## Cómo verla en local

@@ -23,6 +23,11 @@
   --color-tag-bg: #1c2129;
   --color-tag-text: #9aa7b4;
 
+  --color-warn-bg: #3a2e12;
+  --color-warn-text: #fcd34d;
+  --color-danger-bg: #3f1d22;
+  --color-danger-text: #fca5a5;
+
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", "Courier New", monospace;
 
@@ -51,6 +56,11 @@
 
   --color-tag-bg: #eef0f3;
   --color-tag-text: #4b5563;
+
+  --color-warn-bg: #fdf1c8;
+  --color-warn-text: #7a4b00;
+  --color-danger-bg: #fde2e2;
+  --color-danger-text: #9b1c1c;
 }
 
 @media (prefers-color-scheme: light) {
@@ -74,6 +84,11 @@
 
     --color-tag-bg: #eef0f3;
     --color-tag-text: #4b5563;
+
+    --color-warn-bg: #fdf1c8;
+    --color-warn-text: #7a4b00;
+    --color-danger-bg: #fde2e2;
+    --color-danger-text: #9b1c1c;
   }
 }
 
@@ -206,6 +221,16 @@ button:focus-visible {
 .nav__links a:focus-visible {
   color: var(--color-text);
   text-decoration: none;
+}
+
+/* Página actual: se marca con subrayado además del color */
+.nav__links a[aria-current="page"],
+.nav__links a[aria-current="true"] {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
 }
 
 .theme-toggle {
@@ -395,6 +420,7 @@ button:focus-visible {
 
 .badge--dev::before {
   content: "●";
+  content: "●" / "";
 }
 
 .badge--planned {
@@ -404,6 +430,7 @@ button:focus-visible {
 
 .badge--planned::before {
   content: "◐";
+  content: "◐" / "";
 }
 
 .badge--done {
@@ -413,6 +440,7 @@ button:focus-visible {
 
 .badge--done::before {
   content: "✔";
+  content: "✔" / "";
 }
 
 .project-card__img {
@@ -579,6 +607,437 @@ button:focus-visible {
 }
 
 /* ==========================================================================
+   Guías: índice (buscador y listado por categoría)
+   ========================================================================== */
+
+.guide-search {
+  max-width: 520px;
+  margin-bottom: 8px;
+}
+
+.guide-search[hidden],
+.guide-group[hidden],
+.guide-item[hidden] {
+  display: none;
+}
+
+.guide-search__label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.guide-search__input {
+  width: 100%;
+  padding: 12px 14px;
+  font: inherit;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.guide-search__input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-color: var(--color-accent);
+}
+
+.guide-search__status {
+  min-height: 1.5em;
+  margin-top: 8px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.guide-intro {
+  max-width: 68ch;
+  margin-bottom: 20px;
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+}
+
+.guide-group {
+  margin-top: 36px;
+}
+
+.guide-group__title {
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  font-size: 1.15rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.guide-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.guide-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition: border-color var(--transition);
+}
+
+.guide-item:not(.guide-item--soon):hover {
+  border-color: var(--color-accent);
+}
+
+.guide-item__title {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Toda la tarjeta es clicable: el enlace se extiende sobre ella */
+a.guide-item__title::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+a.guide-item__title:hover {
+  text-decoration: underline;
+}
+
+@supports selector(:has(*)) {
+  .guide-item__title:focus-visible {
+    outline: none;
+  }
+
+  .guide-item:has(.guide-item__title:focus-visible) {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
+.guide-item__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+/* Guías pendientes: sin enlace, borde discontinuo y texto atenuado */
+.guide-item--soon {
+  background-color: transparent;
+  border-style: dashed;
+}
+
+.guide-item--soon .guide-item__title {
+  color: var(--color-text-muted);
+}
+
+.guide-item--soon .badge {
+  align-self: flex-start;
+}
+
+/* Prioridad: color + icono + texto (nunca solo color) */
+.priority {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+}
+
+.priority--high {
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger-text);
+}
+
+.priority--high::before {
+  content: "▲";
+  content: "▲" / "";
+}
+
+.priority--medium {
+  background-color: var(--color-warn-bg);
+  color: var(--color-warn-text);
+}
+
+.priority--medium::before {
+  content: "■";
+  content: "■" / "";
+}
+
+.priority--low {
+  background-color: var(--color-tag-bg);
+  color: var(--color-tag-text);
+}
+
+.priority--low::before {
+  content: "▼";
+  content: "▼" / "";
+}
+
+/* ==========================================================================
+   Guías: página de una guía
+   ========================================================================== */
+
+.guide-page {
+  padding: 40px 0 64px;
+}
+
+.guide-body {
+  max-width: 78ch;
+}
+
+.guide-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-bottom: 28px;
+  font-size: 0.92rem;
+}
+
+.guide-nav--bottom {
+  margin: 48px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border);
+}
+
+.guide-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 36px;
+  margin: 0 0 24px;
+  padding: 14px 18px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.guide-meta dt {
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.guide-meta dd {
+  margin: 4px 0 0;
+  font-weight: 600;
+}
+
+.guide-toc {
+  margin-bottom: 8px;
+  padding: 16px 20px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.guide-toc__title {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.guide-toc ol {
+  columns: 2 240px;
+  column-gap: 32px;
+  padding-left: 1.4em;
+  list-style: decimal;
+  font-size: 0.95rem;
+}
+
+.guide-section {
+  margin-top: 40px;
+  scroll-margin-top: 96px;
+}
+
+.guide-section > h2 {
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  font-size: 1.3rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.guide-body h3 {
+  margin: 24px 0 8px;
+  font-size: 1.05rem;
+}
+
+.guide-body p {
+  margin-bottom: 12px;
+}
+
+.guide-body ul,
+.guide-body ol {
+  margin-bottom: 12px;
+  padding-left: 1.4em;
+}
+
+.guide-body ul {
+  list-style: disc;
+}
+
+.guide-body ol {
+  list-style: decimal;
+}
+
+.guide-body li {
+  margin-bottom: 8px;
+}
+
+.guide-body li::marker {
+  color: var(--color-text-muted);
+}
+
+.guide-body ol > li::marker {
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.guide-body code,
+.guide-body kbd {
+  padding: 1px 6px;
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  color: var(--color-text);
+  background-color: var(--color-tag-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  overflow-wrap: anywhere;
+}
+
+.guide-body kbd {
+  border-bottom-width: 2px;
+}
+
+/* Lista de comprobación (qué anotar en el ticket) */
+.guide-body ul.checklist {
+  padding-left: 0;
+  list-style: none;
+}
+
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.checklist li::before {
+  content: "☐";
+  content: "☐" / "";
+  flex-shrink: 0;
+  color: var(--color-accent-strong);
+}
+
+/* Cuadros destacados: se distinguen por etiqueta de texto + icono + borde, no solo por color */
+.callout {
+  margin: 16px 0;
+  padding: 14px 16px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left-width: 4px;
+  border-radius: var(--radius);
+}
+
+.callout > :last-child,
+.callout li:last-child {
+  margin-bottom: 0;
+}
+
+.callout__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.callout--tool {
+  border-left-color: var(--color-accent);
+}
+
+.callout--tool .callout__label {
+  color: var(--color-accent-strong);
+}
+
+.callout--manual {
+  border-left-color: var(--color-text-muted);
+}
+
+.callout--win {
+  border-left-color: var(--color-badge-planned-text);
+}
+
+.callout--win .callout__label {
+  color: var(--color-badge-planned-text);
+}
+
+.callout--warn {
+  background-color: var(--color-warn-bg);
+  border-color: var(--color-warn-text);
+}
+
+.callout--warn .callout__label {
+  color: var(--color-warn-text);
+}
+
+/* Tablas: se desplazan dentro de su caja en pantallas estrechas */
+.table-wrap {
+  margin: 16px 0;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.table-wrap:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.guide-table {
+  width: 100%;
+  min-width: 480px;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.guide-table th,
+.guide-table td {
+  padding: 10px 14px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.guide-table th {
+  background-color: var(--color-bg-alt);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.guide-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ==========================================================================
    Responsive: navegación (evita que el botón de tema se corte en anchos
    intermedios, ~640-900px) y ajustes de móvil desde 360px
    ========================================================================== */
@@ -627,9 +1086,73 @@ button:focus-visible {
    ========================================================================== */
 
 @media print {
+  /* Paleta clara fija al imprimir, aunque la pantalla esté en tema oscuro */
+  :root,
+  :root:not([data-theme="dark"]),
+  :root[data-theme="dark"],
+  :root[data-theme="light"] {
+    --color-bg: #fff;
+    --color-bg-alt: #fff;
+    --color-surface: #fff;
+    --color-border: #999;
+    --color-text: #000;
+    --color-text-muted: #333;
+    --color-accent: #0c7d72;
+    --color-accent-strong: #0c7d72;
+    --color-badge-dev-bg: #fff;
+    --color-badge-dev-text: #000;
+    --color-badge-planned-bg: #fff;
+    --color-badge-planned-text: #000;
+    --color-badge-done-bg: #fff;
+    --color-badge-done-text: #000;
+    --color-tag-bg: #eee;
+    --color-tag-text: #333;
+    --color-warn-bg: #fff;
+    --color-warn-text: #000;
+    --color-danger-bg: #fff;
+    --color-danger-text: #000;
+  }
+
   .site-header,
-  .skip-link {
+  .skip-link,
+  .guide-search,
+  .guide-toc,
+  .guide-nav {
     display: none;
+  }
+
+  .guide-page {
+    padding: 0;
+  }
+
+  .guide-body {
+    max-width: none;
+  }
+
+  .callout,
+  .table-wrap {
+    break-inside: avoid;
+  }
+
+  .guide-section > h2,
+  .guide-body h3 {
+    break-after: avoid;
+  }
+
+  .guide-body li {
+    break-inside: avoid;
+  }
+
+  .callout {
+    border-left-color: #000;
+  }
+
+  .table-wrap {
+    overflow: visible;
+  }
+
+  .guide-table {
+    min-width: 0;
   }
 
   body {
