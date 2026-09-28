@@ -17,6 +17,11 @@
   --color-badge-dev-text: #5eead4;
   --color-badge-planned-bg: #2a2440;
   --color-badge-planned-text: #c4b5fd;
+  --color-badge-done-bg: #16321f;
+  --color-badge-done-text: #86efac;
+
+  --color-tag-bg: #1c2129;
+  --color-tag-text: #9aa7b4;
 
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", "Courier New", monospace;
@@ -41,6 +46,11 @@
   --color-badge-dev-text: #0c6d61;
   --color-badge-planned-bg: #e6e0fb;
   --color-badge-planned-text: #4c3a9c;
+  --color-badge-done-bg: #d9f2df;
+  --color-badge-done-text: #146c37;
+
+  --color-tag-bg: #eef0f3;
+  --color-tag-text: #4b5563;
 }
 
 @media (prefers-color-scheme: light) {
@@ -59,6 +69,11 @@
     --color-badge-dev-text: #0c6d61;
     --color-badge-planned-bg: #e6e0fb;
     --color-badge-planned-text: #4c3a9c;
+    --color-badge-done-bg: #d9f2df;
+    --color-badge-done-text: #146c37;
+
+    --color-tag-bg: #eef0f3;
+    --color-tag-text: #4b5563;
   }
 }
 
@@ -389,6 +404,54 @@ button:focus-visible {
 
 .badge--planned::before {
   content: "◐";
+}
+
+.badge--done {
+  background-color: var(--color-badge-done-bg);
+  color: var(--color-badge-done-text);
+}
+
+.badge--done::before {
+  content: "✔";
+}
+
+.project-card__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--radius) - 4px);
+  margin-bottom: 14px;
+  border: 1px solid var(--color-border);
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tech-tag {
+  background-color: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.project-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.project-card__actions .btn {
+  padding: 8px 16px;
+  font-size: 0.85rem;
 }
 
 /* ==========================================================================
