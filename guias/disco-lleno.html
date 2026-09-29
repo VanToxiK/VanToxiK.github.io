@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El disco está lleno · Guías de soporte IT N1</title>
+<meta name="description" content="Guía de soporte IT N1: qué hacer cuando el disco de un equipo Windows 10/11 está casi lleno. Sensor de almacenamiento, Liberador de espacio en disco, limpieza de temporales, respeto de los archivos del usuario, cuándo escalar y qué anotar en el ticket.">
+<meta name="author" content="Iván Marcos Couso">
+
+<link rel="canonical" href="https://vantoxik.github.io/guias/disco-lleno.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+<header class="site-header">
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="../index.html#inicio" class="nav__brand">IMC</a>
+    <ul class="nav__links">
+      <li><a href="../index.html#sobre-mi">Sobre mí</a></li>
+      <li><a href="../index.html#competencias">Competencias</a></li>
+      <li><a href="../index.html#proyectos">Proyectos</a></li>
+      <li><a href="index.html" aria-current="true">Guías</a></li>
+      <li><a href="../index.html#experiencia">Experiencia</a></li>
+      <li><a href="../index.html#formacion">Formación</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar a modo claro" aria-pressed="false">
+      <span aria-hidden="true">☀</span>
+    </button>
+  </nav>
+</header>
+
+<main id="contenido">
+  <div class="guide-page">
+    <div class="container">
+
+      <nav class="guide-nav" aria-label="Enlaces de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+      <article class="guide-body">
+        <h1 class="section__title">El disco está lleno</h1>
+
+        <dl class="guide-meta">
+          <div>
+            <dt>Categoría</dt>
+            <dd>Sistema</dd>
+          </div>
+          <div>
+            <dt>Prioridad orientativa</dt>
+            <dd><span class="priority priority--medium">Media</span></dd>
+          </div>
+          <div>
+            <dt>Tiempo estimado</dt>
+            <dd>10–25 min</dd>
+          </div>
+        </dl>
+
+        <p class="guide-intro">
+          La unidad de disco de un equipo Windows 10/11 (normalmente la <code>C:</code>) está casi llena. Con poco
+          espacio libre Windows va lento, no puede instalar actualizaciones y los programas dan errores al guardar.
+          Esta guía sirve para ver qué ocupa el espacio, liberar lo que es seguro liberar en nivel 1 y decidir
+          cuándo pasar la incidencia a nivel 2. La regla principal: <strong>los archivos personales del usuario
+          no se borran sin su consentimiento</strong>. Si el equipo, además de tener poco espacio, va lento, consulta
+          también la guía <a href="equipo-lento.html">El equipo va lento</a>. Donde encaja, se indica la opción de
+          mi herramienta
+          <a href="https://github.com/VanToxiK/it-support-toolkit" target="_blank" rel="noopener noreferrer">IT Support Toolkit</a>
+          y también la alternativa manual de Windows.
+        </p>
+
+        <div class="callout callout--warn">
+          <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+          <p>
+            <strong>Nunca borres archivos personales del usuario</strong> (documentos, imágenes, vídeos, escritorio)
+            <strong>sin su consentimiento</strong>. La carpeta <em>Descargas</em> y la <em>Papelera de reciclaje</em>
+            se vacían <strong>solo con su confirmación</strong>: pueden contener cosas que aún necesita. Tampoco
+            toques carpetas de Windows ni de programas. Y antes de nada, confirma quién es el usuario y qué equipo
+            está afectado.
+          </p>
+        </div>
+
+        <nav class="guide-toc" aria-labelledby="toc-title">
+          <h2 class="guide-toc__title" id="toc-title">En esta guía</h2>
+          <ol>
+            <li><a href="#sintomas">Síntomas</a></li>
+            <li><a href="#preguntas">Preguntas al usuario</a></li>
+            <li><a href="#comprobaciones">Comprobaciones rápidas</a></li>
+            <li><a href="#diagnostico">Diagnóstico paso a paso</a></li>
+            <li><a href="#solucion">Solución</a></li>
+            <li><a href="#escalar">Cuándo escalar a nivel 2</a></li>
+            <li><a href="#ticket">Qué anotar en el ticket</a></li>
+            <li><a href="#prevencion">Prevención</a></li>
+          </ol>
+        </nav>
+
+        <section class="guide-section" aria-labelledby="sintomas">
+          <h2 id="sintomas">Síntomas</h2>
+          <ul>
+            <li>Windows avisa de que queda poco espacio en el disco.</li>
+            <li>En el Explorador de archivos, en <em>Este equipo</em>, la barra de la unidad <code>C:</code> aparece casi llena (en rojo).</li>
+            <li>No se pueden guardar archivos, o programas como Outlook u Office dan errores de falta de espacio.</li>
+            <li>Las actualizaciones de Windows fallan o no se instalan.</li>
+            <li>El equipo va más lento de lo normal.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="preguntas">
+          <h2 id="preguntas">Preguntas al usuario</h2>
+          <ol>
+            <li>¿Qué mensaje exacto aparece y en qué momento (al guardar, al abrir un programa, al actualizar)? Si puede, que haga una captura de pantalla.</li>
+            <li>¿Guardas archivos grandes en el equipo (vídeos, copias de seguridad, imágenes)? ¿Descargas muchos archivos?</li>
+            <li>¿Desde cuándo? ¿Ha pasado de golpe o ha ido llenándose poco a poco?</li>
+            <li>¿Usas OneDrive u otra carpeta de red para tus documentos, o lo guardas todo en el propio equipo?</li>
+            <li>¿Hay algo en el escritorio, en Descargas o en la Papelera que ya no necesites? <em>Que lo decida el usuario; tú no borres nada sin que lo confirme.</em></li>
+            <li>¿El equipo lo usan varias personas (varios usuarios de Windows)?</li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="comprobaciones">
+          <h2 id="comprobaciones">Comprobaciones rápidas</h2>
+          <ul>
+            <li><strong>Qué unidad es.</strong> Confirma si es la unidad <code>C:</code> (sistema) u otra: no es lo mismo una unidad de datos llena que la del sistema, que es la que afecta a Windows.</li>
+            <li><strong>Documentos abiertos.</strong> Pide al usuario que guarde su trabajo antes de empezar y cierre los programas grandes que no necesite.</li>
+            <li><strong>Reinicio.</strong> Si el equipo lleva días sin reiniciarse, puede haber archivos temporales sin liberar. Pide al usuario que guarde y reinicie.</li>
+            <li><strong>No borres nada aún.</strong> Primero mira qué ocupa el espacio (diagnóstico) y solo después decide qué se puede liberar y con qué permiso.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="diagnostico">
+          <h2 id="diagnostico">Diagnóstico paso a paso</h2>
+          <ol>
+            <li>
+              <strong>Mira el espacio libre de cada disco.</strong>
+              <div class="callout callout--tool">
+                <div class="callout__label"><span aria-hidden="true">🧰</span> Con IT Support Toolkit</div>
+                <p>
+                  Opción <strong>1 · Información del sistema</strong>. Muestra el espacio libre de cada disco y
+                  avisa si baja del 15 %. Solo muestra información, no cambia nada.
+                </p>
+              </div>
+              <div class="callout callout--manual">
+                <div class="callout__label"><span aria-hidden="true">🖱</span> Alternativa manual</div>
+                <p>
+                  Abre el Explorador de archivos y pulsa <em>Este equipo</em>. En «Dispositivos y unidades» aparece
+                  cada unidad con su barra y el espacio libre. Como referencia, por debajo del 15 % de espacio libre
+                  conviene actuar.
+                </p>
+              </div>
+            </li>
+            <li>
+              <strong>Mira qué ocupa el espacio.</strong>
+              <div class="callout callout--win">
+                <div class="callout__label"><span aria-hidden="true">⊞</span> Windows 10 / Windows 11</div>
+                <ul>
+                  <li><strong>Windows 10 y Windows 11:</strong> <em>Configuración &gt; Sistema &gt; Almacenamiento</em>. Muestra el espacio usado, dividido en categorías (por ejemplo aplicaciones, archivos temporales o documentos), para saber qué ocupa más.</li>
+                  <li><strong>Windows 11:</strong> además, <em>Configuración &gt; Sistema &gt; Almacenamiento &gt; Recomendaciones de limpieza</em>, con archivos temporales, archivos grandes o sin usar, archivos sincronizados con la nube y aplicaciones sin usar.</li>
+                </ul>
+              </div>
+              <p>Con esa información, clasifica lo que ocupa espacio antes de tocar nada:</p>
+              <div class="table-wrap" tabindex="0" role="region" aria-label="Qué se puede liberar y con qué permiso">
+                <table class="guide-table">
+                  <thead>
+                    <tr><th scope="col">Qué ocupa espacio</th><th scope="col">Qué puedes hacer en nivel 1</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Archivos temporales de Windows, de Internet o de programas</td>
+                      <td>Se pueden limpiar con las herramientas de Windows o con el Toolkit. No son archivos del usuario.</td>
+                    </tr>
+                    <tr>
+                      <td>Papelera de reciclaje</td>
+                      <td>Solo con la confirmación del usuario, después de que la revise.</td>
+                    </tr>
+                    <tr>
+                      <td>Carpeta Descargas</td>
+                      <td>Solo con la confirmación del usuario. Es mejor que sea él quien revise y borre lo que no necesite.</td>
+                    </tr>
+                    <tr>
+                      <td>Documentos, Escritorio, Imágenes, Vídeos, Música</td>
+                      <td>Archivos personales o de trabajo: no los borres. Solo el usuario decide, o se escala para moverlos a la nube o a la red según la política de la empresa.</td>
+                    </tr>
+                    <tr>
+                      <td>Aplicaciones y programas instalados</td>
+                      <td>No desinstales nada por tu cuenta. Si hay algo que sobra, anótalo y escala.</td>
+                    </tr>
+                    <tr>
+                      <td>Archivos de sistema (Windows, versiones anteriores de Windows, actualizaciones)</td>
+                      <td>Solo con las herramientas de limpieza de Windows. No borres carpetas del sistema a mano.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+            <li>
+              <strong>Comprueba cuánto espacio necesita Windows.</strong> Las actualizaciones necesitan varios GB
+              libres; según Microsoft, del orden de 2–3 GB las mensuales y de 6–11 GB las grandes. Si hay una
+              actualización que falla y el disco está casi lleno, primero hay que liberar espacio.
+            </li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="solucion">
+          <h2 id="solucion">Solución</h2>
+
+          <h3>Limpiar archivos temporales</h3>
+          <div class="callout callout--tool">
+            <div class="callout__label"><span aria-hidden="true">🧰</span> Con IT Support Toolkit</div>
+            <p>Opción <strong>4 · Limpieza de temporales</strong>. Elimina los archivos temporales de la carpeta <code>%TEMP%</code> con más de 24 horas de antigüedad. Avisa antes al usuario.</p>
+          </div>
+          <div class="callout callout--manual">
+            <div class="callout__label"><span aria-hidden="true">🖱</span> Alternativa manual</div>
+            <p>Usa las herramientas de Windows que se explican a continuación (Sensor de almacenamiento, Recomendaciones de limpieza o Liberador de espacio en disco), que solo ofrecen borrar archivos temporales y de sistema.</p>
+          </div>
+
+          <h3>Windows 11: Recomendaciones de limpieza</h3>
+          <p>
+            Abre <em>Configuración &gt; Sistema &gt; Almacenamiento &gt; Recomendaciones de limpieza</em>. En
+            <strong>Archivos temporales</strong> selecciona lo que quieras quitar y pulsa <em>Limpieza</em>. Las
+            otras secciones (archivos grandes o sin usar, archivos sincronizados con la nube, aplicaciones sin usar)
+            afectan a cosas del usuario: <strong>no las uses sin su consentimiento</strong>.
+          </p>
+
+          <h3>Windows 10: Liberador de espacio en disco</h3>
+          <p>
+            En el cuadro de búsqueda de la barra de tareas escribe <em>liberador de espacio en disco</em> y
+            ábrelo. Elige la unidad <code>C:</code> y revisa la lista de casillas antes de aceptar. Para incluir
+            archivos del sistema, pulsa <em>Limpiar archivos del sistema</em> (te pedirá permisos de administrador;
+            si no los tienes, escala).
+          </p>
+          <div class="callout callout--warn">
+            <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+            <ul>
+              <li><strong>Lee cada casilla antes de marcarla.</strong> Deja <strong>desmarcadas</strong> «Papelera de reciclaje» y «Descargas» (si aparece) salvo que el usuario lo haya confirmado.</li>
+              <li>No marques nada que suponga perder la posibilidad de volver a una versión anterior de Windows (por ejemplo, instalaciones anteriores): eso lo decide nivel 2.</li>
+              <li>Si esta herramienta no está disponible en tu versión de Windows 11, usa las Recomendaciones de limpieza.</li>
+            </ul>
+          </div>
+
+          <h3>Sensor de almacenamiento</h3>
+          <p>
+            Es la función de Windows que libera espacio automáticamente, quitando archivos temporales y vaciando
+            la Papelera. Para activarla: <em>Configuración &gt; Sistema &gt; Almacenamiento</em> y pon
+            <em>Sensor de almacenamiento</em> en «Activado» (igual en Windows 10 y Windows 11). Actívala solo con
+            el consentimiento del usuario y si la política de la empresa lo permite, y <strong>revisa su
+            configuración</strong>: no debe quedar programado para borrar automáticamente archivos de Descargas ni
+            vaciar la Papelera si el usuario no lo quiere.
+          </p>
+
+          <h3>Papelera de reciclaje y carpeta Descargas</h3>
+          <p>
+            Abre la Papelera con el usuario delante, enséñale lo que hay y <strong>vacíala solo si lo confirma</strong>.
+            Con Descargas, pídele que la revise y borre él lo que no necesite; si te lo pide expresamente, borra solo
+            lo que te indique. Anota en el ticket qué se ha borrado y con qué permiso.
+          </p>
+
+          <h3>Archivos personales grandes</h3>
+          <p>
+            Si la mayor parte del espacio lo ocupan sus archivos (vídeos, copias, imágenes), no los borres:
+            explícale que el usuario decide qué conservar, y pregunta si puede moverlos a la carpeta de red o a la
+            nube que use la empresa. Mover archivos a un almacenamiento distinto lo hace el propio usuario o nivel 2,
+            según el procedimiento.
+          </p>
+
+          <p>
+            <strong>Antes de cerrar:</strong> vuelve a comprobar el espacio libre (Toolkit, opción 1, o
+            <em>Este equipo</em>), pide al usuario que confirme que sus archivos siguen donde estaban y que ya puede
+            guardar y trabajar con normalidad. Para adjuntar al ticket una foto del estado del equipo, genera el
+            informe con la opción <strong>7 · Informe HTML</strong> del Toolkit.
+          </p>
+        </section>
+
+        <section class="guide-section" aria-labelledby="escalar">
+          <h2 id="escalar">Cuándo escalar a nivel 2</h2>
+          <ul>
+            <li>Después de limpiar lo seguro, el espacio libre sigue por debajo del 15 % y lo que queda son <strong>archivos del usuario o programas</strong>.</li>
+            <li>El disco es demasiado pequeño para el uso que hace el usuario: hace falta ampliar o cambiar el disco, o mover archivos a la red o a la nube.</li>
+            <li>El disco se llena <strong>de golpe</strong> o crece sin motivo aparente (posible error, registros enormes o software malicioso).</li>
+            <li>Las cifras no cuadran: el disco está casi lleno pero las carpetas del usuario ocupan poco.</li>
+            <li>Hace falta borrar versiones anteriores de Windows, copias de restauración o carpetas del sistema.</li>
+            <li>No tienes permisos de administrador para limpiar los archivos del sistema, o la herramienta da error.</li>
+            <li>Las actualizaciones siguen fallando aunque haya espacio suficiente.</li>
+            <li>El Explorador de archivos o Windows muestran errores del disco.</li>
+            <li>Sospechas de un problema de seguridad (archivos que el usuario no reconoce, programas raros): sigue el procedimiento de seguridad de la empresa.</li>
+          </ul>
+          <div class="callout callout--warn">
+            <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+            <p>
+              No borres a mano carpetas de Windows ni de programas (<code>Windows</code>, <code>Archivos de programa</code>,
+              archivos ocultos del sistema), no uses limpiadores de terceros, no edites el registro, no comprimas
+              el disco ni cambies particiones, y no reinstales Windows. No forman parte del nivel 1: los realiza
+              nivel 2 según el procedimiento de la empresa.
+            </p>
+          </div>
+        </section>
+
+        <section class="guide-section" aria-labelledby="ticket">
+          <h2 id="ticket">Qué anotar en el ticket</h2>
+          <ul class="checklist">
+            <li>Usuario (con su identidad verificada), nombre del equipo y hora de inicio del problema.</li>
+            <li>Mensaje exacto del aviso o error, con captura si es posible.</li>
+            <li>Espacio libre y tamaño de cada disco antes y después (Toolkit, opción 1, o <em>Este equipo</em>).</li>
+            <li>Qué ocupaba más espacio (categorías de <em>Almacenamiento</em>).</li>
+            <li>Acciones realizadas y su resultado: temporales limpiados, Sensor de almacenamiento activado, etc.</li>
+            <li>Qué archivos se han borrado (Papelera, Descargas) y <strong>que el usuario lo confirmó</strong>.</li>
+            <li>Informe HTML del Toolkit (opción 7) adjunto. Si el ticket lo va a ver alguien ajeno a la empresa, usa la anonimización opcional del informe.</li>
+            <li>Estado final: resuelto (y qué lo resolvió) o escalado a nivel 2, con el motivo.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="prevencion">
+          <h2 id="prevencion">Prevención</h2>
+          <ul>
+            <li>Guardar los documentos de trabajo en la carpeta de red o en OneDrive, según la política de la empresa, y no solo en el equipo.</li>
+            <li>Revisar la carpeta Descargas y vaciar la Papelera de vez en cuando.</li>
+            <li>No copiar al equipo archivos muy grandes (vídeos, copias de seguridad) sin avisar a soporte.</li>
+            <li>Vigilar que el espacio libre no baje del 15 %, y avisar a soporte cuando Windows lo indique.</li>
+            <li>Ejecutar de forma periódica el diagnóstico del Toolkit (opciones 1 y 7) en equipos con poco espacio, para tener un punto de comparación.</li>
+          </ul>
+        </section>
+      </article>
+
+      <nav class="guide-nav guide-nav--bottom" aria-label="Enlaces al final de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 Iván Marcos Couso · <a href="../index.html">Web principal</a></p>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

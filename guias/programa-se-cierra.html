@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Un programa no se abre o se cierra solo · Guías de soporte IT N1</title>
+<meta name="description" content="Guía de soporte IT N1: qué hacer cuando un programa no se abre o se cierra solo en un equipo Windows 10/11. Reinicio, actualizaciones, prueba con otro usuario, Visor de eventos en modo lectura, reparar la aplicación, cuándo escalar y qué anotar en el ticket.">
+<meta name="author" content="Iván Marcos Couso">
+
+<link rel="canonical" href="https://vantoxik.github.io/guias/programa-se-cierra.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+<header class="site-header">
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="../index.html#inicio" class="nav__brand">IMC</a>
+    <ul class="nav__links">
+      <li><a href="../index.html#sobre-mi">Sobre mí</a></li>
+      <li><a href="../index.html#competencias">Competencias</a></li>
+      <li><a href="../index.html#proyectos">Proyectos</a></li>
+      <li><a href="index.html" aria-current="true">Guías</a></li>
+      <li><a href="../index.html#experiencia">Experiencia</a></li>
+      <li><a href="../index.html#formacion">Formación</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar a modo claro" aria-pressed="false">
+      <span aria-hidden="true">☀</span>
+    </button>
+  </nav>
+</header>
+
+<main id="contenido">
+  <div class="guide-page">
+    <div class="container">
+
+      <nav class="guide-nav" aria-label="Enlaces de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+      <article class="guide-body">
+        <h1 class="section__title">Un programa no se abre o se cierra solo</h1>
+
+        <dl class="guide-meta">
+          <div>
+            <dt>Categoría</dt>
+            <dd>Sistema</dd>
+          </div>
+          <div>
+            <dt>Prioridad orientativa</dt>
+            <dd><span class="priority priority--medium">Media</span></dd>
+          </div>
+          <div>
+            <dt>Tiempo estimado</dt>
+            <dd>10–25 min</dd>
+          </div>
+        </dl>
+
+        <p class="guide-intro">
+          Un programa de un equipo Windows 10/11 no arranca, se queda «sin responder» o se cierra de golpe, con o
+          sin mensaje de error. Esta guía ayuda a recoger los datos que hacen falta (qué programa, cuándo y con qué
+          mensaje), a probar lo que es seguro en nivel 1 (reinicio, actualizaciones, otro usuario, reparar la
+          aplicación) y a decidir cuándo pasar la incidencia a nivel 2. Si el programa que falla es Outlook, empieza
+          por la guía <a href="outlook-no-envia-recibe.html">Outlook no envía ni recibe correos</a>. Donde encaja,
+          se indica la opción de mi herramienta
+          <a href="https://github.com/VanToxiK/it-support-toolkit" target="_blank" rel="noopener noreferrer">IT Support Toolkit</a>
+          y también la alternativa manual de Windows.
+        </p>
+
+        <div class="callout callout--warn">
+          <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+          <p>
+            Antes de hacer nada, confirma quién es el usuario y qué equipo está afectado, y <strong>pídele que
+            guarde su trabajo</strong> siempre que el programa siga abierto. <strong>No reinstales el programa</strong>
+            (es tarea de nivel 2), no descargues instaladores de páginas que no sean las oficiales de la empresa y
+            no desactives el antivirus «para que abra».
+          </p>
+        </div>
+
+        <nav class="guide-toc" aria-labelledby="toc-title">
+          <h2 class="guide-toc__title" id="toc-title">En esta guía</h2>
+          <ol>
+            <li><a href="#sintomas">Síntomas</a></li>
+            <li><a href="#preguntas">Preguntas al usuario</a></li>
+            <li><a href="#comprobaciones">Comprobaciones rápidas</a></li>
+            <li><a href="#diagnostico">Diagnóstico paso a paso</a></li>
+            <li><a href="#solucion">Solución</a></li>
+            <li><a href="#escalar">Cuándo escalar a nivel 2</a></li>
+            <li><a href="#ticket">Qué anotar en el ticket</a></li>
+            <li><a href="#prevencion">Prevención</a></li>
+          </ol>
+        </nav>
+
+        <section class="guide-section" aria-labelledby="sintomas">
+          <h2 id="sintomas">Síntomas</h2>
+          <ul>
+            <li>Al hacer doble clic en el programa no pasa nada, o aparece la ventana un instante y desaparece.</li>
+            <li>El programa se cierra de golpe mientras se trabaja, sin avisar, o al abrir un archivo concreto.</li>
+            <li>Aparece un mensaje del tipo «… ha dejado de funcionar» o «No responde», o Windows ofrece cerrar el programa.</li>
+            <li>El programa se queda en blanco o congelado durante mucho rato y hay que cerrarlo a la fuerza.</li>
+            <li>Falla solo con un usuario, solo en este equipo, o desde que se actualizó Windows o el propio programa.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="preguntas">
+          <h2 id="preguntas">Preguntas al usuario</h2>
+          <ol>
+            <li>¿Qué programa es exactamente (nombre y, si lo sabe, versión)? ¿Es un programa de la empresa o uno de Office, el navegador, Teams…?</li>
+            <li>¿Qué pasa exactamente: no abre, se cierra al abrir, o se cierra pasado un rato? ¿Aparece algún mensaje o código de error? Si puede, que haga una captura de pantalla.</li>
+            <li>¿Desde cuándo? ¿Ha cambiado algo justo antes: actualización de Windows o del programa, instalación de otro programa, cambio de equipo?</li>
+            <li>¿Pasa siempre, o solo a veces? ¿Pasa con cualquier archivo o solo con uno concreto?</li>
+            <li>¿A tus compañeros con el mismo programa les pasa lo mismo? <em>Si son varios, puede ser un fallo del programa o de un servicio de la empresa: avisa a nivel 2 cuanto antes.</em></li>
+            <li>¿Has reiniciado el equipo desde que empezó? ¿Tienes muchos programas abiertos?</li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="comprobaciones">
+          <h2 id="comprobaciones">Comprobaciones rápidas</h2>
+          <ul>
+            <li><strong>Cerrar el programa por completo y volver a abrirlo.</strong> A veces queda un proceso «colgado» en segundo plano. Abre el Administrador de tareas (<kbd>Ctrl</kbd> + <kbd>Mayús</kbd> + <kbd>Esc</kbd>), busca el programa en <em>Procesos</em> y, si no responde, usa <em>Finalizar tarea</em> (con permiso del usuario, sabiendo que perderá lo no guardado).</li>
+            <li><strong>Reinicio.</strong> Pide al usuario que guarde su trabajo y reinicie el equipo. Suele bastar, sobre todo si lleva días encendido.</li>
+            <li><strong>Espacio en disco y memoria.</strong> Con poco espacio libre o con el equipo muy cargado, los programas se cierran solos. Mira las guías <a href="disco-lleno.html">El disco está lleno</a> y <a href="equipo-lento.html">El equipo va lento</a>.</li>
+            <li><strong>Otro archivo.</strong> Si se cierra al abrir un archivo concreto, prueba con otro. Si solo falla con ese, el problema puede estar en el archivo y no en el programa.</li>
+            <li><strong>Actualizaciones pendientes.</strong> Comprueba si Windows tiene actualizaciones o un reinicio esperando (paso 4 del diagnóstico).</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="diagnostico">
+          <h2 id="diagnostico">Diagnóstico paso a paso</h2>
+          <ol>
+            <li>
+              <strong>Recoge los datos básicos.</strong> Nombre exacto del programa y su versión (normalmente en el
+              menú <em>Ayuda</em> o <em>Acerca de</em>, si abre), mensaje de error tal cual aparece, hora
+              aproximada del cierre y si ocurre siempre o a veces.
+              <div class="callout callout--tool">
+                <div class="callout__label"><span aria-hidden="true">🧰</span> Con IT Support Toolkit</div>
+                <p>
+                  Opción <strong>6 · Programas instalados</strong>: lista los programas del equipo, para comprobar
+                  que el programa está instalado y anotar qué más hay. Opción <strong>1 · Información del sistema</strong>:
+                  muestra los datos del equipo, incluido el espacio libre de cada disco, y avisa si baja del 15 %. Solo
+                  muestran información, no cambian nada.
+                </p>
+              </div>
+            </li>
+            <li>
+              <strong>Aísla el problema.</strong> Compara para saber dónde está el fallo:
+              <div class="table-wrap" tabindex="0" role="region" aria-label="Cómo acotar el problema según dónde ocurre">
+                <table class="guide-table">
+                  <thead>
+                    <tr><th scope="col">Qué ocurre</th><th scope="col">Qué apunta</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Falla con cualquier archivo, para este usuario, pero funciona con otro usuario en el mismo equipo</td>
+                      <td>Perfil o configuración del usuario. Escala con estos datos.</td>
+                    </tr>
+                    <tr>
+                      <td>Falla también con otro usuario en el mismo equipo</td>
+                      <td>Instalación del programa, actualización o recursos del equipo.</td>
+                    </tr>
+                    <tr>
+                      <td>Funciona en otros equipos de compañeros</td>
+                      <td>El problema es de este equipo: instalación, actualización o recursos.</td>
+                    </tr>
+                    <tr>
+                      <td>Falla igual en otros equipos</td>
+                      <td>Problema del programa, del servicio de la empresa o de una actualización reciente: escala.</td>
+                    </tr>
+                    <tr>
+                      <td>Solo falla con un archivo concreto</td>
+                      <td>Probablemente el archivo. Anota su nombre y ubicación y escala; no lo borres ni lo muevas.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>
+                <em>Probar con otro usuario solo si hay un usuario de prueba o técnico autorizado por la empresa y
+                el procedimiento lo permite. Nunca inicies sesión con la cuenta de otro compañero ni pidas su
+                contraseña.</em>
+              </p>
+            </li>
+            <li>
+              <strong>Mira los recursos del equipo.</strong> En el Administrador de tareas, pestaña
+              <em>Rendimiento</em>, comprueba que la memoria y el disco no están al límite. Con Toolkit, opción 1,
+              mira el espacio libre de los discos. Si están al límite, sigue las guías
+              <a href="equipo-lento.html">El equipo va lento</a> y <a href="disco-lleno.html">El disco está lleno</a>.
+            </li>
+            <li>
+              <strong>Comprueba las actualizaciones.</strong>
+              <div class="callout callout--win">
+                <div class="callout__label"><span aria-hidden="true">⊞</span> Windows 10 / Windows 11</div>
+                <ul>
+                  <li><strong>Windows 10:</strong> <em>Configuración &gt; Actualización y seguridad &gt; Windows Update</em>.</li>
+                  <li><strong>Windows 11:</strong> <em>Configuración &gt; Windows Update</em>.</li>
+                </ul>
+              </div>
+              <p>
+                Si hay actualizaciones o un reinicio pendiente, pide al usuario que guarde su trabajo y las instale.
+                <em>Si la empresa gestiona las actualizaciones de forma centralizada, no fuerces su calendario. Para
+                actualizar el propio programa, usa el método que indique la empresa (por ejemplo, su centro de
+                software).</em> Si el fallo empezó justo tras una actualización, anótalo: es un dato importante para
+                nivel 2.
+              </p>
+            </li>
+            <li>
+              <strong>Anota el error con el Visor de eventos (solo lectura).</strong> Sirve para apuntar qué
+              programa y qué módulo fallan, no para arreglar nada. Pulsa Inicio, escribe <em>Visor de eventos</em> y
+              ábrelo. En el panel de la izquierda, entra en <em>Registros de Windows &gt; Aplicación</em> y busca los
+              eventos de nivel <em>Error</em> a la hora del cierre. Haz clic en uno para ver el detalle en la parte
+              inferior. Suelen aparecer con origen «Application Error» (cierre del programa) o «Application Hang»
+              (programa colgado).
+              <div class="callout callout--warn">
+                <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+                <ul>
+                  <li>Usa el Visor de eventos <strong>solo para leer</strong>. No uses «Borrar registro», no deshabilites registros ni cambies ninguna propiedad.</li>
+                  <li>Anota estos datos del detalle del error: nombre de la aplicación con errores y su versión, nombre del módulo con errores, código de excepción y la hora exacta. Con una captura de pantalla vale, si el equipo lo permite.</li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <strong>Repara la aplicación, si la empresa lo permite.</strong> Es un paso que corrige archivos
+              dañados sin perder los datos.
+              <div class="callout callout--win">
+                <div class="callout__label"><span aria-hidden="true">⊞</span> Windows 10 / Windows 11</div>
+                <ul>
+                  <li><strong>Windows 10:</strong> <em>Configuración &gt; Aplicaciones &gt; Aplicaciones y características</em>, selecciona la aplicación, entra en <em>Opciones avanzadas</em> y pulsa <em>Reparar</em> (si aparece).</li>
+                  <li><strong>Windows 11:</strong> <em>Configuración &gt; Aplicaciones &gt; Aplicaciones instaladas</em>, pulsa los tres puntos junto a la aplicación, entra en <em>Opciones avanzadas</em> y pulsa <em>Reparar</em> (si aparece).</li>
+                  <li>En ambos, algunos programas clásicos no tienen esa opción. También puede estar en <em>Panel de control &gt; Programas &gt; Programas y características</em>, con clic derecho en el programa &gt; <em>Reparar</em> o <em>Cambiar</em>.</li>
+                </ul>
+              </div>
+              <p>
+                Para Office, usa la <em>Reparación rápida</em> que se explica en la guía
+                <a href="outlook-no-envia-recibe.html#solucion">Outlook no envía ni recibe correos</a>.
+              </p>
+            </li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="solucion">
+          <h2 id="solucion">Solución</h2>
+
+          <h3>El programa se había quedado «colgado»</h3>
+          <p>Ciérralo del todo con <em>Finalizar tarea</em> (con el permiso del usuario) y ábrelo de nuevo. Si sigue igual, reinicia el equipo.</p>
+
+          <h3>Faltan actualizaciones o hay un reinicio pendiente</h3>
+          <p>Instala las actualizaciones de Windows y reinicia cuando lo pida, siguiendo el calendario de la empresa. Actualiza el programa solo por el método que indique la empresa.</p>
+
+          <h3>La instalación del programa está dañada</h3>
+          <p>
+            Si la empresa lo permite, usa <em>Reparar</em> (paso 6 del diagnóstico). Si la opción no aparece, no
+            está permitida o el problema sigue, <strong>no la sustituyas por una reinstalación</strong>: reinstalar
+            es tarea de nivel 2. <strong>No uses «Restablecer»</strong>: puede borrar los datos y la configuración
+            del programa.
+          </p>
+
+          <h3>El equipo tiene poco espacio o va muy justo de recursos</h3>
+          <p>Libera espacio siguiendo la guía <a href="disco-lleno.html">El disco está lleno</a> (sin borrar archivos del usuario sin su permiso) y cierra los programas que no se necesiten.</p>
+
+          <h3>Falla solo con un archivo o solo con un usuario</h3>
+          <p>No arregles el archivo ni el perfil por tu cuenta: anota los datos del paso 2 y escala.</p>
+
+          <p>
+            <strong>Antes de cerrar:</strong> pide al usuario que abra el programa, trabaje unos minutos y confirme
+            que ya no se cierra. Si vuelve a fallar en un día o dos, reabre el ticket en lugar de abrir uno nuevo.
+            Para adjuntar al ticket una foto del estado del equipo, genera el informe con la opción
+            <strong>7 · Informe HTML</strong> del Toolkit.
+          </p>
+        </section>
+
+        <section class="guide-section" aria-labelledby="escalar">
+          <h2 id="escalar">Cuándo escalar a nivel 2</h2>
+          <ul>
+            <li>Hace falta <strong>reinstalar</strong> el programa, o la reparación no ha servido, no está disponible o no tienes permisos de administrador para hacerla.</li>
+            <li>El fallo afecta a <strong>varios usuarios</strong>, o empezó justo tras una actualización de Windows o del propio programa.</li>
+            <li>El programa es <strong>corporativo</strong> (aplicación propia, de un proveedor o del área): anota los datos y escala para que lo trate quien lo gestione.</li>
+            <li>El Visor de eventos muestra el <strong>mismo error y módulo</strong> repetidamente: pasa esos datos a nivel 2 tal como los has anotado.</li>
+            <li>Solo falla con <strong>un archivo</strong> o con <strong>un usuario</strong> (posible archivo o perfil dañado).</li>
+            <li>El programa pide una licencia, una activación o una clave que no tienes.</li>
+            <li>El equipo entero se reinicia, se bloquea o muestra pantallazos azules, además del fallo del programa.</li>
+            <li>Sospecha de malware (el programa se cierra y además hay ventanas emergentes, procesos raros o cambios que el usuario no reconoce): sigue el procedimiento de seguridad de la empresa. Consulta también la guía <a href="equipo-lento.html">El equipo va lento</a>.</li>
+          </ul>
+          <div class="callout callout--warn">
+            <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+            <p>
+              No reinstales ni desinstales programas, no descargues instaladores ni «arreglos» de fuentes no
+              oficiales, no edites el registro, no borres carpetas del programa ni de Windows y no desactives el
+              antivirus. No forman parte del nivel 1: los realiza nivel 2 según el procedimiento de la empresa.
+            </p>
+          </div>
+        </section>
+
+        <section class="guide-section" aria-labelledby="ticket">
+          <h2 id="ticket">Qué anotar en el ticket</h2>
+          <ul class="checklist">
+            <li>Usuario (con su identidad verificada), nombre del equipo y hora de inicio del problema.</li>
+            <li>Nombre exacto del programa y su versión.</li>
+            <li>Qué ocurre exactamente (no abre, se cierra al abrir, se cierra pasado un rato) y si es siempre o a veces.</li>
+            <li>Mensaje o código de error exacto, con captura si es posible.</li>
+            <li>Datos del Visor de eventos: nombre de la aplicación con errores, módulo con errores, código de excepción y hora.</li>
+            <li>Alcance: solo este usuario o varios, este equipo u otros, un archivo concreto o cualquiera.</li>
+            <li>Cambios recientes (actualización de Windows o del programa, instalaciones).</li>
+            <li>Espacio libre de disco y estado de memoria y CPU en el momento del fallo.</li>
+            <li>Acciones realizadas, con su resultado y la hora (por ejemplo «reiniciado, sin cambios», «reparada la aplicación, resuelto»).</li>
+            <li>Informe HTML del Toolkit (opción 7) adjunto. Si el ticket lo va a ver alguien ajeno a la empresa, usa la anonimización opcional del informe.</li>
+            <li>Estado final: resuelto (y qué lo resolvió) o escalado a nivel 2, con el motivo.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="prevencion">
+          <h2 id="prevencion">Prevención</h2>
+          <ul>
+            <li>Guardar el trabajo con frecuencia y activar el guardado automático de los programas que lo tengan.</li>
+            <li>Reiniciar el equipo cuando Windows lo pida y al menos una vez por semana.</li>
+            <li>No instalar programas por cuenta propia ni abrir archivos de origen dudoso.</li>
+            <li>Mantener Windows y los programas actualizados según la política de la empresa.</li>
+            <li>Vigilar que el disco no baje del 15 % de espacio libre.</li>
+            <li>Ejecutar de forma periódica el diagnóstico del Toolkit (opciones 1, 6 y 7) en equipos con incidencias repetidas, para tener un punto de comparación.</li>
+          </ul>
+        </section>
+      </article>
+
+      <nav class="guide-nav guide-nav--bottom" aria-label="Enlaces al final de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 Iván Marcos Couso · <a href="../index.html">Web principal</a></p>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

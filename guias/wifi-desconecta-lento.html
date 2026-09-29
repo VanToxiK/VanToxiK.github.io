@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Wi-Fi se desconecta o va lento · Guías de soporte IT N1</title>
+<meta name="description" content="Guía de soporte IT N1: qué hacer cuando el Wi-Fi de un equipo Windows 10/11 se corta o va lento. Cobertura y distancia, bandas de 2,4 y 5 GHz, olvidar la red y volver a conectar, cuándo escalar y qué anotar en el ticket.">
+<meta name="author" content="Iván Marcos Couso">
+
+<link rel="canonical" href="https://vantoxik.github.io/guias/wifi-desconecta-lento.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+<header class="site-header">
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="../index.html#inicio" class="nav__brand">IMC</a>
+    <ul class="nav__links">
+      <li><a href="../index.html#sobre-mi">Sobre mí</a></li>
+      <li><a href="../index.html#competencias">Competencias</a></li>
+      <li><a href="../index.html#proyectos">Proyectos</a></li>
+      <li><a href="index.html" aria-current="true">Guías</a></li>
+      <li><a href="../index.html#experiencia">Experiencia</a></li>
+      <li><a href="../index.html#formacion">Formación</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar a modo claro" aria-pressed="false">
+      <span aria-hidden="true">☀</span>
+    </button>
+  </nav>
+</header>
+
+<main id="contenido">
+  <div class="guide-page">
+    <div class="container">
+
+      <nav class="guide-nav" aria-label="Enlaces de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+      <article class="guide-body">
+        <h1 class="section__title">El Wi-Fi se desconecta o va lento</h1>
+
+        <dl class="guide-meta">
+          <div>
+            <dt>Categoría</dt>
+            <dd>Red</dd>
+          </div>
+          <div>
+            <dt>Prioridad orientativa</dt>
+            <dd><span class="priority priority--medium">Media</span></dd>
+          </div>
+          <div>
+            <dt>Tiempo estimado</dt>
+            <dd>15–30 min</dd>
+          </div>
+        </dl>
+
+        <p class="guide-intro">
+          Un portátil o equipo con Wi-Fi en Windows 10/11 pierde la conexión de forma intermitente o navega muy
+          despacio. Esta guía ayuda a separar los problemas de cobertura y distancia, de banda (2,4 o 5 GHz) y de
+          configuración del equipo de los que son de la red de la empresa, y a decidir cuándo pasar la incidencia a
+          nivel 2. Si el equipo directamente no tiene Internet, consulta la guía
+          <a href="sin-internet.html">No tengo conexión a Internet</a>; si hay red pero no abren las páginas por su
+          nombre, la guía <a href="dns-no-cargan-paginas.html">Tengo red pero no cargan las páginas web (DNS)</a>.
+          Donde encaja, se indica la opción de mi herramienta
+          <a href="https://github.com/VanToxiK/it-support-toolkit" target="_blank" rel="noopener noreferrer">IT Support Toolkit</a>
+          y también la alternativa manual de Windows.
+        </p>
+
+        <div class="callout callout--warn">
+          <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+          <p>
+            Si das soporte <strong>remoto</strong> por Wi-Fi, cualquier corte o cambio de red te dejará sin conexión
+            con el equipo: avisa al usuario antes y ten un teléfono o chat alternativo. No cambies la configuración del
+            router ni de los puntos de acceso de la empresa, y confirma antes quién es el usuario y qué equipo está
+            afectado.
+          </p>
+        </div>
+
+        <nav class="guide-toc" aria-labelledby="toc-title">
+          <h2 class="guide-toc__title" id="toc-title">En esta guía</h2>
+          <ol>
+            <li><a href="#sintomas">Síntomas</a></li>
+            <li><a href="#preguntas">Preguntas al usuario</a></li>
+            <li><a href="#comprobaciones">Comprobaciones rápidas</a></li>
+            <li><a href="#diagnostico">Diagnóstico paso a paso</a></li>
+            <li><a href="#solucion">Solución</a></li>
+            <li><a href="#escalar">Cuándo escalar a nivel 2</a></li>
+            <li><a href="#ticket">Qué anotar en el ticket</a></li>
+            <li><a href="#prevencion">Prevención</a></li>
+          </ol>
+        </nav>
+
+        <section class="guide-section" aria-labelledby="sintomas">
+          <h2 id="sintomas">Síntomas</h2>
+          <ul>
+            <li>El icono de Wi-Fi, junto al reloj, pasa de conectado a desconectado o muestra un aviso, y a los pocos segundos vuelve a conectar.</li>
+            <li>Las videollamadas (Teams) se cortan o se oyen entrecortadas y las páginas tardan mucho en cargar.</li>
+            <li>Las descargas o la subida de archivos a OneDrive van mucho más lentas de lo habitual.</li>
+            <li>Funciona bien cerca del punto de acceso y mal en otra zona de la oficina, o solo falla a ciertas horas.</li>
+            <li>El equipo se conecta al Wi-Fi pero no sale a Internet (mira antes la guía <a href="sin-internet.html">No tengo conexión a Internet</a>).</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="preguntas">
+          <h2 id="preguntas">Preguntas al usuario</h2>
+          <ol>
+            <li>¿Dónde estás exactamente (planta, sala, puesto) y cerca de qué punto de acceso o router? ¿Te pasa en todas partes o solo en algunas zonas?</li>
+            <li>¿A qué red Wi-Fi estás conectado? ¿Es la de la empresa? <em>Anota el nombre exacto: a veces hay dos, una de 2,4 GHz y otra de 5 GHz.</em></li>
+            <li>¿Solo te pasa a ti o también a compañeros cercanos y a otros dispositivos (móvil, otro portátil) en el mismo sitio? <em>Si son varios, puede ser un fallo del punto de acceso o de la red: avisa a nivel 2 cuanto antes.</em></li>
+            <li>¿Desde cuándo? ¿Se corta cada cierto tiempo, en un momento concreto (por ejemplo al hacer videollamadas) o al moverte por la oficina?</li>
+            <li>¿Ha cambiado algo justo antes: nuevo puesto, actualización de Windows, cambio de contraseña, obras o muebles nuevos?</li>
+            <li>¿Estás en la oficina o trabajas desde casa? <em>En casa, comprueba si otros dispositivos del hogar también van lentos: el fallo puede ser de su router o de su operador, no del equipo.</em></li>
+            <li>¿Tienes un cable de red y una toma libre y autorizada cerca para poder trabajar mientras tanto?</li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="comprobaciones">
+          <h2 id="comprobaciones">Comprobaciones rápidas</h2>
+          <ul>
+            <li><strong>Modo avión desactivado y Wi-Fi encendido.</strong> Pulsa el icono de red junto al reloj y comprueba ambos ajustes. Algunos portátiles tienen además un interruptor o una combinación de teclas para el Wi-Fi.</li>
+            <li><strong>Cobertura y distancia.</strong> Mira las barras del icono de Wi-Fi. Pocas barras indican señal débil: cuanto más lejos del punto de acceso, y con más paredes, columnas o puertas metálicas por medio, peor señal.</li>
+            <li><strong>Prueba en otro sitio.</strong> Acércate al punto de acceso o a una zona con mejor cobertura y comprueba si mejora. Si mejora, el problema es de cobertura y no del equipo.</li>
+            <li><strong>Red correcta.</strong> Comprueba que el equipo está conectado a la red Wi-Fi de la empresa y no a otra cercana, de invitados o de un vecino.</li>
+            <li><strong>Otro dispositivo.</strong> Si el móvil de la empresa o de un compañero también va lento en el mismo sitio, es más probable que sea la red y no este equipo.</li>
+            <li><strong>Reinicio.</strong> Si el equipo no se ha reiniciado en días, pide al usuario que guarde su trabajo y reinicie.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="diagnostico">
+          <h2 id="diagnostico">Diagnóstico paso a paso</h2>
+          <ol>
+            <li>
+              <strong>Mira a qué red y con qué señal está conectado el equipo.</strong> Abre el Símbolo del sistema
+              (<kbd>Win</kbd> + <kbd>R</kbd>, escribe <code>cmd</code> y pulsa Intro) y escribe
+              <code>netsh wlan show interfaces</code>. Solo muestra información, no cambia nada. Fíjate en estas
+              líneas (según la versión de Windows puede que alguna no aparezca):
+              <div class="table-wrap" tabindex="0" role="region" aria-label="Cómo interpretar el resultado de netsh wlan show interfaces">
+                <table class="guide-table">
+                  <thead>
+                    <tr><th scope="col">Qué ves</th><th scope="col">Qué significa</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>«SSID»</td>
+                      <td>El nombre de la red a la que está conectado. Comprueba que es el de la empresa.</td>
+                    </tr>
+                    <tr>
+                      <td>«Señal» con un porcentaje bajo</td>
+                      <td>Cobertura débil: distancia, obstáculos o interferencias. Prueba a acercarte al punto de acceso.</td>
+                    </tr>
+                    <tr>
+                      <td>«Banda» o «Canal» que corresponden a 2,4 GHz (canales 1–13) o a 5 GHz (canales de números más altos)</td>
+                      <td>La banda 2,4 GHz llega más lejos pero es más lenta y sufre más interferencias; la de 5 GHz es más rápida pero llega menos lejos. Anótala.</td>
+                    </tr>
+                    <tr>
+                      <td>«Velocidad de recepción» y «Velocidad de transmisión» muy bajas</td>
+                      <td>Enlace pobre con el punto de acceso: suele ir unido a señal débil o a mucha interferencia.</td>
+                    </tr>
+                    <tr>
+                      <td>«Estado: desconectado»</td>
+                      <td>Ahora mismo no está conectado al Wi-Fi. Anota cuándo y con qué frecuencia ocurre.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+            <li>
+              <strong>Comprueba si hay cortes con un ping continuo a la puerta de enlace.</strong> Con
+              <code>ipconfig</code> localiza la «Puerta de enlace predeterminada» del adaptador de Wi-Fi. Después
+              escribe <code>ping -t</code>, un espacio y esa dirección, y déjalo uno o dos minutos. Para pararlo,
+              pulsa <kbd>Ctrl</kbd> + <kbd>C</kbd>.
+              <ul>
+                <li>Si aparecen varios «Tiempo de espera agotado» o tiempos que saltan a cientos de milisegundos, el enlace Wi-Fi se está cortando o está saturado: cobertura, interferencias o punto de acceso.</li>
+                <li>Si los tiempos son bajos y estables pero las páginas van lentas, el problema probablemente está más allá del Wi-Fi (línea, ancho de banda, filtrado): escala.</li>
+              </ul>
+              <em>Algunas redes bloquean el ping incluso a la puerta de enlace: si no responde nunca, no saques conclusiones y usa las otras pruebas.</em>
+            </li>
+            <li>
+              <strong>Comprueba la configuración del equipo tras un corte.</strong>
+              <div class="callout callout--tool">
+                <div class="callout__label"><span aria-hidden="true">🧰</span> Con IT Support Toolkit</div>
+                <p>
+                  Opción <strong>2 · Diagnóstico de red</strong>. Muestra los adaptadores activos, la dirección IPv4,
+                  la puerta de enlace y los servidores DNS, hace pruebas de ping y de resolución de nombres y da una
+                  conclusión en lenguaje claro. Solo lee datos y no necesita permisos de administrador.
+                </p>
+              </div>
+              <div class="callout callout--manual">
+                <div class="callout__label"><span aria-hidden="true">🖱</span> Alternativa manual</div>
+                <p>
+                  En el Símbolo del sistema escribe <code>ipconfig /all</code> y pulsa Intro. En el adaptador «LAN
+                  inalámbrica Wi-Fi» mira la dirección IPv4, la puerta de enlace y «DHCP habilitado». Si aparece una
+                  dirección <code>169.254.x.x</code>, el equipo no ha conseguido IP: sigue la guía
+                  <a href="sin-internet.html">No tengo conexión a Internet</a>.
+                </p>
+              </div>
+            </li>
+            <li>
+              <strong>Ejecuta el solucionador de problemas de red de Windows.</strong>
+              <div class="callout callout--win">
+                <div class="callout__label"><span aria-hidden="true">⊞</span> Windows 10 / Windows 11</div>
+                <ul>
+                  <li><strong>Windows 10:</strong> <em>Configuración &gt; Red e Internet &gt; Estado &gt; Solucionador de problemas de red</em>.</li>
+                  <li><strong>Windows 11:</strong> abre la aplicación <em>Obtener ayuda</em> y ejecuta el solucionador automatizado de Red e Internet.</li>
+                </ul>
+              </div>
+              <p>Puede reiniciar el adaptador de red: avisa al usuario, y recuerda que cortaría cualquier sesión remota abierta.</p>
+            </li>
+            <li>
+              <strong>Compara con otro equipo o dispositivo en el mismo sitio.</strong> Si otro equipo de la empresa
+              en el mismo puesto también se corta o va lento, el fallo es de la zona o del punto de acceso. Si solo
+              falla este equipo, el fallo es del equipo o de su adaptador Wi-Fi.
+            </li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="solucion">
+          <h2 id="solucion">Solución</h2>
+
+          <h3>Cobertura débil o mucha distancia</h3>
+          <p>Acércate al punto de acceso o cambia de sitio dentro de la oficina, alejándote de paredes gruesas, puertas metálicas y de aparatos que interfieren (microondas, por ejemplo). Si en ese puesto la cobertura es mala de forma habitual, anótalo y avisa: reforzarla es cosa del equipo de redes. Mientras tanto, si hay una toma autorizada, trabajar con cable resuelve el problema del usuario. No muevas ni reinicies routers o puntos de acceso de la empresa.</p>
+
+          <h3>Banda de 2,4 GHz o de 5 GHz</h3>
+          <p>
+            Regla práctica: <strong>cerca del punto de acceso</strong>, la banda de 5 GHz suele dar más velocidad y
+            menos cortes; <strong>lejos o con muchas paredes</strong>, la de 2,4 GHz llega más lejos aunque sea más
+            lenta. Si la empresa publica dos redes distintas (por ejemplo una para cada banda) y su política lo
+            permite, puedes conectar al usuario a la más adecuada, con sus credenciales. No conectes equipos de la
+            empresa a redes de invitados, a redes ajenas ni a la conexión compartida del móvil del usuario sin
+            autorización.
+          </p>
+
+          <h3>Olvidar la red y volver a conectar</h3>
+          <div class="callout callout--warn">
+            <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+            <ul>
+              <li>Hazlo <strong>solo si el usuario tiene a mano las credenciales</strong> de esa red (contraseña o usuario y contraseña).</li>
+              <li>Si la red de la empresa usa un certificado o un inicio de sesión corporativo que el usuario no conoce, no la olvides: no podrás volver a conectar. Escala.</li>
+              <li>Si estás conectado por soporte remoto por Wi-Fi, se cortará la conexión. Avisa antes al usuario.</li>
+              <li>Nunca pidas ni anotes la contraseña del Wi-Fi en el ticket.</li>
+            </ul>
+          </div>
+          <div class="callout callout--manual">
+            <div class="callout__label"><span aria-hidden="true">🖱</span> Alternativa manual</div>
+            <p>Abre <em>Configuración &gt; Red e Internet &gt; Wi-Fi &gt; Administrar redes conocidas</em>, selecciona la red y pulsa <em>Olvidar</em>. Después, pulsa el icono de red junto al reloj, elige la red, pulsa <em>Conectar</em> y escribe las credenciales cuando las pida.</p>
+          </div>
+
+          <h3>El adaptador Wi-Fi se ha quedado «colgado»</h3>
+          <div class="callout callout--tool">
+            <div class="callout__label"><span aria-hidden="true">🧰</span> Con IT Support Toolkit</div>
+            <p>Opción <strong>3 · Reparación de red</strong>, acción «reiniciar el adaptador principal». Requiere administrador y pide confirmación (S/N).</p>
+          </div>
+          <div class="callout callout--manual">
+            <div class="callout__label"><span aria-hidden="true">🖱</span> Alternativa manual</div>
+            <p>Activa y desactiva el modo avión desde el icono de red junto al reloj. Si no basta, pulsa <kbd>Win</kbd> + <kbd>R</kbd>, escribe <code>ncpa.cpl</code> y pulsa Intro para abrir «Conexiones de red», haz clic derecho en el adaptador Wi-Fi &gt; «Deshabilitar», espera unos segundos y de nuevo clic derecho &gt; «Habilitar». Pedirá permisos de administrador. Avisa antes al usuario: se cortará la conexión unos segundos.</p>
+          </div>
+
+          <h3>Sin IP válida tras un corte (169.254.x.x)</h3>
+          <p>Sigue el apartado «Sin IP válida: renovar la dirección IP» de la guía <a href="sin-internet.html#solucion">No tengo conexión a Internet</a>, respetando sus precauciones (solo con DHCP; con IP fija, no lo hagas y escala).</p>
+
+          <p>
+            <strong>Antes de cerrar:</strong> pide al usuario que confirme que la conexión se mantiene estable
+            durante unos minutos en su puesto y que las videollamadas, Outlook y Teams funcionan con normalidad. Para
+            adjuntar al ticket una foto del estado del equipo, genera el informe con la opción
+            <strong>7 · Informe HTML</strong> del Toolkit.
+          </p>
+        </section>
+
+        <section class="guide-section" aria-labelledby="escalar">
+          <h2 id="escalar">Cuándo escalar a nivel 2</h2>
+          <ul>
+            <li>Hay <strong>varios usuarios o una zona entera</strong> con cortes o lentitud (posible fallo de un punto de acceso, de la red Wi-Fi de la empresa o de la línea).</li>
+            <li>La cobertura es mala en un puesto o zona de forma repetida: hay que valorar más o mejor colocados los puntos de acceso.</li>
+            <li>Los cortes siguen aunque el equipo esté cerca del punto de acceso, o el mismo equipo funciona bien por cable pero mal por Wi-Fi.</li>
+            <li>Otros equipos y móviles en el mismo sitio funcionan bien y solo este falla: puede ser el adaptador Wi-Fi o su <strong>controlador</strong>. Actualizar, reinstalar o revertir controladores lo hace nivel 2.</li>
+            <li>No aparece el adaptador Wi-Fi, o el Administrador de dispositivos muestra un error en él.</li>
+            <li>La red de la empresa usa certificado o inicio de sesión corporativo, y hace falta volver a configurarla.</li>
+            <li>Aparece una red con un nombre casi idéntico al de la empresa que pide credenciales, o hay avisos de seguridad extraños: sigue el procedimiento de seguridad de la empresa.</li>
+            <li>La velocidad es baja aunque la señal sea buena y el ping estable: el cuello de botella parece estar en la línea o en la red.</li>
+          </ul>
+          <div class="callout callout--warn">
+            <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+            <p>
+              Comandos como <code>netsh winsock reset</code> o <code>netsh int ip reset</code>, el «Restablecimiento
+              de red» de Windows o reinstalar controladores cambian la configuración del equipo y pueden requerir
+              reinicio. No forman parte del nivel 1: los realiza nivel 2 según el procedimiento de la empresa. Tampoco
+              cambies canales, bandas ni ajustes del router o de los puntos de acceso.
+            </p>
+          </div>
+        </section>
+
+        <section class="guide-section" aria-labelledby="ticket">
+          <h2 id="ticket">Qué anotar en el ticket</h2>
+          <ul class="checklist">
+            <li>Usuario (con su identidad verificada), nombre del equipo y hora de inicio del problema.</li>
+            <li>Ubicación exacta (planta, sala, puesto) y punto de acceso más cercano si se conoce.</li>
+            <li>Red Wi-Fi a la que estaba conectado (nombre) y banda (2,4 o 5 GHz) si se ha podido ver. Nunca la contraseña.</li>
+            <li>Tipo de fallo: cortes (con qué frecuencia y en qué situaciones) o lentitud, y desde cuándo.</li>
+            <li>Alcance: solo este usuario o varios (indica quiénes), y si otros dispositivos en el mismo sitio también fallan.</li>
+            <li>Resultado de <code>netsh wlan show interfaces</code> (señal, banda, velocidades) y del ping continuo a la puerta de enlace (pérdidas y tiempos).</li>
+            <li>Dirección IPv4, puerta de enlace y «DHCP habilitado» (sí/no) de <code>ipconfig /all</code>.</li>
+            <li>Acciones realizadas, con su resultado y la hora (por ejemplo «cambio de sitio, mejora», «red olvidada y reconectada, sin cambios»).</li>
+            <li>Informe HTML del Toolkit (opción 7) adjunto. Si el ticket lo va a ver alguien ajeno a la empresa, usa la anonimización opcional del informe.</li>
+            <li>Estado final: resuelto (y qué lo resolvió) o escalado a nivel 2, con el motivo.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="prevencion">
+          <h2 id="prevencion">Prevención</h2>
+          <ul>
+            <li>Avisar a soporte de las zonas con mala cobertura en cuanto se detecten, para que se corrijan antes de que afecten a más gente.</li>
+            <li>En puestos fijos, o para videollamadas importantes, usar cable de red siempre que sea posible.</li>
+            <li>No conectar equipos de trabajo a redes ajenas o de invitados, ni instalar repetidores o routers propios en la oficina.</li>
+            <li>Reiniciar el equipo cuando Windows lo pida tras las actualizaciones y mantener los controladores según la política de la empresa (lo gestiona nivel 2).</li>
+            <li>Ejecutar de forma periódica el diagnóstico del Toolkit (opciones 2 y 7) en equipos con incidencias repetidas, para tener un punto de comparación.</li>
+          </ul>
+        </section>
+      </article>
+
+      <nav class="guide-nav guide-nav--bottom" aria-label="Enlaces al final de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 Iván Marcos Couso · <a href="../index.html">Web principal</a></p>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

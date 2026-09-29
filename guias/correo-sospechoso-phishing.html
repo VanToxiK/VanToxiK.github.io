@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>He recibido un correo sospechoso (phishing) · Guías de soporte IT N1</title>
+<meta name="description" content="Guía de soporte IT N1: qué hacer cuando un usuario recibe un correo sospechoso o de phishing. No hacer clic, no responder ni reenviar, notificar con Outlook, y tratar como incidente de seguridad urgente si el usuario hizo clic o introdujo credenciales.">
+<meta name="author" content="Iván Marcos Couso">
+
+<link rel="canonical" href="https://vantoxik.github.io/guias/correo-sospechoso-phishing.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+<header class="site-header">
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="../index.html#inicio" class="nav__brand">IMC</a>
+    <ul class="nav__links">
+      <li><a href="../index.html#sobre-mi">Sobre mí</a></li>
+      <li><a href="../index.html#competencias">Competencias</a></li>
+      <li><a href="../index.html#proyectos">Proyectos</a></li>
+      <li><a href="index.html" aria-current="true">Guías</a></li>
+      <li><a href="../index.html#experiencia">Experiencia</a></li>
+      <li><a href="../index.html#formacion">Formación</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar a modo claro" aria-pressed="false">
+      <span aria-hidden="true">☀</span>
+    </button>
+  </nav>
+</header>
+
+<main id="contenido">
+  <div class="guide-page">
+    <div class="container">
+
+      <nav class="guide-nav" aria-label="Enlaces de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+      <article class="guide-body">
+        <h1 class="section__title">He recibido un correo sospechoso (phishing)</h1>
+
+        <dl class="guide-meta">
+          <div>
+            <dt>Categoría</dt>
+            <dd>Seguridad</dd>
+          </div>
+          <div>
+            <dt>Prioridad orientativa</dt>
+            <dd><span class="priority priority--high">Alta</span></dd>
+          </div>
+          <div>
+            <dt>Tiempo estimado</dt>
+            <dd>5–15 min</dd>
+          </div>
+        </dl>
+
+        <p class="guide-intro">
+          Un usuario avisa de que ha recibido un correo (o un mensaje) que le parece falso: pide datos, claves o
+          pagos, o trae un enlace o un adjunto raros. El «phishing» es un engaño para robar credenciales, dinero o
+          instalar software malicioso. El trabajo del nivel 1 aquí no es analizar el mensaje, sino <strong>evitar
+          que nadie interactúe con él, notificarlo por el canal correcto y, si el usuario ya hizo clic o metió sus
+          datos, avisar de inmediato</strong>. Si el usuario ha perdido el acceso a su cuenta o sospecha que se la
+          han robado, consulta también la guía
+          <a href="contrasena-cuenta-bloqueada.html">He olvidado mi contraseña o tengo la cuenta bloqueada</a>.
+          Esta incidencia no tiene una opción propia en mi herramienta
+          <a href="https://github.com/VanToxiK/it-support-toolkit" target="_blank" rel="noopener noreferrer">IT Support Toolkit</a>:
+          aquí lo importante es seguir el procedimiento de seguridad de la empresa.
+        </p>
+
+        <div class="callout callout--warn">
+          <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+          <ul>
+            <li><strong>No hagas clic</strong> en ningún enlace del mensaje ni abras sus adjuntos, ni siquiera «para ver qué es», y no le pidas al usuario que lo haga.</li>
+            <li><strong>No respondas ni reenvíes</strong> el mensaje, salvo al buzón de seguridad si la empresa lo indica así en su procedimiento.</li>
+            <li><strong>No borres el mensaje</strong> hasta que el procedimiento de la empresa lo indique: seguridad puede necesitarlo como prueba.</li>
+            <li>Si el usuario <strong>hizo clic, abrió un adjunto o escribió su contraseña o sus datos</strong>, es un <strong>incidente de seguridad urgente</strong>: avisa de inmediato según el procedimiento de la empresa. No intentes arreglarlo tú.</li>
+            <li>Sé amable con el usuario: haber avisado es lo correcto y no se le debe culpar. Confirma quién es y qué equipo usa antes de seguir.</li>
+          </ul>
+        </div>
+
+        <nav class="guide-toc" aria-labelledby="toc-title">
+          <h2 class="guide-toc__title" id="toc-title">En esta guía</h2>
+          <ol>
+            <li><a href="#sintomas">Síntomas</a></li>
+            <li><a href="#preguntas">Preguntas al usuario</a></li>
+            <li><a href="#comprobaciones">Comprobaciones rápidas</a></li>
+            <li><a href="#diagnostico">Diagnóstico paso a paso</a></li>
+            <li><a href="#solucion">Solución</a></li>
+            <li><a href="#escalar">Cuándo escalar a nivel 2</a></li>
+            <li><a href="#ticket">Qué anotar en el ticket</a></li>
+            <li><a href="#prevencion">Prevención</a></li>
+          </ol>
+        </nav>
+
+        <section class="guide-section" aria-labelledby="sintomas">
+          <h2 id="sintomas">Síntomas</h2>
+          <ul>
+            <li>Un correo pide usuario y contraseña, un código de verificación, datos bancarios o de la empresa, o que se inicie sesión en una página por un supuesto problema con la cuenta.</li>
+            <li>Un mensaje con mucha urgencia o amenaza («su cuenta será cerrada», «pago pendiente», «último aviso»).</li>
+            <li>El remitente parece un compañero, un jefe, un proveedor o un servicio conocido, pero la dirección de correo no coincide o es rara.</li>
+            <li>Un enlace que lleva a una página que no es la esperada, o un adjunto inesperado (comprimidos, archivos con macros, facturas o «documentos compartidos» que nadie ha enviado).</li>
+            <li>Peticiones de transferencias, cambios de cuenta bancaria, tarjetas regalo o compras «urgentes y confidenciales» en nombre de la dirección.</li>
+            <li>Mensajes con el mismo estilo por otros canales: SMS, llamadas, aplicaciones de mensajería o mensajes en Teams.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="preguntas">
+          <h2 id="preguntas">Preguntas al usuario</h2>
+          <ol>
+            <li>¿Qué has recibido, por qué canal (correo, SMS, Teams…) y a qué hora? ¿De quién dice ser?</li>
+            <li><strong>¿Has hecho clic en algún enlace?</strong> ¿Has abierto algún adjunto? <em>Pregúntalo con calma y sin reproches: la respuesta cambia todo lo que sigue.</em></li>
+            <li><strong>¿Has escrito tu usuario, tu contraseña, algún código o algún otro dato</strong> en alguna página, o has aprobado una petición de acceso en el móvil? <em>Que no te diga la contraseña, solo si lo ha hecho o no.</em></li>
+            <li>¿Has respondido o reenviado el mensaje a alguien?</li>
+            <li>¿Lo has abierto en el ordenador, en el móvil o en ambos?</li>
+            <li>¿Ha pasado algo raro después: el equipo va lento, se abren ventanas solas, te llegan avisos de acceso a tu cuenta o de cambios que no has hecho?</li>
+            <li>¿Lo han recibido también otros compañeros?</li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="comprobaciones">
+          <h2 id="comprobaciones">Comprobaciones rápidas</h2>
+          <p>Sin hacer clic ni abrir nada, se pueden mirar estas señales. Ninguna demuestra por sí sola que sea phishing, pero varias juntas son una alerta:</p>
+          <div class="table-wrap" tabindex="0" role="region" aria-label="Señales de un correo sospechoso">
+            <table class="guide-table">
+              <thead>
+                <tr><th scope="col">Señal</th><th scope="col">Qué mirar</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Remitente</td>
+                  <td>La dirección de correo completa (no solo el nombre que aparece). Ver si es de un dominio parecido pero distinto al de la empresa o del servicio.</td>
+                </tr>
+                <tr>
+                  <td>Urgencia o amenaza</td>
+                  <td>Plazos muy cortos, avisos de cierre de cuenta o multas, presión para actuar «ya».</td>
+                </tr>
+                <tr>
+                  <td>Petición de datos</td>
+                  <td>Contraseñas, códigos, datos bancarios o cambios de cuenta de pago. Soporte y las empresas serias no los piden por correo.</td>
+                </tr>
+                <tr>
+                  <td>Enlaces</td>
+                  <td>Pasar el ratón <strong>sin hacer clic</strong> sobre el enlace muestra la dirección real, que puede no coincidir con el texto.</td>
+                </tr>
+                <tr>
+                  <td>Adjuntos</td>
+                  <td>Archivos inesperados, comprimidos o con extensión rara. Nunca abrirlos para «comprobarlos».</td>
+                </tr>
+                <tr>
+                  <td>Redacción</td>
+                  <td>Saludos genéricos, faltas o frases poco naturales. Pero los mensajes bien escritos también pueden ser phishing.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <ul>
+            <li><strong>Verificar por otro canal.</strong> Si el mensaje dice ser de un compañero, un jefe o un proveedor, el usuario puede confirmarlo llamando a un teléfono que ya conocía, <strong>no al que venga en el correo</strong>.</li>
+            <li><strong>Aviso de la empresa.</strong> Comprueba si ya hay un aviso interno sobre una campaña de correos parecidos.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="diagnostico">
+          <h2 id="diagnostico">Diagnóstico paso a paso</h2>
+          <ol>
+            <li>
+              <strong>Frena a todos.</strong> Pide al usuario que no haga clic, que no abra adjuntos, que no
+              responda ni reenvíe y que no borre el mensaje. Si otros compañeros lo han recibido, que tampoco lo
+              toquen.
+            </li>
+            <li>
+              <strong>Averigua si el usuario ha interactuado.</strong> Con las preguntas 2 a 4 de la sección
+              anterior, decide en cuál de estos casos estás:
+              <div class="table-wrap" tabindex="0" role="region" aria-label="Qué hacer según lo que haya hecho el usuario">
+                <table class="guide-table">
+                  <thead>
+                    <tr><th scope="col">Qué ha hecho el usuario</th><th scope="col">Gravedad y qué hacer</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Solo ha recibido y leído el correo</td>
+                      <td>Riesgo bajo. Notificar el mensaje (paso 3) y seguir las instrucciones de la empresa.</td>
+                    </tr>
+                    <tr>
+                      <td>Ha respondido o reenviado el mensaje</td>
+                      <td>Avisar a seguridad (puede haber compartido datos o difundido el mensaje). Anotar a quién y qué.</td>
+                    </tr>
+                    <tr>
+                      <td>Ha hecho clic en un enlace, pero no ha escrito nada</td>
+                      <td><strong>Incidente.</strong> Avisar a seguridad sin esperar: pueden querer revisar el equipo.</td>
+                    </tr>
+                    <tr>
+                      <td>Ha abierto un adjunto, habilitado contenido (macros) o descargado o instalado algo</td>
+                      <td><strong>Incidente urgente.</strong> Escalar de inmediato. No intentes limpiar el equipo.</td>
+                    </tr>
+                    <tr>
+                      <td>Ha escrito su contraseña, un código o datos, o ha aprobado un acceso en el móvil</td>
+                      <td><strong>Incidente urgente.</strong> Escalar de inmediato: la cuenta puede estar comprometida.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+            <li>
+              <strong>Si no ha interactuado: notifica el mensaje con el botón de Outlook, si existe.</strong>
+              Selecciona el mensaje y usa el botón de notificación que tenga tu empresa (a veces se llama «Informar»
+              o «Notificar mensaje»). En Microsoft 365, la opción suele estar en el botón <em>Informe</em> &gt;
+              <em>Suplantación de identidad (phishing)</em>; en el móvil, en el menú de los tres puntos, <em>Informar
+              de correo no deseado</em> &gt; <em>Suplantación de identidad</em>. El nombre exacto del botón depende
+              de la versión de Outlook y de cómo lo tenga configurado la empresa. Microsoft avisa de que notificar un
+              mensaje informa del remitente pero no le impide seguir escribiendo.
+              <p>Si no hay botón, o la empresa indica otro procedimiento (por ejemplo, reenviar solo al buzón de seguridad), sigue ese. <strong>No lo reenvíes a nadie más ni lo abras con adjuntos.</strong> Después, el usuario debe borrar el mensaje solo cuando el procedimiento lo indique.</p>
+            </li>
+            <li>
+              <strong>Si ha interactuado: avisa de inmediato a seguridad.</strong> Usa el canal urgente que marque
+              el procedimiento de la empresa (normalmente una llamada o el canal de incidentes, no solo el ticket).
+              Dile qué ha hecho el usuario y a qué hora. Sigue sus instrucciones: pueden pedir que se desconecte el
+              equipo de la red, que no se apague, o que el usuario cambie la contraseña desde otro dispositivo. No
+              toques el equipo más de lo que te indiquen.
+              <div class="callout callout--tool">
+                <div class="callout__label"><span aria-hidden="true">🧰</span> Con IT Support Toolkit</div>
+                <p>
+                  Aquí no hay una opción que aplicar: el Toolkit no analiza correos ni detecta phishing. En un equipo
+                  que pueda estar comprometido, <strong>no lo ejecutes</strong> salvo que seguridad te lo pida.
+                </p>
+              </div>
+            </li>
+            <li>
+              <strong>Registra y no cierres en falso.</strong> Anota los datos (sección «Qué anotar en el ticket»).
+              No des el caso por resuelto hasta que seguridad lo confirme.
+            </li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="solucion">
+          <h2 id="solucion">Solución</h2>
+
+          <h3>El usuario no ha interactuado con el mensaje</h3>
+          <p>Notifica el mensaje con el botón de Outlook o por el canal que indique la empresa, y sigue sus instrucciones para borrarlo o guardarlo. Dale las gracias al usuario por avisar y recuérdale lo que no debe hacer (clic, respuesta, reenvío). Si es una campaña que llega a varios compañeros, pasa los datos a seguridad para que decida si hay que avisar a toda la plantilla.</p>
+
+          <h3>El usuario ha hecho clic, ha abierto un adjunto o ha dado sus datos</h3>
+          <p>Es un <strong>incidente de seguridad urgente</strong>. Escala de inmediato según el procedimiento de la empresa (paso 4 del diagnóstico) y no intentes limpiar ni «arreglar» nada. Tras avisar, sigue las instrucciones de seguridad: el restablecimiento de la contraseña, el cierre de sesiones abiertas y la revisión del equipo los decide y los hace quien tenga permisos. Si hace falta que el usuario cambie su contraseña, hazlo según el procedimiento y desde un dispositivo seguro, tal como explica la guía <a href="contrasena-cuenta-bloqueada.html">He olvidado mi contraseña o tengo la cuenta bloqueada</a>.</p>
+
+          <h3>El mensaje parece legítimo, pero tienes dudas</h3>
+          <p>No decidas tú que es seguro. Pide al usuario que verifique el mensaje por otro canal (una llamada a un teléfono que ya conocía, no al del mensaje) y, si aun así hay dudas, notifícalo igualmente a seguridad. Es mejor una notificación de más que una de menos.</p>
+
+          <p>
+            <strong>Antes de cerrar:</strong> confirma con seguridad que el caso puede cerrarse (si lo has
+            escalado) o que el mensaje se ha notificado y tratado según el procedimiento. Recuerda al usuario que
+            siga sin interactuar con el mensaje y que avise de cualquier cosa rara que note después.
+          </p>
+        </section>
+
+        <section class="guide-section" aria-labelledby="escalar">
+          <h2 id="escalar">Cuándo escalar a nivel 2</h2>
+          <p><strong>Escala de inmediato, sin esperar a completar la guía</strong>, si ocurre cualquiera de estos casos:</p>
+          <ul>
+            <li>El usuario <strong>hizo clic en un enlace</strong>, abrió un adjunto, habilitó macros o descargó o instaló algo.</li>
+            <li>El usuario <strong>escribió su usuario y contraseña</strong>, un código de verificación o datos bancarios o de la empresa, o aprobó una petición de acceso en el móvil.</li>
+            <li>Ha respondido o reenviado el mensaje con información de la empresa.</li>
+            <li>Aparecen avisos de inicio de sesión desconocidos, cambios en la cuenta, reglas de reenvío o mensajes enviados que el usuario no reconoce.</li>
+            <li>El equipo hace cosas raras después de abrir el mensaje: ventanas emergentes, archivos que no se abren o con nombres cambiados, notas de rescate.</li>
+            <li>El mensaje pide <strong>transferencias, cambios de cuenta bancaria, compra de tarjetas regalo</strong> o datos de clientes, sobre todo si dice venir de la dirección: avisa también a la persona responsable de esos pagos.</li>
+            <li>El mensaje parece venir de <strong>otro compañero</strong> de la empresa (la cuenta de esa persona puede estar comprometida) o lo han recibido <strong>varios usuarios</strong>.</li>
+          </ul>
+          <p>Sigue el procedimiento de la empresa para avisar (llamada, canal de incidentes o buzón de seguridad).</p>
+          <div class="callout callout--warn">
+            <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+            <p>
+              No intentes analizar el mensaje abriéndolo con enlaces o adjuntos, no ejecutes herramientas de
+              limpieza, no borres el mensaje ni el historial de nada y no desactives el antivirus. Todo eso puede
+              destruir pruebas o empeorar el problema, y lo decide seguridad.
+            </p>
+          </div>
+        </section>
+
+        <section class="guide-section" aria-labelledby="ticket">
+          <h2 id="ticket">Qué anotar en el ticket</h2>
+          <ul class="checklist">
+            <li>Usuario (con su identidad verificada), nombre del equipo y hora en que se recibió el mensaje.</li>
+            <li>Canal (correo, SMS, Teams…), remitente (dirección exacta) y asunto.</li>
+            <li>Qué pedía el mensaje y una breve descripción. <strong>No pegues enlaces activos</strong> en el ticket: si hace falta anotar una dirección, escríbela desactivada (por ejemplo <code>hxxps://ejemplo[.]com</code>) o adjunta una captura.</li>
+            <li><strong>Qué ha hecho el usuario</strong>, con horas: nada, respondió, reenvió, hizo clic, abrió un adjunto, escribió credenciales o datos, aprobó un acceso.</li>
+            <li>Si escribió credenciales, en qué cuenta o servicio. <strong>Nunca la contraseña</strong> ni ningún código.</li>
+            <li>Si otros compañeros lo recibieron o interactuaron.</li>
+            <li>A quién se avisó (seguridad, responsable de pagos, otros), por qué canal y a qué hora, y qué instrucciones se recibieron.</li>
+            <li>Acciones realizadas, con su resultado y la hora (por ejemplo «notificado desde Outlook», «avisado a seguridad por teléfono»).</li>
+            <li>Estado final: notificado y tratado según procedimiento, o escalado a seguridad, con el motivo. Sin cerrar hasta que seguridad lo confirme.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="prevencion">
+          <h2 id="prevencion">Prevención</h2>
+          <ul>
+            <li>Desconfiar de la urgencia y de cualquier petición de contraseñas, códigos o pagos por correo: soporte y las empresas serias no los piden así.</li>
+            <li>Comprobar la dirección completa del remitente y, sin hacer clic, la dirección real de los enlaces antes de fiarse.</li>
+            <li>No abrir adjuntos inesperados ni habilitar macros. Ante la duda, preguntar al remitente por otro canal.</li>
+            <li>No aprobar peticiones de acceso en el móvil que no se han iniciado personalmente.</li>
+            <li>Notificar los mensajes sospechosos sin miedo: es mejor avisar de más que de menos.</li>
+            <li>Usar contraseñas distintas en cada servicio, no compartirlas y cambiarlas de inmediato si hay sospecha.</li>
+            <li>Mantener Windows, Office y el antivirus actualizados según la política de la empresa, y participar en las formaciones de seguridad.</li>
+          </ul>
+        </section>
+      </article>
+
+      <nav class="guide-nav guide-nav--bottom" aria-label="Enlaces al final de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 Iván Marcos Couso · <a href="../index.html">Web principal</a></p>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

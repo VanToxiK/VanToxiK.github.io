@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>He olvidado mi contraseña o tengo la cuenta bloqueada · Guías de soporte IT N1</title>
+<meta name="description" content="Guía de soporte IT N1: qué hacer cuando un usuario ha olvidado su contraseña o tiene la cuenta bloqueada. Verificación de identidad obligatoria, autoservicio de restablecimiento, desbloqueo según procedimiento, cuándo escalar y qué anotar en el ticket.">
+<meta name="author" content="Iván Marcos Couso">
+
+<link rel="canonical" href="https://vantoxik.github.io/guias/contrasena-cuenta-bloqueada.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+<header class="site-header">
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="../index.html#inicio" class="nav__brand">IMC</a>
+    <ul class="nav__links">
+      <li><a href="../index.html#sobre-mi">Sobre mí</a></li>
+      <li><a href="../index.html#competencias">Competencias</a></li>
+      <li><a href="../index.html#proyectos">Proyectos</a></li>
+      <li><a href="index.html" aria-current="true">Guías</a></li>
+      <li><a href="../index.html#experiencia">Experiencia</a></li>
+      <li><a href="../index.html#formacion">Formación</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar a modo claro" aria-pressed="false">
+      <span aria-hidden="true">☀</span>
+    </button>
+  </nav>
+</header>
+
+<main id="contenido">
+  <div class="guide-page">
+    <div class="container">
+
+      <nav class="guide-nav" aria-label="Enlaces de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+      <article class="guide-body">
+        <h1 class="section__title">He olvidado mi contraseña o tengo la cuenta bloqueada</h1>
+
+        <dl class="guide-meta">
+          <div>
+            <dt>Categoría</dt>
+            <dd>Cuentas y correo</dd>
+          </div>
+          <div>
+            <dt>Prioridad orientativa</dt>
+            <dd><span class="priority priority--high">Alta</span></dd>
+          </div>
+          <div>
+            <dt>Tiempo estimado</dt>
+            <dd>5–15 min</dd>
+          </div>
+        </dl>
+
+        <p class="guide-intro">
+          Un usuario no puede entrar en su equipo, en el correo (Microsoft 365) o en otra aplicación de la empresa
+          porque ha olvidado la contraseña, le ha caducado o su cuenta se ha bloqueado. Es una de las incidencias
+          más delicadas del soporte: quien pide que le abran una cuenta puede no ser quien dice ser. Por eso esta
+          guía empieza siempre por <strong>verificar la identidad</strong>, y solo después ayuda a usar el
+          autoservicio de restablecimiento o a aplicar el procedimiento de desbloqueo de la empresa. Si el usuario
+          menciona un correo o una página sospechosos, consulta también la guía
+          <a href="correo-sospechoso-phishing.html">He recibido un correo sospechoso (phishing)</a>.
+        </p>
+
+        <div class="callout callout--warn">
+          <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+          <ul>
+            <li><strong>Verifica la identidad del usuario ANTES de cualquier acción</strong>, siguiendo el procedimiento de la empresa. Si no puedes verificarla, no hagas nada y escala.</li>
+            <li><strong>Nunca pidas, escuches ni anotes la contraseña del usuario</strong>, ni un código de verificación que le llegue al móvil o al correo. Tampoco en el ticket, por chat o por correo.</li>
+            <li>No restablezcas ni desbloquees una cuenta si no tienes permiso y herramientas para ello: escala a quien las tenga.</li>
+          </ul>
+        </div>
+
+        <nav class="guide-toc" aria-labelledby="toc-title">
+          <h2 class="guide-toc__title" id="toc-title">En esta guía</h2>
+          <ol>
+            <li><a href="#sintomas">Síntomas</a></li>
+            <li><a href="#preguntas">Preguntas al usuario</a></li>
+            <li><a href="#comprobaciones">Comprobaciones rápidas</a></li>
+            <li><a href="#diagnostico">Diagnóstico paso a paso</a></li>
+            <li><a href="#solucion">Solución</a></li>
+            <li><a href="#escalar">Cuándo escalar a nivel 2</a></li>
+            <li><a href="#ticket">Qué anotar en el ticket</a></li>
+            <li><a href="#prevencion">Prevención</a></li>
+          </ol>
+        </nav>
+
+        <section class="guide-section" aria-labelledby="sintomas">
+          <h2 id="sintomas">Síntomas</h2>
+          <ul>
+            <li>Al iniciar sesión en Windows o en Microsoft 365 aparece un mensaje de contraseña incorrecta, aunque el usuario cree que la escribe bien.</li>
+            <li>Un mensaje indica que la cuenta está <strong>bloqueada</strong> (por demasiados intentos fallidos) o que hay que ponerse en contacto con el administrador.</li>
+            <li>Windows o Microsoft 365 avisan de que la contraseña ha caducado y hay que cambiarla.</li>
+            <li>Outlook, Teams u OneDrive piden la contraseña una y otra vez, o dejan de conectar tras cambiar la contraseña.</li>
+            <li>El usuario no sabe o no recuerda su contraseña, o no ha llegado a tener una (empleado nuevo).</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="preguntas">
+          <h2 id="preguntas">Preguntas al usuario</h2>
+          <ol>
+            <li><strong>Identificación primero.</strong> ¿Quién eres, cuál es tu puesto y cuál es tu usuario? <em>Verifícalo con el método que marque la empresa (por ejemplo, devolver la llamada a un teléfono registrado, confirmar con su responsable o pedir un dato que solo el usuario conozca). No basta con que quien llama o escribe diga quién es, ni siquiera si tiene mucha prisa.</em></li>
+            <li>¿En qué falla exactamente: al encender el equipo (Windows), en el correo y Microsoft 365, en la VPN o en otra aplicación?</li>
+            <li>¿Qué mensaje ves? Léemelo tal cual, <strong>sin decirme la contraseña</strong>. Si puedes, haz una captura de pantalla donde no aparezca.</li>
+            <li>¿Cuándo funcionó por última vez? ¿Has cambiado la contraseña hace poco, o te ha avisado el sistema de que caducaba?</li>
+            <li>¿Tienes la contraseña antigua guardada en otro sitio (móvil, tableta, Outlook en otro equipo, unidades de red)? <em>Un dispositivo que sigue intentando entrar con la contraseña vieja es una causa muy frecuente de bloqueos repetidos.</em></li>
+            <li>¿Has recibido algún correo, mensaje o llamada pidiéndote tu contraseña, o has escrito tus datos en alguna página tras pulsar un enlace? <em>Si la respuesta es sí, trátalo como posible incidente de seguridad: mira «Cuándo escalar».</em></li>
+            <li>¿Te han llegado avisos de inicio de sesión o peticiones de aprobar el acceso en el móvil que tú no has hecho? <em>Mismo caso: seguridad.</em></li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="comprobaciones">
+          <h2 id="comprobaciones">Comprobaciones rápidas</h2>
+          <ul>
+            <li><strong>Bloqueo de mayúsculas y teclado.</strong> Comprueba que <kbd>Bloq Mayús</kbd> está apagado y que el idioma del teclado es el correcto. El usuario puede pulsar el icono del ojo, si lo hay, para ver lo que escribe, siempre en un sitio donde nadie más vea la pantalla.</li>
+            <li><strong>Usuario correcto.</strong> Comprueba que escribe el nombre de usuario o el correo completo, sin espacios ni errores.</li>
+            <li><strong>Conexión.</strong> Sin red, un equipo puede no reconocer una contraseña cambiada hace poco. Si el equipo no tiene conexión, consulta antes la guía <a href="sin-internet.html">No tengo conexión a Internet</a>.</li>
+            <li><strong>Otro acceso como prueba.</strong> Si hay duda de si es un fallo de cuenta o solo de un programa, pídele que pruebe a entrar en Outlook en la web desde otro dispositivo: si falla también, el problema es de la cuenta y no del equipo.</li>
+            <li><strong>Esperar unos minutos.</strong> En algunas empresas el bloqueo por intentos fallidos se levanta solo pasado un tiempo. No sabes cuánto, porque depende de la política: no le pidas al usuario que siga probando mientras tanto, o volverá a bloquearla.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="diagnostico">
+          <h2 id="diagnostico">Diagnóstico paso a paso</h2>
+          <ol>
+            <li>
+              <strong>Verifica la identidad del usuario.</strong> Sigue el procedimiento de la empresa. Anota qué
+              método has usado (no los datos personales que te dio). Si no puedes completarlo o algo no cuadra,
+              <strong>no sigas</strong>: informa según el procedimiento y escala.
+            </li>
+            <li>
+              <strong>Averigua qué cuenta y dónde falla.</strong> No es lo mismo la sesión de Windows del equipo
+              que la cuenta de Microsoft 365, la VPN u otra aplicación. Anota el mensaje exacto.
+            </li>
+            <li>
+              <strong>Distingue el caso.</strong>
+              <div class="table-wrap" tabindex="0" role="region" aria-label="Casos habituales y qué hacer">
+                <table class="guide-table">
+                  <thead>
+                    <tr><th scope="col">Caso</th><th scope="col">Qué hacer</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Contraseña olvidada</td>
+                      <td>Autoservicio de restablecimiento si la empresa lo tiene; si no, restablecimiento según el procedimiento (pasos siguientes).</td>
+                    </tr>
+                    <tr>
+                      <td>Contraseña caducada («hay que cambiarla»)</td>
+                      <td>El usuario conoce la contraseña actual: puede cambiarla él mismo (sección Solución).</td>
+                    </tr>
+                    <tr>
+                      <td>Cuenta bloqueada por intentos fallidos</td>
+                      <td>Desbloqueo según procedimiento y permisos. Busca la causa (dispositivo con contraseña antigua) para que no se repita.</td>
+                    </tr>
+                    <tr>
+                      <td>Cuenta desactivada o inexistente (baja, cambio de puesto, empleado nuevo)</td>
+                      <td>No es un problema de contraseña: escala, porque hay que consultar con RR. HH. o con quien gestione las altas y bajas.</td>
+                    </tr>
+                    <tr>
+                      <td>Pide un código o aprobar el acceso en el móvil y no puede (verificación en dos pasos)</td>
+                      <td>No tienes que ver ni recibir los códigos. Escala según el procedimiento de seguridad de la empresa.</td>
+                    </tr>
+                    <tr>
+                      <td>Bloqueos repetidos, avisos de acceso desconocido o peticiones de aprobación que el usuario no ha hecho</td>
+                      <td>Posible ataque: sigue el procedimiento de seguridad de la empresa y escala de inmediato.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+            <li>
+              <strong>Comprueba si la empresa tiene autoservicio de restablecimiento.</strong> Con la verificación
+              de identidad ya hecha, pregúntale al usuario si se registró en el autoservicio y, si la empresa lo
+              tiene, guíale para que lo haga él mismo desde otro dispositivo (por ejemplo, su móvil):
+              <ul>
+                <li>La página de restablecimiento de Microsoft para cuentas de trabajo o del centro educativo es <code>passwordreset.microsoftonline.com</code>; allí se elige «He olvidado mi contraseña».</li>
+                <li>El usuario demuestra su identidad con el método que registró (información de seguridad, como el móvil). <strong>Los códigos los ve y los escribe solo él; no se los pidas.</strong></li>
+                <li>Según Microsoft, solo funciona si el administrador de la empresa ha activado esa característica. Si el usuario no ve la opción, no está activada: pasa al paso siguiente.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Sin autoservicio, o si falla: restablece o desbloquea solo si tienes permiso.</strong> Si tu
+              rol y las herramientas de administración de cuentas de la empresa te lo permiten y el procedimiento lo
+              indica, hazlo tal como esté definido (por ejemplo, con una contraseña temporal que el usuario debe
+              cambiar al entrar). Si no tienes permisos, escala a nivel 2 o a quien gestione las cuentas.
+              <div class="callout callout--tool">
+                <div class="callout__label"><span aria-hidden="true">🧰</span> Con IT Support Toolkit</div>
+                <p>
+                  El Toolkit no gestiona cuentas ni contraseñas, así que aquí no hay una opción que aplicar. Solo
+                  ayuda si sospechas que el problema es de conexión (por ejemplo, el equipo no consigue validar la
+                  cuenta): opción <strong>2 · Diagnóstico de red</strong>, que solo lee datos.
+                </p>
+              </div>
+            </li>
+            <li>
+              <strong>Comprueba que todo funciona y busca la causa del bloqueo.</strong> Con la contraseña nueva,
+              el usuario inicia sesión en Windows, Outlook y Teams. Pídele que actualice la contraseña en todos
+              los sitios donde la tenga guardada (móvil, tableta, otro equipo, unidades de red, VPN). Si dejas un
+              dispositivo con la contraseña vieja, la cuenta volverá a bloquearse.
+            </li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="solucion">
+          <h2 id="solucion">Solución</h2>
+
+          <h3>Contraseña olvidada</h3>
+          <p>Con la identidad verificada, usa el autoservicio de restablecimiento si la empresa lo tiene. Si no, restablece la contraseña solo si tu rol y el procedimiento lo permiten: la contraseña temporal se entrega por el canal que marque la empresa y debe cambiarse al primer inicio de sesión. <strong>No la anotes en el ticket ni la envíes por un canal que no sea el aprobado.</strong> Si no puedes hacerlo, escala.</p>
+
+          <h3>Contraseña caducada</h3>
+          <p>Si el usuario conoce la contraseña actual, puede cambiarla él mismo: en Windows, pulsando <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Supr</kbd> y eligiendo «Cambiar una contraseña», o desde el aviso del propio inicio de sesión. Debe escoger una contraseña nueva, larga y que no haya usado antes. Para cuentas de trabajo de Microsoft 365, el cambio también puede hacerse desde el portal de cuenta de la empresa. Después, actualiza la contraseña en el resto de dispositivos.</p>
+
+          <h3>Cuenta bloqueada</h3>
+          <p>Si el bloqueo no se levanta solo pasado un tiempo, hay que desbloquear la cuenta según el procedimiento de la empresa y con quien tenga permisos. Antes de dar el caso por cerrado, busca la causa: un móvil, un Outlook en otro equipo o una unidad de red con la contraseña antigua son lo más habitual. Sin corregirla, la cuenta se volverá a bloquear.</p>
+
+          <div class="callout callout--warn">
+            <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+            <ul>
+              <li>No des pistas sobre la contraseña ni la enseñes o leas en voz alta.</li>
+              <li>No des una contraseña temporal por teléfono, chat o correo sin canal aprobado por la empresa, ni a alguien que no sea el usuario verificado.</li>
+              <li>Si la empresa exige una verificación reforzada (por ejemplo, para cuentas de responsables o administradores), aplícala aunque el usuario tenga prisa.</li>
+            </ul>
+          </div>
+
+          <p>
+            <strong>Antes de cerrar:</strong> pide al usuario que confirme que ya entra en Windows, Outlook y Teams
+            sin que le vuelva a pedir la contraseña, y que ha actualizado la contraseña en sus otros dispositivos.
+            Recuérdale que no la comparta con nadie, ni siquiera con soporte.
+          </p>
+        </section>
+
+        <section class="guide-section" aria-labelledby="escalar">
+          <h2 id="escalar">Cuándo escalar a nivel 2</h2>
+          <ul>
+            <li><strong>No puedes verificar la identidad</strong> del usuario, o algo no cuadra: no hagas nada y avisa según el procedimiento de la empresa.</li>
+            <li>No tienes permisos o herramientas para desbloquear o restablecer la cuenta, o el autoservicio no funciona.</li>
+            <li>La cuenta está desactivada o no existe (baja, cambio de puesto, alta reciente).</li>
+            <li>El usuario no puede usar su método de verificación en dos pasos (móvil perdido o cambiado, no recibe los códigos).</li>
+            <li>La cuenta es de un responsable, directivo o administrador: suelen tener un procedimiento reforzado.</li>
+            <li><strong>Bloqueos repetidos</strong> sin causa aparente, tras haber revisado los dispositivos con contraseña antigua.</li>
+            <li><strong>Sospecha de ataque:</strong> avisos de inicio de sesión desconocidos, peticiones de aprobación que el usuario no ha hecho, o cambios en la cuenta que no reconoce. Trátalo como incidente de seguridad y avisa de inmediato según el procedimiento.</li>
+            <li>El usuario ha <strong>dado su contraseña</strong> o la ha escrito en una página sospechosa, o ha respondido a alguien que se la pedía: incidente de seguridad urgente. No intentes «arreglarlo» tú: avisa de inmediato y consulta la guía <a href="correo-sospechoso-phishing.html">He recibido un correo sospechoso (phishing)</a>.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="ticket">
+          <h2 id="ticket">Qué anotar en el ticket</h2>
+          <ul class="checklist">
+            <li>Usuario y equipo, hora de inicio del problema y en qué sistema falla (Windows, Microsoft 365, VPN, otra aplicación).</li>
+            <li><strong>Cómo se verificó la identidad</strong> (método y quién lo hizo), sin anotar datos personales ni claves.</li>
+            <li>Mensaje exacto que aparece (con captura, sin datos sensibles).</li>
+            <li>Caso: contraseña olvidada, caducada, cuenta bloqueada, desactivada, o problema de verificación en dos pasos.</li>
+            <li>Acciones realizadas, con su resultado, quién las hizo y la hora (autoservicio, desbloqueo, restablecimiento).</li>
+            <li>Dispositivos donde se ha actualizado la contraseña o causa del bloqueo, si se ha encontrado.</li>
+            <li>Si hay sospecha de ataque o de phishing, y a quién se ha avisado.</li>
+            <li><strong>Nunca</strong> la contraseña (ni actual, ni temporal, ni pistas), ni códigos de verificación.</li>
+            <li>Estado final: resuelto (y qué lo resolvió) o escalado a nivel 2 o a seguridad, con el motivo.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="prevencion">
+          <h2 id="prevencion">Prevención</h2>
+          <ul>
+            <li>Registrar el método de autoservicio de restablecimiento (información de seguridad) antes de necesitarlo, si la empresa lo ofrece.</li>
+            <li>Usar contraseñas largas y distintas en cada servicio, y un gestor de contraseñas solo si la empresa lo autoriza.</li>
+            <li>Cambiar la contraseña en todos los dispositivos (móvil, tableta, otros equipos) en cuanto se cambia en uno.</li>
+            <li>No compartir nunca la contraseña, ni con compañeros ni con soporte, y no escribirla en notas pegadas al monitor.</li>
+            <li>Desconfiar de cualquier correo, mensaje o llamada que pida la contraseña o un código: soporte no los pide. Ver la guía <a href="correo-sospechoso-phishing.html">He recibido un correo sospechoso (phishing)</a>.</li>
+            <li>Cambiar la contraseña antes de que caduque y avisar a soporte cuando aparezcan los avisos.</li>
+          </ul>
+        </section>
+      </article>
+
+      <nav class="guide-nav guide-nav--bottom" aria-label="Enlaces al final de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 Iván Marcos Couso · <a href="../index.html">Web principal</a></p>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

@@ -68,8 +68,8 @@
           Un equipo Windows 10/11 de oficina se ha quedado sin acceso a Internet. Esta guía ayuda a averiguar
           si el fallo está en el propio equipo, en el cable o el Wi-Fi, o en la red de la empresa, y a decidir
           cuándo hay que pasar la incidencia a nivel 2. Si el equipo sí sale a Internet por dirección IP pero
-          no abre páginas por su nombre, es un problema de DNS: consulta la guía «Tengo red pero no cargan las
-          páginas web (DNS)» (próximamente). Donde encaja, se indica la opción de mi herramienta
+          no abre páginas por su nombre, es un problema de DNS: consulta la guía
+          <a href="dns-no-cargan-paginas.html">Tengo red pero no cargan las páginas web (DNS)</a>. Donde encaja, se indica la opción de mi herramienta
           <a href="https://github.com/VanToxiK/it-support-toolkit" target="_blank" rel="noopener noreferrer">IT Support Toolkit</a>
           y también la alternativa manual de Windows.
         </p>
@@ -201,13 +201,22 @@
             </li>
             <li>
               <strong>Prueba una dirección de Internet.</strong> Escribe <code>ping 8.8.8.8</code>. Si responde,
-              hay salida a Internet por IP. Si falla con la puerta de enlace respondiendo, el problema está más
-              allá del equipo (router, línea de Internet o filtrado de la empresa): escala.
+              hay salida a Internet por IP. Si no responde, no saques conclusiones todavía: <strong>muchas empresas
+              bloquean el ping hacia Internet</strong>. Si el navegador o Outlook sí funcionan, no es un problema de
+              conexión y no hace falta escalar. Solo si tampoco funcionan y la puerta de enlace sí responde, el
+              problema está más allá del equipo (router, línea de Internet o filtrado de la empresa): escala.
             </li>
             <li>
-              <strong>Prueba un nombre.</strong> Escribe <code>ping www.google.com</code>. Si responde la IP
-              (paso 4) pero el nombre no, el problema es de DNS (guía «Tengo red pero no cargan las páginas web
-              (DNS)», próximamente; mientras tanto, prueba el vaciado de caché DNS de la sección Solución).
+              <strong>Prueba un nombre.</strong> Escribe <code>ping www.google.com</code> y fíjate en la primera
+              línea de la respuesta:
+              <ul>
+                <li>Si aparece «Haciendo ping a www.google.com [dirección IP]», el <strong>DNS funciona</strong> (ha
+                traducido el nombre a una IP) aunque después no haya respuesta: puede ser solo que se bloquea el
+                ping, como en el paso 4.</li>
+                <li>Si aparece «La solicitud de ping no pudo encontrar el host», el <strong>DNS falla</strong>: sigue
+                con la guía <a href="dns-no-cargan-paginas.html">Tengo red pero no cargan las páginas web (DNS)</a>.
+                Mientras tanto, puedes probar el vaciado de la caché DNS de la sección Solución.</li>
+              </ul>
             </li>
             <li>
               <strong>Ejecuta el solucionador de problemas de red de Windows.</strong>
@@ -227,7 +236,7 @@
           <h2 id="solucion">Solución</h2>
 
           <h3>Modo avión, Wi-Fi apagado o red equivocada</h3>
-          <p>Desactiva el modo avión, enciende el Wi-Fi y conecta con la red de la empresa. Si hay que olvidar la red y volver a conectar (<em>Configuración &gt; Red e Internet &gt; Wi-Fi &gt; Administrar redes conocidas &gt; Olvidar</em>), hazlo solo si el usuario tiene las credenciales de esa red a mano.</p>
+          <p>Desactiva el modo avión, enciende el Wi-Fi y conecta con la red de la empresa. Si hay que olvidar la red y volver a conectar (<em>Configuración &gt; Red e Internet &gt; Wi-Fi &gt; Administrar redes conocidas &gt; Olvidar</em>), hazlo solo si el usuario tiene las credenciales de esa red a mano. Si lo que ocurre es que el Wi-Fi se corta a ratos o va muy lento, consulta la guía <a href="wifi-desconecta-lento.html">El Wi-Fi se desconecta o va lento</a>.</p>
 
           <h3>Cable o puerto de red</h3>
           <p>Vuelve a enchufar el cable por ambos extremos y prueba otro cable o toma autorizada. Si con otro cable y otra toma sigue sin enlace, escala: puede ser el puerto, el switch o el cableado.</p>
@@ -252,6 +261,7 @@
           </div>
 
           <h3>Funciona por IP pero no por nombre (DNS)</h3>
+          <p>Es el caso de la guía <a href="dns-no-cargan-paginas.html">Tengo red pero no cargan las páginas web (DNS)</a>, con el diagnóstico completo. Lo único que se prueba aquí es vaciar la caché DNS:</p>
           <div class="callout callout--tool">
             <div class="callout__label"><span aria-hidden="true">🧰</span> Con IT Support Toolkit</div>
             <p>Opción <strong>3 · Reparación de red</strong>, acción «vaciar la caché DNS». No necesita administrador.</p>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tengo red pero no cargan las páginas web (DNS) · Guías de soporte IT N1</title>
+<meta name="description" content="Guía de soporte IT N1: qué hacer cuando un equipo Windows 10/11 tiene red pero no abre páginas web por su nombre. Diagnóstico con ping y nslookup, vaciado de la caché DNS, cuándo escalar y qué anotar en el ticket.">
+<meta name="author" content="Iván Marcos Couso">
+
+<link rel="canonical" href="https://vantoxik.github.io/guias/dns-no-cargan-paginas.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+<header class="site-header">
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="../index.html#inicio" class="nav__brand">IMC</a>
+    <ul class="nav__links">
+      <li><a href="../index.html#sobre-mi">Sobre mí</a></li>
+      <li><a href="../index.html#competencias">Competencias</a></li>
+      <li><a href="../index.html#proyectos">Proyectos</a></li>
+      <li><a href="index.html" aria-current="true">Guías</a></li>
+      <li><a href="../index.html#experiencia">Experiencia</a></li>
+      <li><a href="../index.html#formacion">Formación</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar a modo claro" aria-pressed="false">
+      <span aria-hidden="true">☀</span>
+    </button>
+  </nav>
+</header>
+
+<main id="contenido">
+  <div class="guide-page">
+    <div class="container">
+
+      <nav class="guide-nav" aria-label="Enlaces de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+      <article class="guide-body">
+        <h1 class="section__title">Tengo red pero no cargan las páginas web (DNS)</h1>
+
+        <dl class="guide-meta">
+          <div>
+            <dt>Categoría</dt>
+            <dd>Red</dd>
+          </div>
+          <div>
+            <dt>Prioridad orientativa</dt>
+            <dd><span class="priority priority--high">Alta</span></dd>
+          </div>
+          <div>
+            <dt>Tiempo estimado</dt>
+            <dd>10–20 min</dd>
+          </div>
+        </dl>
+
+        <p class="guide-intro">
+          El equipo Windows 10/11 está conectado a la red, pero el navegador no abre las páginas por su nombre
+          (por ejemplo, <code>www.google.com</code>). Suele ser un fallo de DNS, el «listín telefónico» que traduce
+          los nombres a direcciones IP. Esta guía sirve para confirmarlo, probar lo que es seguro en nivel 1 y
+          decidir cuándo pasarlo a nivel 2. Si el equipo tampoco tiene salida por IP, es un problema de conexión:
+          consulta antes la guía <a href="sin-internet.html">No tengo conexión a Internet</a>. Donde encaja, se
+          indica la opción de mi herramienta
+          <a href="https://github.com/VanToxiK/it-support-toolkit" target="_blank" rel="noopener noreferrer">IT Support Toolkit</a>
+          y también la alternativa manual de Windows.
+        </p>
+
+        <div class="callout callout--warn">
+          <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+          <p>
+            <strong>Cambiar los servidores DNS del equipo no es una tarea de nivel 1.</strong> En una empresa, los
+            DNS suelen ser internos y necesarios para abrir carpetas compartidas, impresoras y la intranet: poner
+            otros (por ejemplo, los públicos de Google) puede romper todo eso. Solo se diagnostica y se anota. Y,
+            como siempre, confirma antes quién es el usuario y qué equipo está afectado.
+          </p>
+        </div>
+
+        <nav class="guide-toc" aria-labelledby="toc-title">
+          <h2 class="guide-toc__title" id="toc-title">En esta guía</h2>
+          <ol>
+            <li><a href="#sintomas">Síntomas</a></li>
+            <li><a href="#preguntas">Preguntas al usuario</a></li>
+            <li><a href="#comprobaciones">Comprobaciones rápidas</a></li>
+            <li><a href="#diagnostico">Diagnóstico paso a paso</a></li>
+            <li><a href="#solucion">Solución</a></li>
+            <li><a href="#escalar">Cuándo escalar a nivel 2</a></li>
+            <li><a href="#ticket">Qué anotar en el ticket</a></li>
+            <li><a href="#prevencion">Prevención</a></li>
+          </ol>
+        </nav>
+
+        <section class="guide-section" aria-labelledby="sintomas">
+          <h2 id="sintomas">Síntomas</h2>
+          <ul>
+            <li>El navegador muestra un aviso como «No se puede acceder a este sitio» junto con el código <code>ERR_NAME_NOT_RESOLVED</code> o <code>DNS_PROBE_FINISHED_NXDOMAIN</code>.</li>
+            <li>Al hacer <code>ping</code> a un nombre aparece «La solicitud de ping no pudo encontrar el host».</li>
+            <li>El icono de red no muestra ningún aviso o indica que hay conexión, pero las páginas no cargan.</li>
+            <li>Puede fallar solo un sitio concreto, solo los sitios de Internet (mientras los recursos internos siguen funcionando) o casi todo por nombre.</li>
+            <li>Algunas aplicaciones que usan direcciones IP fijas o ya conectadas siguen funcionando, mientras que las que necesitan resolver nombres no.</li>
+          </ul>
+          <p>
+            Ojo: si el navegador muestra <code>ERR_INTERNET_DISCONNECTED</code> («Sin conexión a Internet») el
+            problema es de conexión, no de DNS: usa la guía <a href="sin-internet.html">No tengo conexión a Internet</a>.
+          </p>
+        </section>
+
+        <section class="guide-section" aria-labelledby="preguntas">
+          <h2 id="preguntas">Preguntas al usuario</h2>
+          <ol>
+            <li>¿Falla <strong>una sola web</strong> o todas? <em>Si es una sola, es más probable que ese sitio esté caído o bloqueado y no que falle el equipo.</em></li>
+            <li>¿Los compañeros que tienes cerca abren esas mismas páginas? <em>Si fallan varios, puede ser el servidor DNS de la empresa: avisa a nivel 2 cuanto antes.</em></li>
+            <li>¿Puedes abrir recursos internos (una carpeta compartida, la intranet) aunque las webs de Internet no carguen?</li>
+            <li>¿Estás en la oficina o trabajas desde casa? ¿Usas VPN? <em>La VPN suele cambiar el DNS que usa el equipo: anótalo.</em></li>
+            <li>¿Desde cuándo? ¿Ha cambiado algo justo antes: actualización de Windows, instalación de un programa, conexión a otra red o VPN?</li>
+            <li>¿Aparece algún mensaje exacto en el navegador (por ejemplo <code>ERR_NAME_NOT_RESOLVED</code>)? Si puede, que haga una captura de pantalla.</li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="comprobaciones">
+          <h2 id="comprobaciones">Comprobaciones rápidas</h2>
+          <ul>
+            <li><strong>Dirección bien escrita.</strong> Comprueba que no hay una falta en el nombre de la página. Prueba con dos o tres páginas distintas, incluida una muy conocida.</li>
+            <li><strong>Otro navegador.</strong> Si en otro navegador sí abre, el fallo puede estar en el navegador y no en el DNS del equipo.</li>
+            <li><strong>Otra aplicación.</strong> Prueba Outlook o Teams: si funcionan, la conexión está bien y el problema puede ser de un sitio concreto o del navegador.</li>
+            <li><strong>Conexión.</strong> Comprueba que no está activado el modo avión y que el equipo está en la red de la empresa. Si hay dudas, consulta la guía <a href="sin-internet.html">No tengo conexión a Internet</a>.</li>
+            <li><strong>Reinicio.</strong> Si el equipo no se ha reiniciado en días, pide al usuario que guarde su trabajo y reinicie.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="diagnostico">
+          <h2 id="diagnostico">Diagnóstico paso a paso</h2>
+          <ol>
+            <li>
+              <strong>Confirma que hay conexión por IP.</strong> Abre el Símbolo del sistema (<kbd>Win</kbd> + <kbd>R</kbd>,
+              escribe <code>cmd</code> y pulsa Intro) y escribe <code>ping 8.8.8.8</code>. Si responde
+              («Respuesta desde…»), hay salida por IP. <em>Muchas empresas bloquean el ping hacia Internet: si no
+              responde pero el navegador o Outlook funcionan, la conexión está bien. Si no funciona nada, vuelve a
+              la guía <a href="sin-internet.html">No tengo conexión a Internet</a>.</em>
+            </li>
+            <li>
+              <strong>Prueba un nombre.</strong> Escribe <code>ping www.google.com</code> y fíjate en la primera
+              línea:
+              <ul>
+                <li>«Haciendo ping a www.google.com [dirección IP]»: el DNS <strong>funciona</strong> (ha traducido el nombre) aunque no haya respuesta. El fallo, si lo hay, no es de DNS.</li>
+                <li>«La solicitud de ping no pudo encontrar el host»: el DNS <strong>falla</strong>. Sigue con el paso siguiente.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Mira qué servidores DNS usa el equipo.</strong>
+              <div class="callout callout--tool">
+                <div class="callout__label"><span aria-hidden="true">🧰</span> Con IT Support Toolkit</div>
+                <p>
+                  Opción <strong>2 · Diagnóstico de red</strong>. Muestra la dirección IPv4, la puerta de enlace y los
+                  servidores DNS, hace pruebas de ping y de resolución de nombres y da una conclusión en lenguaje
+                  claro. Solo lee datos y no necesita permisos de administrador.
+                </p>
+              </div>
+              <div class="callout callout--manual">
+                <div class="callout__label"><span aria-hidden="true">🖱</span> Alternativa manual</div>
+                <p>
+                  En el Símbolo del sistema escribe <code>ipconfig /all</code> y pulsa Intro. En el adaptador que usa
+                  el equipo (Ethernet o LAN inalámbrica Wi-Fi), anota la línea «Servidores DNS» y comprueba
+                  «DHCP habilitado». Si no aparece ningún servidor DNS, o el equipo tiene una IP <code>169.254.x.x</code>,
+                  el problema es de conexión y no de DNS: vuelve a la guía
+                  <a href="sin-internet.html">No tengo conexión a Internet</a>.
+                </p>
+              </div>
+            </li>
+            <li>
+              <strong>Pregunta directamente al DNS con <code>nslookup</code>.</strong> Es una herramienta de
+              diagnóstico incluida en Windows que solo consulta y no cambia nada. Escribe
+              <code>nslookup www.google.com</code> y pulsa Intro. Compara lo que ves:
+              <div class="table-wrap" tabindex="0" role="region" aria-label="Cómo interpretar el resultado de nslookup">
+                <table class="guide-table">
+                  <thead>
+                    <tr><th scope="col">Qué ves</th><th scope="col">Qué significa</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Una línea «Servidor» con una dirección y, debajo, «Nombre» con una o varias direcciones (a veces con «Respuesta no autoritativa»)</td>
+                      <td>El DNS del equipo responde y resuelve el nombre. Si aun así no abre la web, el fallo está en el navegador, en un proxy o en la propia web.</td>
+                    </tr>
+                    <tr>
+                      <td>«Servidor: UnKnown» y aun así aparecen las direcciones del nombre</td>
+                      <td>Es normal: el DNS no sabe decir su propio nombre, pero funciona. No es un error.</td>
+                    </tr>
+                    <tr>
+                      <td>«Non-existent domain» («dominio inexistente»)</td>
+                      <td>El DNS responde, pero dice que ese nombre no existe. Revisa que esté bien escrito; si otros equipos sí lo resuelven, escala.</td>
+                    </tr>
+                    <tr>
+                      <td>«DNS request timed out» (tiempo de espera agotado)</td>
+                      <td>El DNS no contesta: servidor caído, bloqueado o sin llegar a él. Anota la dirección del servidor y escala.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>
+                Para comparar con otro servidor sin cambiar nada en el equipo, puedes añadir su dirección al
+                final, por ejemplo <code>nslookup www.google.com 8.8.8.8</code>. Si así sí resuelve, el DNS
+                configurado en el equipo está fallando; anótalo y escala. <em>Muchas empresas bloquean las consultas
+                a DNS externos, así que si esta prueba falla, no saques conclusiones.</em>
+              </p>
+            </li>
+            <li>
+              <strong>Revisa el servicio «Cliente DNS».</strong>
+              <div class="callout callout--tool">
+                <div class="callout__label"><span aria-hidden="true">🧰</span> Con IT Support Toolkit</div>
+                <p>
+                  Opción <strong>5 · Servicios clave</strong>. Muestra el estado del servicio Cliente DNS (y de otros
+                  como Cola de impresión, Windows Update, Cliente DHCP y Audio). Consultar el estado no necesita
+                  administrador.
+                </p>
+              </div>
+              <div class="callout callout--manual">
+                <div class="callout__label"><span aria-hidden="true">🖱</span> Alternativa manual</div>
+                <p>
+                  Pulsa <kbd>Win</kbd> + <kbd>R</kbd>, escribe <code>services.msc</code> y pulsa Intro. Busca
+                  <strong>Cliente DNS</strong> y mira que su estado sea «En ejecución». Solo mira el estado: en
+                  general Windows no deja detener ni reiniciar este servicio desde esa ventana. Si no está en
+                  ejecución, escala.
+                </p>
+              </div>
+            </li>
+            <li>
+              <strong>Ejecuta el solucionador de problemas de red de Windows.</strong>
+              <div class="callout callout--win">
+                <div class="callout__label"><span aria-hidden="true">⊞</span> Windows 10 / Windows 11</div>
+                <ul>
+                  <li><strong>Windows 10:</strong> <em>Configuración &gt; Red e Internet &gt; Estado &gt; Solucionador de problemas de red</em>.</li>
+                  <li><strong>Windows 11:</strong> abre la aplicación <em>Obtener ayuda</em> y ejecuta el solucionador automatizado de Red e Internet.</li>
+                </ul>
+              </div>
+              <p>Puede reiniciar el adaptador de red: avisa al usuario, y recuerda que cortaría cualquier sesión remota abierta.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="solucion">
+          <h2 id="solucion">Solución</h2>
+
+          <h3>Solo falla una web</h3>
+          <p>Comprueba que el nombre está bien escrito y prueba desde otro equipo o desde el móvil con datos. Si tampoco abre en otros sitios, la web está caída o bloqueada por la empresa: no intentes saltarte el bloqueo. Anota el nombre exacto de la web y, si el usuario la necesita para trabajar, escala para que nivel 2 valide si debe estar permitida.</p>
+
+          <h3>La caché DNS del equipo tiene datos viejos o dañados</h3>
+          <p>Es lo único que se prueba en nivel 1 sobre el propio DNS: vaciar la memoria temporal donde Windows guarda las traducciones ya hechas. No cambia la configuración ni necesita permisos de administrador.</p>
+          <div class="callout callout--tool">
+            <div class="callout__label"><span aria-hidden="true">🧰</span> Con IT Support Toolkit</div>
+            <p>Opción <strong>3 · Reparación de red</strong>, acción «vaciar la caché DNS». No necesita administrador y pide confirmación (S/N).</p>
+          </div>
+          <div class="callout callout--manual">
+            <div class="callout__label"><span aria-hidden="true">🖱</span> Alternativa manual</div>
+            <p>En el Símbolo del sistema escribe <code>ipconfig /flushdns</code> y pulsa Intro. Debería indicar que la caché se ha vaciado correctamente. Después, prueba otra vez <code>ping www.google.com</code> y la web del usuario.</p>
+          </div>
+
+          <h3>Servicio Cliente DNS detenido o servidores DNS incorrectos</h3>
+          <p>Si el servicio no está en ejecución, si los servidores DNS que muestra <code>ipconfig /all</code> no son los esperados por la empresa, o si <code>nslookup</code> no obtiene respuesta, <strong>no cambies nada por tu cuenta</strong>: anota lo que ves y escala a nivel 2.</p>
+
+          <p>
+            <strong>Antes de cerrar:</strong> pide al usuario que confirme que ya abre la web que necesitaba y
+            que Outlook y Teams funcionan con normalidad. Para adjuntar al ticket una foto del estado del equipo,
+            genera el informe con la opción <strong>7 · Informe HTML</strong> del Toolkit.
+          </p>
+        </section>
+
+        <section class="guide-section" aria-labelledby="escalar">
+          <h2 id="escalar">Cuándo escalar a nivel 2</h2>
+          <ul>
+            <li>Fallan <strong>varios usuarios o una zona entera</strong>: posible fallo del servidor DNS, del router o de la línea.</li>
+            <li><code>nslookup</code> muestra «DNS request timed out» o «Non-existent domain» para webs que otros equipos sí abren.</li>
+            <li>Los nombres siguen sin resolverse <strong>después de vaciar la caché DNS</strong>.</li>
+            <li>El servicio Cliente DNS no está en ejecución, o los servidores DNS del equipo no son los que debería tener.</li>
+            <li>El equipo tiene <strong>IP fija</strong>, proxy o VPN de empresa configurados, o el problema empezó al conectar una VPN.</li>
+            <li>Hace falta <strong>cambiar los servidores DNS</strong> del equipo o del adaptador: siempre lo hace nivel 2.</li>
+            <li>La web que necesita el usuario parece bloqueada por el filtrado de la empresa.</li>
+            <li>Sospechas de un problema de seguridad (redirecciones a páginas extrañas, avisos de malware, cambios que el usuario no ha hecho): sigue el procedimiento de seguridad de la empresa.</li>
+          </ul>
+          <div class="callout callout--warn">
+            <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+            <p>
+              Comandos como <code>netsh winsock reset</code> o <code>netsh int ip reset</code>, el «Restablecimiento
+              de red» de Windows, editar el archivo <code>hosts</code> o reinstalar controladores cambian la
+              configuración del equipo y pueden requerir reinicio. No forman parte del nivel 1: los realiza nivel 2
+              según el procedimiento de la empresa.
+            </p>
+          </div>
+        </section>
+
+        <section class="guide-section" aria-labelledby="ticket">
+          <h2 id="ticket">Qué anotar en el ticket</h2>
+          <ul class="checklist">
+            <li>Usuario (con su identidad verificada), nombre del equipo, ubicación y hora de inicio del problema.</li>
+            <li>Tipo de conexión: cable o Wi-Fi (nombre de la red), oficina o teletrabajo, VPN sí/no.</li>
+            <li>Alcance: una sola web o todas, solo este usuario o varios (indica quiénes), y si los recursos internos funcionan.</li>
+            <li>Nombre exacto de las webs que fallan y mensaje o código de error del navegador (con captura si es posible).</li>
+            <li>Resultado de <code>ipconfig /all</code>: dirección IPv4, puerta de enlace, servidores DNS y «DHCP habilitado» (sí/no).</li>
+            <li>Resultado de los ping (a <code>8.8.8.8</code> y a un nombre) y de <code>nslookup</code>, incluido el texto del error.</li>
+            <li>Estado del servicio Cliente DNS.</li>
+            <li>Acciones realizadas, con su resultado y la hora (por ejemplo «vaciada caché DNS, sin cambios»).</li>
+            <li>Informe HTML del Toolkit (opción 7) adjunto. Si el ticket lo va a ver alguien ajeno a la empresa, usa la anonimización opcional del informe.</li>
+            <li>Estado final: resuelto (y qué lo resolvió) o escalado a nivel 2, con el motivo.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="prevencion">
+          <h2 id="prevencion">Prevención</h2>
+          <ul>
+            <li>Documentar qué servidores DNS debe usar cada tipo de equipo (oficina, VPN, teletrabajo) para poder compararlos rápido.</li>
+            <li>Evitar que los usuarios cambien manualmente la configuración de red o los DNS del equipo.</li>
+            <li>Enseñar al usuario a probar otra web y otro navegador antes de abrir el ticket, y a anotar el código de error que aparece.</li>
+            <li>Reiniciar el equipo cuando Windows lo pida tras las actualizaciones.</li>
+            <li>Ejecutar de forma periódica el diagnóstico del Toolkit (opciones 2 y 7) en equipos con incidencias repetidas, para tener un punto de comparación.</li>
+          </ul>
+        </section>
+      </article>
+
+      <nav class="guide-nav guide-nav--bottom" aria-label="Enlaces al final de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 Iván Marcos Couso · <a href="../index.html">Web principal</a></p>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

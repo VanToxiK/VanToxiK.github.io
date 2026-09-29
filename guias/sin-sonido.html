@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No se escucha el sonido · Guías de soporte IT N1</title>
+<meta name="description" content="Guía de soporte IT N1: qué hacer cuando no se escucha el sonido en un equipo Windows 10/11. Dispositivo de salida, volumen y mezclador, silencio, servicio Audio, solucionador de problemas, cuándo escalar y qué anotar en el ticket.">
+<meta name="author" content="Iván Marcos Couso">
+
+<link rel="canonical" href="https://vantoxik.github.io/guias/sin-sonido.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+<header class="site-header">
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="../index.html#inicio" class="nav__brand">IMC</a>
+    <ul class="nav__links">
+      <li><a href="../index.html#sobre-mi">Sobre mí</a></li>
+      <li><a href="../index.html#competencias">Competencias</a></li>
+      <li><a href="../index.html#proyectos">Proyectos</a></li>
+      <li><a href="index.html" aria-current="true">Guías</a></li>
+      <li><a href="../index.html#experiencia">Experiencia</a></li>
+      <li><a href="../index.html#formacion">Formación</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar a modo claro" aria-pressed="false">
+      <span aria-hidden="true">☀</span>
+    </button>
+  </nav>
+</header>
+
+<main id="contenido">
+  <div class="guide-page">
+    <div class="container">
+
+      <nav class="guide-nav" aria-label="Enlaces de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+      <article class="guide-body">
+        <h1 class="section__title">No se escucha el sonido</h1>
+
+        <dl class="guide-meta">
+          <div>
+            <dt>Categoría</dt>
+            <dd>Hardware y periféricos</dd>
+          </div>
+          <div>
+            <dt>Prioridad orientativa</dt>
+            <dd><span class="priority priority--low">Baja</span></dd>
+          </div>
+          <div>
+            <dt>Tiempo estimado</dt>
+            <dd>5–15 min</dd>
+          </div>
+        </dl>
+
+        <p class="guide-intro">
+          Un usuario no oye nada por los altavoces, los auriculares o el monitor de su equipo Windows 10/11, o el
+          sonido falla solo en un programa (por ejemplo Teams). La mayoría de las veces es un volumen bajo, un
+          silencio activado o un dispositivo de salida equivocado, y se resuelve en pocos minutos. Esta guía cubre
+          la salida de sonido; el micrófono es otra incidencia. Si el sonido solo se corta o se entrecorta en las
+          videollamadas, puede ser la conexión: consulta la guía
+          <a href="wifi-desconecta-lento.html">El Wi-Fi se desconecta o va lento</a>. Donde encaja, se indica la
+          opción de mi herramienta
+          <a href="https://github.com/VanToxiK/it-support-toolkit" target="_blank" rel="noopener noreferrer">IT Support Toolkit</a>
+          y también la alternativa manual de Windows.
+        </p>
+
+        <div class="callout callout--warn">
+          <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+          <p>
+            Antes de hacer nada, confirma quién es el usuario y qué equipo está afectado. Avísale antes de subir el
+            volumen al máximo: en una oficina puede sonar más alto de lo esperado o molestar a los compañeros. No
+            descargues controladores de audio de páginas que no sean las oficiales de la empresa.
+          </p>
+        </div>
+
+        <nav class="guide-toc" aria-labelledby="toc-title">
+          <h2 class="guide-toc__title" id="toc-title">En esta guía</h2>
+          <ol>
+            <li><a href="#sintomas">Síntomas</a></li>
+            <li><a href="#preguntas">Preguntas al usuario</a></li>
+            <li><a href="#comprobaciones">Comprobaciones rápidas</a></li>
+            <li><a href="#diagnostico">Diagnóstico paso a paso</a></li>
+            <li><a href="#solucion">Solución</a></li>
+            <li><a href="#escalar">Cuándo escalar a nivel 2</a></li>
+            <li><a href="#ticket">Qué anotar en el ticket</a></li>
+            <li><a href="#prevencion">Prevención</a></li>
+          </ol>
+        </nav>
+
+        <section class="guide-section" aria-labelledby="sintomas">
+          <h2 id="sintomas">Síntomas</h2>
+          <ul>
+            <li>No sale ningún sonido por los altavoces, los auriculares o el monitor.</li>
+            <li>El icono del altavoz, junto al reloj, aparece silenciado (con una «x» en Windows 11 o con un círculo rojo cruzado en Windows 10).</li>
+            <li>El sonido funciona en unos programas pero no en otros (por ejemplo, se oye el navegador pero no Teams).</li>
+            <li>Suena por el dispositivo equivocado (por ejemplo, por los altavoces del portátil en vez de por los auriculares).</li>
+            <li>El sonido se oye muy bajo, con ruido o entrecortado.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="preguntas">
+          <h2 id="preguntas">Preguntas al usuario</h2>
+          <ol>
+            <li>¿Por dónde esperas oír el sonido: altavoces del equipo, altavoces externos, auriculares con cable, USB o Bluetooth, o los altavoces del monitor?</li>
+            <li>¿Falla en todos los programas o solo en uno (Teams, el navegador, un vídeo concreto)?</li>
+            <li>¿Cuándo funcionó por última vez? ¿Ha cambiado algo: cambio de puesto, un monitor o base de conexión nuevos, actualización de Windows, otros auriculares?</li>
+            <li>¿Los altavoces o auriculares están encendidos, con volumen propio subido y sin botón de silencio activado? ¿Probaste otros auriculares o altavoces?</li>
+            <li>¿Aparece algún mensaje en pantalla, o el icono del altavoz muestra un aviso?</li>
+            <li>¿Se oye en las videollamadas pero no en otros sitios, o al revés?</li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="comprobaciones">
+          <h2 id="comprobaciones">Comprobaciones rápidas</h2>
+          <ul>
+            <li><strong>Volumen y silencio del sistema.</strong> Pulsa el icono del altavoz junto al reloj y comprueba que el volumen está subido y que no está silenciado. Algunos teclados y portátiles tienen una tecla de silencio o de volumen (a veces con <kbd>Fn</kbd>).</li>
+            <li><strong>Volumen y botón de silencio del propio dispositivo.</strong> Altavoces con rueda de volumen, auriculares con botón de silencio o un interruptor de encendido: compruébalos.</li>
+            <li><strong>Cables y conexiones.</strong> Cable de audio en la toma correcta (la de salida, normalmente verde), USB firme, o Bluetooth conectado. Si va por el monitor, cable HDMI o DisplayPort bien puesto y volumen del propio monitor subido.</li>
+            <li><strong>Otro dispositivo.</strong> Prueba con otros auriculares o altavoces. Si suenan, el problema estaba en el dispositivo que no funciona.</li>
+            <li><strong>Otro programa.</strong> Prueba con un vídeo en el navegador y con otra aplicación, para saber si falla todo o solo un programa.</li>
+            <li><strong>Reinicio.</strong> Si el equipo lleva días sin reiniciarse, pide al usuario que guarde su trabajo y reinicie.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="diagnostico">
+          <h2 id="diagnostico">Diagnóstico paso a paso</h2>
+          <ol>
+            <li>
+              <strong>Comprueba el volumen y el silencio de Windows.</strong> Pulsa el icono del altavoz, en la
+              barra de tareas. Si el control aparece silenciado, púlsalo para reactivar el sonido y sube el volumen.
+              <div class="callout callout--win">
+                <div class="callout__label"><span aria-hidden="true">⊞</span> Windows 10 / Windows 11</div>
+                <ul>
+                  <li><strong>Windows 10:</strong> si está silenciado, se ve un círculo rojo con una línea cruzada junto al control de volumen.</li>
+                  <li><strong>Windows 11:</strong> si está silenciado, se ve una «x» junto al botón de silencio.</li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <strong>Comprueba que el dispositivo de salida es el correcto.</strong> Pulsa el icono del altavoz y,
+              a la derecha del control de volumen, pulsa la flecha para abrir la lista de dispositivos de audio
+              conectados. Selecciona el que el usuario quiere usar (altavoces, auriculares, el monitor). También en
+              <em>Configuración &gt; Sistema &gt; Sonido</em>, en el apartado <em>Salida</em>. Es la causa más
+              habitual: un monitor HDMI o unos auriculares USB conectados pueden pasar a ser la salida sin que el
+              usuario se dé cuenta.
+            </li>
+            <li>
+              <strong>Revisa el mezclador de volumen.</strong> Cada programa puede tener su propio volumen, y uno
+              puede estar bajado o silenciado aunque el resto suene.
+              <ul>
+                <li><strong>Windows 10:</strong> clic derecho en el icono del altavoz &gt; <em>Abrir mezclador de volumen</em>.</li>
+                <li><strong>Windows 11:</strong> pulsa el icono del altavoz y, a la derecha del control deslizante del volumen, el icono de configuración («Más configuraciones del mezclador»).</li>
+              </ul>
+              Comprueba que el programa afectado no está silenciado ni en volumen mínimo. En Teams, revisa además en
+              su propia configuración que el altavoz elegido es el correcto.
+            </li>
+            <li>
+              <strong>Comprueba el servicio «Audio».</strong> Si Windows no encuentra sonido en ningún dispositivo,
+              puede que el servicio de audio esté detenido.
+              <div class="callout callout--tool">
+                <div class="callout__label"><span aria-hidden="true">🧰</span> Con IT Support Toolkit</div>
+                <p>
+                  Opción <strong>5 · Servicios clave</strong>. Muestra el estado del servicio Audio (y de otros como
+                  Cola de impresión, Windows Update, Cliente DNS y Cliente DHCP). Consultar el estado no necesita
+                  administrador.
+                </p>
+              </div>
+              <div class="callout callout--manual">
+                <div class="callout__label"><span aria-hidden="true">🖱</span> Alternativa manual</div>
+                <p>
+                  Pulsa <kbd>Win</kbd> + <kbd>R</kbd>, escribe <code>services.msc</code> y pulsa Intro. Busca
+                  <strong>Audio de Windows</strong> (puede aparecer como «Windows Audio») y mira que su estado sea
+                  «En ejecución». Si está detenido, o si sigue sin sonar, clic derecho &gt; «Reiniciar» (o «Iniciar»
+                  si estaba detenido). Pedirá permisos de administrador.
+                </p>
+              </div>
+            </li>
+            <li>
+              <strong>Ejecuta el solucionador de problemas de audio de Windows.</strong>
+              <div class="callout callout--win">
+                <div class="callout__label"><span aria-hidden="true">⊞</span> Windows 10 / Windows 11</div>
+                <ul>
+                  <li><strong>Windows 10:</strong> <em>Configuración &gt; Actualización y seguridad &gt; Solucionar problemas</em> y, en «Buscar y corregir otros problemas», <em>Reproducción de audio</em>.</li>
+                  <li><strong>Windows 11:</strong> <em>Configuración &gt; Sistema &gt; Solucionar problemas &gt; Otros solucionadores de problemas</em>, sección <em>Audio</em>, botón <em>Ejecutar</em>.</li>
+                </ul>
+              </div>
+              <p>Sigue sus pasos y anota qué encuentra y qué arregla.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="solucion">
+          <h2 id="solucion">Solución</h2>
+
+          <h3>Volumen bajo o silencio activado</h3>
+          <p>Reactiva el sonido y sube el volumen en Windows y en el propio dispositivo (altavoces, auriculares, monitor). Si es una aplicación, sube su volumen en el mezclador y en la propia aplicación.</p>
+
+          <h3>Dispositivo de salida equivocado</h3>
+          <p>Elige el dispositivo correcto en la lista de salida (paso 2 del diagnóstico). Para que Windows lo use siempre, pon el dispositivo como predeterminado:</p>
+          <ul>
+            <li><strong>Windows 10:</strong> en <em>Configuración &gt; Sistema &gt; Sonido</em>, en «Configuración relacionada», abre <em>Panel de control de sonido</em>; en la pestaña <em>Reproducción</em> selecciona el dispositivo y pulsa <em>Establecer valor predeterminado</em>.</li>
+            <li><strong>Windows 11:</strong> en <em>Configuración &gt; Sistema &gt; Sonido</em>, entra en <em>Más opciones de configuración de sonido</em> y, en <em>Reproducción</em>, clic derecho en el dispositivo &gt; <em>Establecer como predeterminado</em>.</li>
+          </ul>
+
+          <h3>El servicio de audio está detenido</h3>
+          <p>Inícialo o reinícialo desde <code>services.msc</code> (paso 4 del diagnóstico), con permisos de administrador y avisando al usuario de que el sonido se cortará unos segundos. Si no arranca o se vuelve a detener, escala.</p>
+
+          <h3>Falla solo en un programa</h3>
+          <p>Comprueba el mezclador de volumen y la configuración de audio de ese programa (por ejemplo, el altavoz elegido en Teams). Cierra el programa por completo, ábrelo de nuevo y prueba. Si sigue igual, prueba en otro programa: si suena, el problema es de ese programa (mira la guía <a href="programa-se-cierra.html">Un programa no se abre o se cierra solo</a>).</p>
+
+          <h3>Dispositivo Bluetooth o USB</h3>
+          <p>Desconecta y vuelve a conectar el dispositivo, prueba otro puerto USB, y en Bluetooth comprueba que está conectado (no solo emparejado) y con batería. Si no logras volver a emparejarlo o el equipo no encuentra el dispositivo, anota lo que ves y escala.</p>
+
+          <p>
+            <strong>Antes de cerrar:</strong> pide al usuario que reproduzca un sonido o una llamada de prueba y confirme que
+            ya se oye bien, y que el volumen está a un nivel razonable. Para adjuntar al ticket una foto del estado
+            del equipo, genera el informe con la opción <strong>7 · Informe HTML</strong> del Toolkit.
+          </p>
+        </section>
+
+        <section class="guide-section" aria-labelledby="escalar">
+          <h2 id="escalar">Cuándo escalar a nivel 2</h2>
+          <ul>
+            <li>Windows muestra «No hay ningún dispositivo de salida de audio instalado», o el dispositivo de sonido no aparece en la lista o aparece con un error en el Administrador de dispositivos.</li>
+            <li>El servicio Audio no arranca o se detiene solo después de reiniciarlo.</li>
+            <li>El problema empezó tras una actualización de Windows o de un controlador, o el sonido sale distorsionado, con crujidos o entrecortado.</li>
+            <li>Es necesario <strong>actualizar, reinstalar o revertir controladores de audio</strong>: siempre lo hace nivel 2.</li>
+            <li>Los mismos altavoces o auriculares funcionan en otro equipo pero no en este, aunque el volumen y el dispositivo estén bien.</li>
+            <li>No tienes permisos de administrador para reiniciar el servicio.</li>
+            <li>El fallo es de hardware (altavoz, auricular o toma de audio del equipo dañados): avisa al responsable de material o al proveedor.</li>
+          </ul>
+          <div class="callout callout--warn">
+            <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+            <p>
+              No descargues ni instales controladores de audio de fuentes no oficiales, no modifiques el registro ni
+              desactives «mejoras de audio» ni servicios del sistema por tu cuenta para «forzar» el sonido. Lo hace
+              nivel 2 con el controlador aprobado por la empresa.
+            </p>
+          </div>
+        </section>
+
+        <section class="guide-section" aria-labelledby="ticket">
+          <h2 id="ticket">Qué anotar en el ticket</h2>
+          <ul class="checklist">
+            <li>Usuario (con su identidad verificada), nombre del equipo y hora de inicio del problema.</li>
+            <li>Dispositivo de salida esperado (altavoces, auriculares, monitor, USB o Bluetooth) y modelo si se conoce.</li>
+            <li>Si falla en todo el equipo o solo en un programa, y si es un problema de salida, de entrada o de ambos.</li>
+            <li>Estado del volumen, del silencio y del dispositivo de salida seleccionado antes de cambiar nada.</li>
+            <li>Estado del servicio Audio (Toolkit, opción 5).</li>
+            <li>Mensaje o error exacto, con captura si es posible.</li>
+            <li>Acciones realizadas, con su resultado y la hora (por ejemplo «cambiado dispositivo de salida, resuelto», «servicio reiniciado, sin cambios»).</li>
+            <li>Informe HTML del Toolkit (opción 7, que incluye el estado de los servicios) adjunto. Usa la anonimización opcional si el ticket lo va a ver alguien ajeno a la empresa.</li>
+            <li>Estado final: resuelto (y qué lo resolvió) o escalado a nivel 2, con el motivo.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="prevencion">
+          <h2 id="prevencion">Prevención</h2>
+          <ul>
+            <li>Enseñar al usuario a comprobar el volumen, el silencio y el dispositivo de salida antes de abrir el ticket.</li>
+            <li>Al conectar o desconectar unos auriculares, un monitor o una base, comprobar que Windows sigue usando el dispositivo correcto.</li>
+            <li>Antes de una videollamada importante, hacer una prueba de sonido en Teams.</li>
+            <li>Mantener Windows actualizado según la política de la empresa y reiniciar el equipo cuando lo pida.</li>
+            <li>Ejecutar de forma periódica el diagnóstico del Toolkit (opciones 5 y 7) en equipos con incidencias repetidas, para tener un punto de comparación.</li>
+          </ul>
+        </section>
+      </article>
+
+      <nav class="guide-nav guide-nav--bottom" aria-label="Enlaces al final de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 Iván Marcos Couso · <a href="../index.html">Web principal</a></p>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

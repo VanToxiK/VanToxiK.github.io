@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El equipo va lento · Guías de soporte IT N1</title>
+<meta name="description" content="Guía de soporte IT N1: qué hacer cuando un equipo Windows 10/11 va lento. Administrador de tareas (CPU, memoria y disco), reinicio pendiente, programas de inicio, limpieza de temporales, cuándo escalar y qué anotar en el ticket.">
+<meta name="author" content="Iván Marcos Couso">
+
+<link rel="canonical" href="https://vantoxik.github.io/guias/equipo-lento.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+<header class="site-header">
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="../index.html#inicio" class="nav__brand">IMC</a>
+    <ul class="nav__links">
+      <li><a href="../index.html#sobre-mi">Sobre mí</a></li>
+      <li><a href="../index.html#competencias">Competencias</a></li>
+      <li><a href="../index.html#proyectos">Proyectos</a></li>
+      <li><a href="index.html" aria-current="true">Guías</a></li>
+      <li><a href="../index.html#experiencia">Experiencia</a></li>
+      <li><a href="../index.html#formacion">Formación</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar a modo claro" aria-pressed="false">
+      <span aria-hidden="true">☀</span>
+    </button>
+  </nav>
+</header>
+
+<main id="contenido">
+  <div class="guide-page">
+    <div class="container">
+
+      <nav class="guide-nav" aria-label="Enlaces de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+      <article class="guide-body">
+        <h1 class="section__title">El equipo va lento</h1>
+
+        <dl class="guide-meta">
+          <div>
+            <dt>Categoría</dt>
+            <dd>Sistema</dd>
+          </div>
+          <div>
+            <dt>Prioridad orientativa</dt>
+            <dd><span class="priority priority--medium">Media</span></dd>
+          </div>
+          <div>
+            <dt>Tiempo estimado</dt>
+            <dd>15–30 min</dd>
+          </div>
+        </dl>
+
+        <p class="guide-intro">
+          Un equipo Windows 10/11 tarda mucho en arrancar, en abrir programas o responde con retraso. Esta guía
+          ayuda a averiguar qué está consumiendo los recursos (procesador, memoria o disco), a hacer las
+          comprobaciones y limpiezas seguras de nivel 1 y a decidir cuándo pasar la incidencia a nivel 2 o al
+          procedimiento de seguridad. Si lo que va lento es solo Internet, consulta antes las guías
+          <a href="wifi-desconecta-lento.html">El Wi-Fi se desconecta o va lento</a> y
+          <a href="dns-no-cargan-paginas.html">Tengo red pero no cargan las páginas web (DNS)</a>. Donde encaja, se
+          indica la opción de mi herramienta
+          <a href="https://github.com/VanToxiK/it-support-toolkit" target="_blank" rel="noopener noreferrer">IT Support Toolkit</a>
+          y también la alternativa manual de Windows.
+        </p>
+
+        <div class="callout callout--warn">
+          <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+          <p>
+            Antes de cerrar programas o reiniciar, <strong>pregunta al usuario y avisa de que guarde su trabajo</strong>:
+            cerrar una aplicación a la fuerza hace perder lo que no esté guardado. Nunca desactives el antivirus ni
+            el cortafuegos «para ver si mejora», y confirma antes quién es el usuario y qué equipo está afectado.
+          </p>
+        </div>
+
+        <nav class="guide-toc" aria-labelledby="toc-title">
+          <h2 class="guide-toc__title" id="toc-title">En esta guía</h2>
+          <ol>
+            <li><a href="#sintomas">Síntomas</a></li>
+            <li><a href="#preguntas">Preguntas al usuario</a></li>
+            <li><a href="#comprobaciones">Comprobaciones rápidas</a></li>
+            <li><a href="#diagnostico">Diagnóstico paso a paso</a></li>
+            <li><a href="#solucion">Solución</a></li>
+            <li><a href="#escalar">Cuándo escalar a nivel 2</a></li>
+            <li><a href="#ticket">Qué anotar en el ticket</a></li>
+            <li><a href="#prevencion">Prevención</a></li>
+          </ol>
+        </nav>
+
+        <section class="guide-section" aria-labelledby="sintomas">
+          <h2 id="sintomas">Síntomas</h2>
+          <ul>
+            <li>El equipo tarda mucho en arrancar o en llegar al escritorio tras iniciar sesión.</li>
+            <li>Los programas tardan en abrirse o se quedan «No responde» durante un rato.</li>
+            <li>El ratón o el teclado van con retraso, o las ventanas se dibujan despacio.</li>
+            <li>El ventilador suena fuerte de forma continua o el equipo se calienta más de lo normal.</li>
+            <li>La lentitud es general, o solo aparece con un programa concreto, con un archivo o a determinadas horas.</li>
+          </ul>
+          <p>
+            Ojo: si solo van lentas las páginas web o la nube (OneDrive, Teams), puede ser un problema de red y no
+            del equipo.
+          </p>
+        </section>
+
+        <section class="guide-section" aria-labelledby="preguntas">
+          <h2 id="preguntas">Preguntas al usuario</h2>
+          <ol>
+            <li>¿Va lento <strong>todo</strong> o solo un programa, una web o un archivo concreto?</li>
+            <li>¿Desde cuándo? ¿Ha cambiado algo justo antes: actualización de Windows, instalación de un programa, cambio de puesto, un archivo o correo recién abierto?</li>
+            <li>¿Cuándo se reinició el equipo por última vez? <em>Muchos equipos pasan semanas sin reiniciarse.</em></li>
+            <li>¿Cuántos programas y pestañas del navegador tienes abiertos normalmente?</li>
+            <li>¿Aparecen ventanas emergentes, publicidad, barras nuevas en el navegador o programas que no reconoces? <em>Si es así, puede ser un problema de seguridad: mira la sección «Cuándo escalar».</em></li>
+            <li>¿Solo te pasa a ti o también a compañeros con un equipo parecido?</li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="comprobaciones">
+          <h2 id="comprobaciones">Comprobaciones rápidas</h2>
+          <ul>
+            <li><strong>Reinicio.</strong> Si el equipo lleva días sin reiniciarse, pide al usuario que guarde su trabajo y reinicie desde <em>Inicio &gt; Apagar &gt; Reiniciar</em>. Es lo que más veces lo arregla.</li>
+            <li><strong>Actualizaciones pendientes.</strong> Comprueba si Windows tiene un reinicio o actualizaciones esperando (paso 4 del diagnóstico). Mientras se instalan, el equipo puede ir lento.</li>
+            <li><strong>Análisis del antivirus en marcha.</strong> Un análisis completo hace que el equipo vaya más lento un rato. Es normal: no lo canceles ni desactives el antivirus; espera a que termine o pregunta al usuario cuándo puede dejarlo.</li>
+            <li><strong>Sincronización de OneDrive.</strong> Si el icono de OneDrive indica que está sincronizando muchos archivos, puede ralentizar el equipo mientras dure.</li>
+            <li><strong>Espacio en disco.</strong> Un disco casi lleno hace que Windows vaya lento. Mira la guía <a href="disco-lleno.html">El disco está lleno</a>.</li>
+            <li><strong>Demasiadas aplicaciones y pestañas abiertas.</strong> Pide al usuario que cierre las que no necesita.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="diagnostico">
+          <h2 id="diagnostico">Diagnóstico paso a paso</h2>
+          <ol>
+            <li>
+              <strong>Recoge los datos básicos del equipo.</strong>
+              <div class="callout callout--tool">
+                <div class="callout__label"><span aria-hidden="true">🧰</span> Con IT Support Toolkit</div>
+                <p>
+                  Opción <strong>1 · Información del sistema</strong>. Muestra los datos del equipo, incluido el
+                  espacio libre de cada disco, y avisa si baja del 15 %. Solo muestra información, no cambia nada.
+                </p>
+              </div>
+              <div class="callout callout--manual">
+                <div class="callout__label"><span aria-hidden="true">🖱</span> Alternativa manual</div>
+                <p>
+                  Abre el Explorador de archivos &gt; <em>Este equipo</em> y mira el espacio libre de cada unidad en
+                  «Dispositivos y unidades». Para ver la versión de Windows y las características del equipo, pulsa
+                  <kbd>Win</kbd> + <kbd>R</kbd>, escribe <code>winver</code> y pulsa Intro, o consulta
+                  <em>Configuración &gt; Sistema &gt; Acerca de</em>.
+                </p>
+              </div>
+            </li>
+            <li>
+              <strong>Abre el Administrador de tareas y mira qué consume recursos.</strong> Pulsa
+              <kbd>Ctrl</kbd> + <kbd>Mayús</kbd> + <kbd>Esc</kbd>. En la pestaña <em>Procesos</em> aparecen las
+              columnas CPU, Memoria y Disco; haz clic en el título de una columna para ordenar de mayor a menor
+              consumo. Mira también la pestaña <em>Rendimiento</em>, con la gráfica de cada recurso.
+              <div class="table-wrap" tabindex="0" role="region" aria-label="Cómo interpretar el Administrador de tareas">
+                <table class="guide-table">
+                  <thead>
+                    <tr><th scope="col">Qué ves</th><th scope="col">Qué significa y qué hacer</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>CPU</strong> casi al 100 % de forma sostenida, con un programa o proceso concreto arriba</td>
+                      <td>Ese proceso está consumiendo el procesador. Si es una aplicación del usuario (navegador, Outlook, Teams), ciérrala con su consentimiento. Si es un proceso que no reconoces o del sistema y no baja, anota su nombre y escala.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Memoria</strong> por encima del 85–90 % durante mucho tiempo</td>
+                      <td>Falta memoria RAM para lo que se está usando. Cierra programas y pestañas que no se necesiten. Si ocurre con pocos programas abiertos, es un tema de hardware o de un programa que gasta demasiado: escala.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Disco</strong> al 100 % de forma continuada</td>
+                      <td>El disco no da abasto: puede ser una actualización, un análisis, una sincronización o un disco lento o con problemas. Espera unos minutos; si no baja, anota qué proceso lo usa y escala.</td>
+                    </tr>
+                    <tr>
+                      <td>Todo bajo (por debajo del 30–40 %) y aun así va lento</td>
+                      <td>Probablemente no es un problema de recursos: revisa red, espacio en disco, programas de inicio o un programa concreto.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>
+                No finalices procesos que no conozcas ni procesos del sistema. Para cerrar una aplicación del
+                usuario, ábrela desde <em>Procesos</em> y usa <em>Finalizar tarea</em> solo si no responde y
+                tras avisarle.
+              </p>
+            </li>
+            <li>
+              <strong>Mira cuánto tiempo lleva encendido el equipo.</strong> En el Administrador de tareas, en
+              <em>Rendimiento &gt; CPU</em>, aparece «Tiempo activo». Si lleva muchos días, recomiéndale el reinicio.
+            </li>
+            <li>
+              <strong>Comprueba si hay actualizaciones o un reinicio pendiente.</strong>
+              <div class="callout callout--win">
+                <div class="callout__label"><span aria-hidden="true">⊞</span> Windows 10 / Windows 11</div>
+                <ul>
+                  <li><strong>Windows 10:</strong> <em>Configuración &gt; Actualización y seguridad &gt; Windows Update</em>.</li>
+                  <li><strong>Windows 11:</strong> <em>Configuración &gt; Windows Update</em>.</li>
+                </ul>
+              </div>
+              <p>
+                Si hay una actualización lista y pide reiniciar, pide al usuario que guarde su trabajo y elija un
+                momento para hacerlo. <em>Si la empresa gestiona las actualizaciones de forma centralizada, no fuerces
+                ni saltes su calendario: anótalo y sigue su procedimiento.</em>
+              </p>
+            </li>
+            <li>
+              <strong>Revisa los programas que se inician con Windows.</strong> Abren al encender y ocupan memoria
+              y procesador durante toda la sesión.
+              <ul>
+                <li><strong>Administrador de tareas:</strong> pestaña <em>Inicio</em> (Windows 10) o <em>Aplicaciones de inicio</em> (Windows 11). La columna de impacto indica cuánto retrasa cada programa el arranque.</li>
+                <li><strong>Configuración:</strong> <em>Configuración &gt; Aplicaciones &gt; Aplicaciones de inicio</em>, con un interruptor para cada programa (Windows 10 y Windows 11).</li>
+              </ul>
+              <div class="callout callout--warn">
+                <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+                <ul>
+                  <li>Desactiva un programa de inicio <strong>solo con el consentimiento del usuario</strong> y explicándole cuál es y qué pasará: no se desinstala, simplemente no se abre solo al encender.</li>
+                  <li><strong>No desactives</strong> el antivirus, la VPN, agentes de gestión o seguridad de la empresa, ni nada que no reconozcas o que la empresa no te haya autorizado. Ante la duda, escala.</li>
+                  <li>Es reversible: se puede volver a activar con <em>Habilitar</em> (Administrador de tareas) o con el interruptor de Configuración. Anota qué has desactivado.</li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <strong>Comprueba que no hay señales de malware.</strong> Ventanas emergentes o publicidad fuera del
+              navegador, un proceso con nombre raro que gasta mucha CPU o disco, programas que el usuario no
+              recuerda haber instalado, el navegador con página de inicio o buscador cambiados, o el equipo lento
+              justo tras abrir un archivo o enlace sospechoso.
+              <div class="callout callout--tool">
+                <div class="callout__label"><span aria-hidden="true">🧰</span> Con IT Support Toolkit</div>
+                <p>Opción <strong>6 · Programas instalados</strong>. Lista los programas del equipo, para comparar con lo que debería tener y detectar algo que no reconozca el usuario. Solo lee datos.</p>
+              </div>
+              <p>Si sospechas algo de esto, <strong>no intentes limpiarlo por tu cuenta</strong>: sigue el procedimiento de seguridad de la empresa (apartado «Cuándo escalar a nivel 2»).</p>
+            </li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="solucion">
+          <h2 id="solucion">Solución</h2>
+
+          <h3>Reiniciar el equipo</h3>
+          <p>Pide al usuario que guarde su trabajo y reinicie con <em>Inicio &gt; Apagar &gt; Reiniciar</em> (mejor que «Apagar» si tiene activado el inicio rápido). Es el primer paso y suele bastar. Después comprueba si la lentitud vuelve al cabo de un rato.</p>
+
+          <h3>Demasiados programas abiertos o consumiendo recursos</h3>
+          <p>Pide al usuario que cierre lo que no necesite (pestañas del navegador, programas que ya no usa). Para uno que no responde, usa <em>Finalizar tarea</em> desde el Administrador de tareas, con su permiso y sabiendo que perderá lo no guardado.</p>
+
+          <h3>Archivos temporales acumulados</h3>
+          <div class="callout callout--tool">
+            <div class="callout__label"><span aria-hidden="true">🧰</span> Con IT Support Toolkit</div>
+            <p>Opción <strong>4 · Limpieza de temporales</strong>. Elimina los archivos temporales de la carpeta <code>%TEMP%</code> con más de 24 horas de antigüedad. Avisa antes al usuario.</p>
+          </div>
+          <div class="callout callout--manual">
+            <div class="callout__label"><span aria-hidden="true">🖱</span> Alternativa manual</div>
+            <p>Pulsa <kbd>Win</kbd> + <kbd>R</kbd>, escribe <code>%temp%</code> y pulsa Intro. Se abre la carpeta de temporales del usuario. Borra solo los archivos y carpetas antiguos que Windows permita eliminar; los que estén en uso los irá saltando. Avisa antes al usuario y no toques nada fuera de esa carpeta. Para liberar espacio de forma más completa, consulta la guía <a href="disco-lleno.html">El disco está lleno</a>.</p>
+          </div>
+
+          <h3>Programas de inicio que ralentizan el arranque</h3>
+          <p>Con el consentimiento del usuario, desactiva solo los programas de inicio que no sean necesarios ni de la empresa, tal como se explica en el paso 5 del diagnóstico. Reinicia y comprueba si el arranque mejora. Anota qué has desactivado por si hay que revertirlo.</p>
+
+          <h3>Actualizaciones pendientes</h3>
+          <p>Deja que se instalen las actualizaciones según el calendario de la empresa y reinicia cuando Windows lo pida. No canceles una actualización en curso: apagar el equipo a mitad puede dañar Windows.</p>
+
+          <p>
+            <strong>Antes de cerrar:</strong> pide al usuario que use el equipo unos minutos y confirme que va mejor.
+            Si la mejora no se mantiene o vuelve a ir lento en un día o dos, reabre el ticket en lugar de abrir uno
+            nuevo. Para adjuntar al ticket una foto del estado del equipo, genera el informe con la opción
+            <strong>7 · Informe HTML</strong> del Toolkit.
+          </p>
+        </section>
+
+        <section class="guide-section" aria-labelledby="escalar">
+          <h2 id="escalar">Cuándo escalar a nivel 2</h2>
+          <ul>
+            <li>La <strong>memoria</strong> está casi llena con pocos programas abiertos, o el <strong>disco</strong> está al 100 % de forma continuada aunque el equipo esté en reposo (posible falta de RAM, disco lento o con problemas).</li>
+            <li>Un proceso desconocido o del sistema gasta mucha CPU o disco de forma sostenida y no baja tras reiniciar.</li>
+            <li>La lentitud vuelve tras reiniciar y tras la limpieza de temporales, o es cada vez peor.</li>
+            <li>El equipo es antiguo o el usuario necesita programas muy exigentes: puede hacer falta ampliar RAM, cambiar el disco o sustituir el equipo.</li>
+            <li>El equipo se calienta mucho o el ventilador suena al máximo de forma continua (posible limpieza o revisión de hardware).</li>
+            <li>El disco tiene poco espacio libre y no se puede liberar sin borrar archivos del usuario: ver la guía <a href="disco-lleno.html">El disco está lleno</a>.</li>
+            <li>La lentitud está ligada a un programa de la empresa (aplicación corporativa, VPN, agente de seguridad).</li>
+            <li><strong>Sospecha de malware</strong> (ventanas emergentes, procesos raros, navegador modificado, lentitud tras abrir un archivo o enlace sospechoso): sigue el procedimiento de seguridad de la empresa, que puede incluir desconectar el equipo de la red. No lo limpies por tu cuenta ni desactives el antivirus. Si además el usuario hizo clic en un enlace o metió credenciales, es un incidente urgente: consulta la guía <a href="correo-sospechoso-phishing.html">He recibido un correo sospechoso (phishing)</a>.</li>
+          </ul>
+          <div class="callout callout--warn">
+            <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+            <p>
+              No uses «optimizadores» ni limpiadores de terceros, no edites el registro, no desactives servicios de
+              Windows ni el antivirus, y no reinstales Windows. No forman parte del nivel 1: si hace falta algo de
+              esto, lo decide y lo realiza nivel 2 según el procedimiento de la empresa.
+            </p>
+          </div>
+        </section>
+
+        <section class="guide-section" aria-labelledby="ticket">
+          <h2 id="ticket">Qué anotar en el ticket</h2>
+          <ul class="checklist">
+            <li>Usuario (con su identidad verificada), nombre del equipo y hora de inicio del problema.</li>
+            <li>Qué va lento (todo o algo concreto), desde cuándo y qué cambió justo antes.</li>
+            <li>Tiempo que llevaba el equipo encendido sin reiniciar («Tiempo activo») y si se reinició.</li>
+            <li>Uso de CPU, memoria y disco en el Administrador de tareas (porcentajes) y el nombre de los procesos que más consumían.</li>
+            <li>Espacio libre de cada disco y versión de Windows (Toolkit, opción 1).</li>
+            <li>Programas de inicio desactivados (con el consentimiento del usuario), para poder revertirlos.</li>
+            <li>Señales de posible malware, si las hay (ventanas emergentes, procesos raros, navegador cambiado).</li>
+            <li>Acciones realizadas, con su resultado y la hora (por ejemplo «reinicio, sin cambios», «limpieza de temporales, mejora parcial»).</li>
+            <li>Informe HTML del Toolkit (opción 7) adjunto. Si el ticket lo va a ver alguien ajeno a la empresa, usa la anonimización opcional del informe.</li>
+            <li>Estado final: resuelto (y qué lo resolvió) o escalado a nivel 2 o al procedimiento de seguridad, con el motivo.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="prevencion">
+          <h2 id="prevencion">Prevención</h2>
+          <ul>
+            <li>Reiniciar el equipo al menos una vez por semana y siempre que Windows lo pida tras las actualizaciones.</li>
+            <li>Cerrar los programas y las pestañas que no se usan, y no dejar decenas de documentos abiertos.</li>
+            <li>No instalar programas por cuenta propia: cada uno puede añadir procesos y programas de inicio.</li>
+            <li>Vigilar el espacio libre en disco (por encima del 15 %) y ordenar la carpeta Descargas de vez en cuando.</li>
+            <li>Mantener Windows y el antivirus actualizados según la política de la empresa, y no abrir archivos ni enlaces sospechosos.</li>
+            <li>Ejecutar de forma periódica el diagnóstico del Toolkit (opciones 1 y 7) en equipos con incidencias repetidas, para tener un punto de comparación.</li>
+          </ul>
+        </section>
+      </article>
+
+      <nav class="guide-nav guide-nav--bottom" aria-label="Enlaces al final de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 Iván Marcos Couso · <a href="../index.html">Web principal</a></p>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

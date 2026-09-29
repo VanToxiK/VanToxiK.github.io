@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No detecta el segundo monitor · Guías de soporte IT N1</title>
+<meta name="description" content="Guía de soporte IT N1: qué hacer cuando un equipo Windows 10/11 no detecta el segundo monitor. Cables y fuente de entrada del monitor, Win + P, detectar pantallas, cuándo escalar (controladores gráficos) y qué anotar en el ticket.">
+<meta name="author" content="Iván Marcos Couso">
+
+<link rel="canonical" href="https://vantoxik.github.io/guias/segundo-monitor.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+<header class="site-header">
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="../index.html#inicio" class="nav__brand">IMC</a>
+    <ul class="nav__links">
+      <li><a href="../index.html#sobre-mi">Sobre mí</a></li>
+      <li><a href="../index.html#competencias">Competencias</a></li>
+      <li><a href="../index.html#proyectos">Proyectos</a></li>
+      <li><a href="index.html" aria-current="true">Guías</a></li>
+      <li><a href="../index.html#experiencia">Experiencia</a></li>
+      <li><a href="../index.html#formacion">Formación</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar a modo claro" aria-pressed="false">
+      <span aria-hidden="true">☀</span>
+    </button>
+  </nav>
+</header>
+
+<main id="contenido">
+  <div class="guide-page">
+    <div class="container">
+
+      <nav class="guide-nav" aria-label="Enlaces de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+      <article class="guide-body">
+        <h1 class="section__title">No detecta el segundo monitor</h1>
+
+        <dl class="guide-meta">
+          <div>
+            <dt>Categoría</dt>
+            <dd>Hardware y periféricos</dd>
+          </div>
+          <div>
+            <dt>Prioridad orientativa</dt>
+            <dd><span class="priority priority--low">Baja</span></dd>
+          </div>
+          <div>
+            <dt>Tiempo estimado</dt>
+            <dd>10–20 min</dd>
+          </div>
+        </dl>
+
+        <p class="guide-intro">
+          Un usuario conecta un segundo monitor (o un proyector) a su equipo Windows 10/11 y no muestra imagen, o
+          Windows no lo detecta. Casi siempre es un cable mal puesto, una entrada equivocada en el propio monitor
+          o un modo de proyección que no toca. Esta guía va de lo más sencillo (cables y fuente de entrada) a lo
+          que hace Windows (<kbd>Win</kbd> + <kbd>P</kbd> y detectar pantallas), y deja los controladores gráficos
+          para nivel 2. Si lo que falla es el sonido por el monitor, consulta también la guía
+          <a href="sin-sonido.html">No se escucha el sonido</a>. Esta incidencia no tiene una opción propia en mi
+          herramienta
+          <a href="https://github.com/VanToxiK/it-support-toolkit" target="_blank" rel="noopener noreferrer">IT Support Toolkit</a>,
+          así que aquí todo son comprobaciones manuales de Windows.
+        </p>
+
+        <div class="callout callout--warn">
+          <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+          <p>
+            Antes de hacer nada, confirma quién es el usuario y qué equipo está afectado. No fuerces los conectores
+            ni los dobles: no todos los cables entran igual, y un conector dañado es un problema de hardware. Si
+            hay que desenchufar el equipo de una base o de otro cable de alimentación, avisa al usuario y que guarde
+            su trabajo antes, porque la pantalla puede apagarse.
+          </p>
+        </div>
+
+        <nav class="guide-toc" aria-labelledby="toc-title">
+          <h2 class="guide-toc__title" id="toc-title">En esta guía</h2>
+          <ol>
+            <li><a href="#sintomas">Síntomas</a></li>
+            <li><a href="#preguntas">Preguntas al usuario</a></li>
+            <li><a href="#comprobaciones">Comprobaciones rápidas</a></li>
+            <li><a href="#diagnostico">Diagnóstico paso a paso</a></li>
+            <li><a href="#solucion">Solución</a></li>
+            <li><a href="#escalar">Cuándo escalar a nivel 2</a></li>
+            <li><a href="#ticket">Qué anotar en el ticket</a></li>
+            <li><a href="#prevencion">Prevención</a></li>
+          </ol>
+        </nav>
+
+        <section class="guide-section" aria-labelledby="sintomas">
+          <h2 id="sintomas">Síntomas</h2>
+          <ul>
+            <li>El segundo monitor está encendido pero muestra «Sin señal» (o un mensaje parecido) o se queda en negro.</li>
+            <li>El monitor sí funciona, pero Windows no lo muestra entre las pantallas disponibles.</li>
+            <li>Windows lo detecta, pero la imagen sale duplicada cuando el usuario la quiere extendida (o al revés).</li>
+            <li>El monitor funcionaba y dejó de funcionar tras desconectar el portátil, cambiar de sitio o actualizar Windows.</li>
+            <li>La imagen se ve borrosa, con un tamaño raro o con las pantallas colocadas al revés (el ratón sale por el lado equivocado).</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="preguntas">
+          <h2 id="preguntas">Preguntas al usuario</h2>
+          <ol>
+            <li>¿Qué monitor es y cómo está conectado: cable HDMI, DisplayPort, USB-C, VGA o DVI? ¿Directamente al equipo o a través de una base (dock) o adaptador?</li>
+            <li>¿El monitor está encendido? ¿Se enciende alguna luz? ¿Qué mensaje muestra la pantalla del monitor?</li>
+            <li>¿Es un monitor que ya funcionaba con este equipo? ¿Cuándo dejó de funcionar y qué cambió: cambio de puesto, una base nueva, actualización de Windows?</li>
+            <li>¿Probaste el monitor en otro equipo, o probaste otro monitor en este?</li>
+            <li>¿Lo que quieres es <strong>duplicar</strong> la pantalla (verlo igual en las dos) o <strong>extenderla</strong> (usar la segunda como más espacio)?</li>
+            <li>¿Es un equipo portátil que conectas y desconectas a menudo de la base?</li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="comprobaciones">
+          <h2 id="comprobaciones">Comprobaciones rápidas</h2>
+          <ul>
+            <li><strong>Monitor encendido y con corriente.</strong> Cable de alimentación bien enchufado y botón de encendido pulsado; comprueba que se enciende una luz.</li>
+            <li><strong>Cables firmes en los dos extremos.</strong> En el monitor y en el equipo (o en la base). Si el cable admite otro puerto de vídeo, pruébalo. Si hay otro cable del mismo tipo disponible, pruébalo también.</li>
+            <li><strong>Fuente de entrada del monitor.</strong> Casi todos los monitores tienen varias entradas (por ejemplo HDMI 1, HDMI 2, DisplayPort o VGA). Con los botones del monitor o su menú (normalmente «Fuente», «Input» o «Entrada»), elige la entrada en la que está enchufado el cable. Es la causa más habitual del mensaje «Sin señal».</li>
+            <li><strong>Accesorios y adaptadores.</strong> Si hay una base, un adaptador o un alargador entre el equipo y el monitor, prueba a conectarlos directamente. Conviene desconectar el resto de accesorios que no hagan falta.</li>
+            <li><strong>Probar el monitor con otro equipo</strong>, si es posible. Si tampoco funciona, el fallo es del monitor o del cable, no de Windows.</li>
+            <li><strong>Reinicio.</strong> Si el equipo lleva días sin reiniciarse, pide al usuario que guarde su trabajo y reinicie con el monitor ya conectado.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="diagnostico">
+          <h2 id="diagnostico">Diagnóstico paso a paso</h2>
+          <ol>
+            <li>
+              <strong>Comprueba lo físico.</strong> Repasa las comprobaciones rápidas: monitor encendido, cables
+              firmes y fuente de entrada correcta. Anota qué muestra el monitor («Sin señal», negro, otro mensaje).
+            </li>
+            <li>
+              <strong>Prueba los modos de proyección con <kbd>Win</kbd> + <kbd>P</kbd>.</strong> Pulsa esas dos
+              teclas a la vez: aparece un menú a la derecha con las opciones «Solo la pantalla del PC»,
+              «Duplicar», «Extender» y «Solo la segunda pantalla». Selecciona «Extender» (o «Duplicar», según lo que
+              quiera el usuario). Si estaba en «Solo la pantalla del PC», la segunda pantalla no mostraba nada
+              porque estaba desactivada. Puedes pulsar <kbd>Win</kbd> + <kbd>P</kbd> varias veces para pasar de un
+              modo a otro.
+            </li>
+            <li>
+              <strong>Pide a Windows que busque pantallas.</strong>
+              <div class="callout callout--win">
+                <div class="callout__label"><span aria-hidden="true">⊞</span> Windows 10 / Windows 11</div>
+                <ul>
+                  <li><strong>Windows 11:</strong> <em>Configuración &gt; Sistema &gt; Pantalla</em>, baja hasta <em>Varias pantallas</em> y pulsa <em>Detectar</em>.</li>
+                  <li><strong>Windows 10:</strong> <em>Configuración &gt; Sistema &gt; Pantalla</em>; en la sección <em>Varias pantallas</em> pulsa <em>Detectar</em>. Si no ves el botón, comprueba que el monitor está encendido y bien conectado.</li>
+                </ul>
+              </div>
+              <p>
+                Si aparece la segunda pantalla, elige en «Varias pantallas» si se duplica o se extiende. Con el
+                botón «Identificar» ves qué número tiene cada pantalla. Si están colocadas al revés (el ratón sale por
+                el lado equivocado), arrastra los recuadros de cada pantalla hasta la posición real.
+              </p>
+            </li>
+            <li>
+              <strong>Reinicia el controlador gráfico con un atajo (opcional).</strong> Pulsa
+              <kbd>Win</kbd> + <kbd>Ctrl</kbd> + <kbd>Mayús</kbd> + <kbd>B</kbd>. Microsoft lo indica como una
+              forma de reiniciar el controlador de gráficos cuando la pantalla no responde bien: la pantalla puede
+              parpadear o quedarse negra un segundo. Avisa antes al usuario y que guarde su trabajo. Es
+              solo un atajo de teclado, no cambia ni instala nada; si no lo arregla, no insistas.
+            </li>
+            <li>
+              <strong>Aísla si el fallo es del cable, del puerto, del monitor o del equipo.</strong> Cambia una sola
+              cosa cada vez y anota el resultado.
+              <div class="table-wrap" tabindex="0" role="region" aria-label="Cómo interpretar las pruebas de aislamiento">
+                <table class="guide-table">
+                  <thead>
+                    <tr><th scope="col">Prueba</th><th scope="col">Si funciona / si no funciona</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>El mismo monitor con otro equipo</td>
+                      <td>Si funciona, el monitor y su cable están bien: el fallo está en este equipo o en su puerto. Si no funciona, es el monitor o el cable.</td>
+                    </tr>
+                    <tr>
+                      <td>Otro cable del mismo tipo</td>
+                      <td>Si con el otro cable funciona, el cable estaba dañado o no era del todo compatible.</td>
+                    </tr>
+                    <tr>
+                      <td>Otro puerto de vídeo del equipo (por ejemplo, HDMI en lugar de DisplayPort)</td>
+                      <td>Si con otro puerto funciona, el puerto o el adaptador anterior fallan.</td>
+                    </tr>
+                    <tr>
+                      <td>Conectar el monitor directamente, sin base ni adaptador</td>
+                      <td>Si así funciona, el fallo está en la base o el adaptador.</td>
+                    </tr>
+                    <tr>
+                      <td>Otro monitor en este mismo equipo y cable</td>
+                      <td>Si el otro monitor sí funciona, el fallo está en el monitor original.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="solucion">
+          <h2 id="solucion">Solución</h2>
+
+          <h3>Cable suelto o entrada equivocada</h3>
+          <p>Enchufa bien los cables y elige en el monitor la entrada correcta (paso 1). Suele resolverse en ese momento.</p>
+
+          <h3>Modo de proyección equivocado</h3>
+          <p>Con <kbd>Win</kbd> + <kbd>P</kbd> elige «Extender» o «Duplicar» según lo que necesite el usuario. En las salas con proyector, el modo habitual es «Duplicar».</p>
+
+          <h3>Windows no lo muestra hasta que se pulsa «Detectar»</h3>
+          <p>Ve a <em>Configuración &gt; Sistema &gt; Pantalla &gt; Varias pantallas</em> y pulsa <em>Detectar</em> (paso 3). Si aparece, colócala como quiera el usuario.</p>
+
+          <h3>Imagen borrosa, con tamaño raro o colocada al revés</h3>
+          <p>En <em>Configuración &gt; Sistema &gt; Pantalla</em>, selecciona la pantalla afectada y comprueba que la resolución es la «recomendada» para ese monitor. Arrastra los recuadros de las pantallas para que coincidan con su posición real en la mesa. No cambies ajustes avanzados de la tarjeta gráfica.</p>
+
+          <h3>Base o adaptador con problemas</h3>
+          <p>Desconecta y vuelve a conectar la base con el equipo apagado o con el trabajo guardado, comprueba que la base tiene su alimentación enchufada, y prueba el monitor conectado directamente al equipo. Si solo funciona sin la base, escala: hay que revisar la base o su configuración.</p>
+
+          <p>
+            <strong>Antes de cerrar:</strong> pide al usuario que compruebe que ve bien las dos pantallas, que el
+            ratón pasa de una a otra por el lado correcto y que las ventanas se abren donde espera. Para adjuntar al
+            ticket una foto del estado del equipo, genera el informe con la opción
+            <strong>7 · Informe HTML</strong> del Toolkit.
+          </p>
+        </section>
+
+        <section class="guide-section" aria-labelledby="escalar">
+          <h2 id="escalar">Cuándo escalar a nivel 2</h2>
+          <ul>
+            <li>El monitor funciona con otro equipo y con otro cable, pero <strong>este equipo</strong> no lo detecta ni con «Detectar» ni tras reiniciar: puede ser el puerto o el <strong>controlador gráfico</strong>.</li>
+            <li>Hace falta <strong>actualizar, reinstalar o revertir el controlador gráfico</strong>: siempre lo hace nivel 2, y también cualquier cambio en el Administrador de dispositivos (adaptadores de pantalla).</li>
+            <li>El problema empezó tras una actualización de Windows o de un controlador.</li>
+            <li>La pantalla parpadea o se apaga sola, o aparecen líneas o colores raros (posible cable, monitor o tarjeta gráfica).</li>
+            <li>Solo funciona sin la base o el adaptador, o la base no reconoce ningún monitor: hay que revisar la base.</li>
+            <li>El usuario quiere <strong>más de dos pantallas</strong>, o un monitor de una resolución muy alta, y el equipo no lo admite: es un tema de hardware y de compra.</li>
+            <li>El fallo es de hardware (monitor, cable o puerto dañados, conector doblado): avisa al responsable del material o al proveedor.</li>
+          </ul>
+          <div class="callout callout--warn">
+            <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+            <p>
+              No descargues ni instales controladores gráficos de fuentes no oficiales, no modifiques el registro ni
+              los ajustes avanzados de la tarjeta gráfica «para forzar» la imagen, y no abras el equipo. Lo hace
+              nivel 2 con el controlador aprobado por la empresa.
+            </p>
+          </div>
+        </section>
+
+        <section class="guide-section" aria-labelledby="ticket">
+          <h2 id="ticket">Qué anotar en el ticket</h2>
+          <ul class="checklist">
+            <li>Usuario (con su identidad verificada), nombre del equipo, ubicación y hora de inicio del problema.</li>
+            <li>Monitor: marca y modelo si se conocen, tipo de conexión (HDMI, DisplayPort, USB-C, VGA) y si va con base o adaptador.</li>
+            <li>Qué muestra el monitor («Sin señal», negro, otro mensaje) y si se enciende alguna luz.</li>
+            <li>Si Windows detecta el monitor (Configuración &gt; Sistema &gt; Pantalla) y el modo de <kbd>Win</kbd> + <kbd>P</kbd> que estaba activo.</li>
+            <li>Pruebas hechas y su resultado: otro cable, otro puerto, otro equipo, otro monitor, conexión directa sin base.</li>
+            <li>Si el problema empezó tras un cambio (actualización, base nueva, cambio de puesto).</li>
+            <li>Acciones realizadas, con su resultado y la hora (por ejemplo «cambiada la fuente de entrada, resuelto»).</li>
+            <li>Informe HTML del Toolkit (opción 7) adjunto, si aporta datos del equipo. Usa la anonimización opcional si el ticket lo va a ver alguien ajeno a la empresa.</li>
+            <li>Estado final: resuelto (y qué lo resolvió) o escalado a nivel 2 o al responsable del material, con el motivo.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="prevencion">
+          <h2 id="prevencion">Prevención</h2>
+          <ul>
+            <li>No tirar ni doblar los cables de vídeo, y fijar bien los conectores en ambos extremos.</li>
+            <li>Enseñar al usuario a comprobar la fuente de entrada del monitor y a usar <kbd>Win</kbd> + <kbd>P</kbd> antes de abrir el ticket.</li>
+            <li>Dejar los puestos con la misma configuración de cables y puertos, y documentar qué cable y qué base van con cada monitor.</li>
+            <li>Mantener Windows actualizado según la política de la empresa y reiniciar el equipo cuando lo pida.</li>
+          </ul>
+        </section>
+      </article>
+
+      <nav class="guide-nav guide-nav--bottom" aria-label="Enlaces al final de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 Iván Marcos Couso · <a href="../index.html">Web principal</a></p>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

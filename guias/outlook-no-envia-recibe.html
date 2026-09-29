@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outlook no envía ni recibe correos · Guías de soporte IT N1</title>
+<meta name="description" content="Guía de soporte IT N1: qué hacer cuando Outlook no envía ni recibe correos en Windows 10/11 con Microsoft 365. Outlook clásico y nuevo Outlook, modo sin conexión, Bandeja de salida, Outlook en la web, reparación rápida de Office, cuándo escalar y qué anotar en el ticket.">
+<meta name="author" content="Iván Marcos Couso">
+
+<link rel="canonical" href="https://vantoxik.github.io/guias/outlook-no-envia-recibe.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+<header class="site-header">
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="../index.html#inicio" class="nav__brand">IMC</a>
+    <ul class="nav__links">
+      <li><a href="../index.html#sobre-mi">Sobre mí</a></li>
+      <li><a href="../index.html#competencias">Competencias</a></li>
+      <li><a href="../index.html#proyectos">Proyectos</a></li>
+      <li><a href="index.html" aria-current="true">Guías</a></li>
+      <li><a href="../index.html#experiencia">Experiencia</a></li>
+      <li><a href="../index.html#formacion">Formación</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar a modo claro" aria-pressed="false">
+      <span aria-hidden="true">☀</span>
+    </button>
+  </nav>
+</header>
+
+<main id="contenido">
+  <div class="guide-page">
+    <div class="container">
+
+      <nav class="guide-nav" aria-label="Enlaces de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+      <article class="guide-body">
+        <h1 class="section__title">Outlook no envía ni recibe correos</h1>
+
+        <dl class="guide-meta">
+          <div>
+            <dt>Categoría</dt>
+            <dd>Cuentas y correo</dd>
+          </div>
+          <div>
+            <dt>Prioridad orientativa</dt>
+            <dd><span class="priority priority--high">Alta</span></dd>
+          </div>
+          <div>
+            <dt>Tiempo estimado</dt>
+            <dd>15–30 min</dd>
+          </div>
+        </dl>
+
+        <p class="guide-intro">
+          Un usuario con Microsoft 365 en Windows 10/11 no consigue enviar o recibir correos en Outlook. Hoy
+          conviven dos programas con el mismo nombre, <strong>Outlook clásico</strong> y el
+          <strong>nuevo Outlook para Windows</strong>, y algunos pasos cambian según cuál use, así que esta guía
+          empieza por distinguirlos. Ayuda a separar los fallos de conexión, de modo sin conexión, del servicio de
+          Microsoft 365 y de la cuenta de los del propio programa, y a decidir cuándo pasar la incidencia a nivel 2.
+          Si el equipo no tiene Internet, empieza por la guía
+          <a href="sin-internet.html">No tengo conexión a Internet</a>; si Outlook pide la contraseña una y otra vez,
+          consulta <a href="contrasena-cuenta-bloqueada.html">He olvidado mi contraseña o tengo la cuenta bloqueada</a>.
+          Donde encaja, se indica la opción de mi herramienta
+          <a href="https://github.com/VanToxiK/it-support-toolkit" target="_blank" rel="noopener noreferrer">IT Support Toolkit</a>
+          y también la alternativa manual de Windows.
+        </p>
+
+        <div class="callout callout--warn">
+          <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+          <p>
+            Antes de hacer nada, confirma quién es el usuario y qué buzón está afectado. <strong>No borres correos,
+            perfiles ni archivos de datos de Outlook</strong> (<code>.ost</code>, <code>.pst</code>) y no entres en el
+            buzón de otra persona. Si hay que eliminar un mensaje atascado, pídele permiso al usuario primero: puede
+            ser un correo importante que aún no se ha enviado. Nunca pidas ni anotes su contraseña.
+          </p>
+        </div>
+
+        <nav class="guide-toc" aria-labelledby="toc-title">
+          <h2 class="guide-toc__title" id="toc-title">En esta guía</h2>
+          <ol>
+            <li><a href="#sintomas">Síntomas</a></li>
+            <li><a href="#preguntas">Preguntas al usuario</a></li>
+            <li><a href="#comprobaciones">Comprobaciones rápidas</a></li>
+            <li><a href="#diagnostico">Diagnóstico paso a paso</a></li>
+            <li><a href="#solucion">Solución</a></li>
+            <li><a href="#escalar">Cuándo escalar a nivel 2</a></li>
+            <li><a href="#ticket">Qué anotar en el ticket</a></li>
+            <li><a href="#prevencion">Prevención</a></li>
+          </ol>
+        </nav>
+
+        <section class="guide-section" aria-labelledby="sintomas">
+          <h2 id="sintomas">Síntomas</h2>
+          <ul>
+            <li>Los mensajes que envía se quedan en la <strong>Bandeja de salida</strong> y no salen.</li>
+            <li>No llegan correos nuevos, o llegan con mucho retraso, aunque los compañeros sí reciben los suyos.</li>
+            <li>En la barra de estado de Outlook clásico aparece «Desconectado», «Trabajando sin conexión» o «Intentando conectar…».</li>
+            <li>Outlook pide la contraseña repetidamente, o muestra un error al enviar y recibir.</li>
+            <li>Un mensaje devuelve un aviso de que no se ha podido entregar al destinatario (rebote).</li>
+            <li>Falla todo el correo, o solo un mensaje, un adjunto o un destinatario concreto.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="preguntas">
+          <h2 id="preguntas">Preguntas al usuario</h2>
+          <ol>
+            <li>¿Qué falla: no <strong>envía</strong>, no <strong>recibe</strong>, o las dos cosas? ¿Desde cuándo?</li>
+            <li>¿Usas Outlook clásico o el nuevo Outlook? <em>Si no lo sabe, se distingue con el primer paso del diagnóstico.</em></li>
+            <li>¿Solo falla un correo (por ejemplo uno con un adjunto grande) o todos?</li>
+            <li>¿Tus compañeros tienen el mismo problema? <em>Si son varios, puede ser una incidencia del servicio de correo: avisa a nivel 2 cuanto antes.</em></li>
+            <li>¿Tienes Internet? ¿Funcionan las páginas web y Teams?</li>
+            <li>¿Has cambiado la contraseña hace poco, o te pide la contraseña continuamente? <em>Que no te la diga: si es el caso, mira la guía de contraseñas.</em></li>
+            <li>¿Aparece algún mensaje o código de error exacto, o un aviso de buzón lleno? Si puede, que haga una captura de pantalla.</li>
+            <li>¿Puedes entrar en tu correo desde el navegador (Outlook en la web) o desde el móvil?</li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="comprobaciones">
+          <h2 id="comprobaciones">Comprobaciones rápidas</h2>
+          <ul>
+            <li><strong>Internet.</strong> Prueba dos páginas web y otra aplicación (Teams, OneDrive). Sin conexión, Outlook no puede enviar ni recibir. Consulta la guía <a href="sin-internet.html">No tengo conexión a Internet</a>.</li>
+            <li><strong>Modo sin conexión.</strong> Mira la barra de estado de Outlook clásico: si dice «Trabajando sin conexión» o «Desconectado», Outlook no envía ni recibe (paso 2 del diagnóstico).</li>
+            <li><strong>Buzón lleno.</strong> Un aviso de buzón lleno o casi lleno impide recibir. No borres correos por tu cuenta: es decisión del usuario, o de nivel 2 si hay que ampliar el buzón.</li>
+            <li><strong>Correo no deseado y pestañas.</strong> Si el problema es que «no llega» un correo concreto, revisa la carpeta de correo no deseado y la pestaña «Otros» de la bandeja de entrada.</li>
+            <li><strong>Destinatario correcto.</strong> Si el mensaje rebota, comprueba que la dirección del destinatario está bien escrita.</li>
+            <li><strong>Reiniciar Outlook.</strong> Pide al usuario que cierre Outlook por completo, espere unos segundos y lo abra de nuevo. Si no cambia, que reinicie el equipo.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="diagnostico">
+          <h2 id="diagnostico">Diagnóstico paso a paso</h2>
+          <ol>
+            <li>
+              <strong>Averigua qué Outlook usa el usuario.</strong>
+              <div class="table-wrap" tabindex="0" role="region" aria-label="Diferencias entre Outlook clásico y el nuevo Outlook">
+                <table class="guide-table">
+                  <thead>
+                    <tr><th scope="col">Cómo se reconoce</th><th scope="col">Programa</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Tiene la pestaña «Enviar y recibir». Si muestra el interruptor «Probar el nuevo Outlook» arriba a la derecha, es el clásico.</td>
+                      <td><strong>Outlook clásico</strong> (parte de Microsoft 365 Apps / Office).</td>
+                    </tr>
+                    <tr>
+                      <td>No tiene «Enviar y recibir» y su aspecto es más sencillo. Suele llevar un interruptor para volver a la versión clásica.</td>
+                      <td><strong>Nuevo Outlook para Windows.</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>Anótalo: algunos pasos de esta guía solo existen en el clásico.</p>
+            </li>
+            <li>
+              <strong>Comprueba el modo sin conexión.</strong>
+              <ul>
+                <li><strong>Outlook clásico:</strong> mira la barra de estado (abajo). En la pestaña <em>Enviar y recibir</em>, el botón <em>Trabajar sin conexión</em> aparece con el fondo sombreado cuando el programa está sin conexión. Púlsalo para volver a conectar y comprueba que el fondo vuelve a ser claro.</li>
+                <li><strong>Nuevo Outlook:</strong> no tiene el botón «Trabajar sin conexión» del clásico. Si muestra un aviso de que no puede conectar, comprueba la red y la sesión de la cuenta.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Comprueba la red y el estado del servicio de Microsoft 365.</strong> Si hay Internet en el
+              equipo y otros compañeros tienen el mismo problema, puede ser una incidencia del servicio. Consulta la
+              página de estado de Microsoft 365 que use tu empresa, o pregunta a nivel 2 o al administrador, que ven
+              el estado del servicio en el centro de administración.
+              <div class="callout callout--tool">
+                <div class="callout__label"><span aria-hidden="true">🧰</span> Con IT Support Toolkit</div>
+                <p>
+                  Opción <strong>2 · Diagnóstico de red</strong>. Comprueba la conexión, los servidores DNS y la
+                  resolución de nombres, y da una conclusión en lenguaje claro. Solo lee datos y no necesita permisos
+                  de administrador. Es la forma más rápida de descartar un problema de red.
+                </p>
+              </div>
+            </li>
+            <li>
+              <strong>Prueba Outlook en la web.</strong> Pide al usuario que abra su correo en el navegador
+              (con la dirección que use la empresa, normalmente <code>outlook.office.com</code>) e inicie sesión él
+              mismo. <strong>No escribas tú su contraseña ni se la pidas.</strong>
+              <div class="table-wrap" tabindex="0" role="region" aria-label="Cómo interpretar la prueba con Outlook en la web">
+                <table class="guide-table">
+                  <thead>
+                    <tr><th scope="col">Qué pasa</th><th scope="col">Qué significa</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>En la web funciona (recibe y envía) pero en el programa no</td>
+                      <td>El buzón y la cuenta están bien. El fallo es del programa, del perfil o del equipo: sigue con los pasos siguientes.</td>
+                    </tr>
+                    <tr>
+                      <td>En la web también falla o no deja entrar</td>
+                      <td>Cuenta, contraseña, buzón o servicio. Consulta la guía <a href="contrasena-cuenta-bloqueada.html">He olvidado mi contraseña o tengo la cuenta bloqueada</a> o escala si es una incidencia general.</td>
+                    </tr>
+                    <tr>
+                      <td>La web no abre por falta de conexión</td>
+                      <td>Es un problema de red: guía <a href="sin-internet.html">No tengo conexión a Internet</a>.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+            <li>
+              <strong>Revisa la Bandeja de salida.</strong> Ábrela desde el panel de carpetas. Si hay mensajes
+              atascados, abre uno y mira si lleva un adjunto muy grande: Microsoft cita los adjuntos pesados
+              (de más de 20 MB) como causa habitual, aunque el límite real lo fija la empresa. Si es así, con el
+              permiso del usuario, quita el adjunto y envía un enlace en su lugar. Otra opción es arrastrar el mensaje
+              a <em>Borradores</em> para editarlo sin perderlo. En Outlook clásico, después usa
+              <em>Enviar y recibir &gt; Enviar y recibir todo</em>.
+            </li>
+            <li>
+              <strong>Comprueba si hay algún aviso de la cuenta.</strong> Si Outlook pide una y otra vez la
+              contraseña, o dice que hay que volver a iniciar sesión, no intentes «arreglarlo» cambiando la
+              configuración de la cuenta. Sigue la guía
+              <a href="contrasena-cuenta-bloqueada.html">He olvidado mi contraseña o tengo la cuenta bloqueada</a>.
+            </li>
+          </ol>
+        </section>
+
+        <section class="guide-section" aria-labelledby="solucion">
+          <h2 id="solucion">Solución</h2>
+
+          <h3>Outlook estaba sin conexión</h3>
+          <p>En Outlook clásico, pulsa <em>Enviar y recibir &gt; Trabajar sin conexión</em> para volver a conectar y después <em>Enviar y recibir todo</em>. Comprueba que los mensajes de la Bandeja de salida han salido.</p>
+
+          <h3>Mensajes atascados en la Bandeja de salida</h3>
+          <p>Si es un adjunto grande, quítalo con permiso del usuario o compártelo como enlace. No elimines el mensaje sin preguntarle: si prefiere conservarlo, muévelo a Borradores. Vuelve a enviar y comprueba que sale.</p>
+
+          <h3>Funciona en la web pero no en el programa</h3>
+          <p>Pide al usuario que guarde su trabajo y cierre Outlook y el resto de programas de Office. Reinicia el equipo. Si sigue igual, prueba la reparación rápida de Office (siguiente apartado). Si la empresa lo autoriza, también puedes probar con el otro Outlook (clásico o nuevo) para ver si el fallo es de uno de ellos:</p>
+          <ul>
+            <li>Desde el <strong>Outlook clásico</strong>, con el interruptor «Probar el nuevo Outlook».</li>
+            <li>Desde el <strong>nuevo Outlook</strong>, con el interruptor: ofrece «Volver a la versión clásica de Outlook» o «Usar la versión clásica de Outlook esta vez».</li>
+          </ul>
+          <p><em>Los complementos y algunas funciones no son iguales en los dos programas, así que no cambies al usuario de programa de forma definitiva sin autorización de la empresa.</em></p>
+
+          <h3>Reparación de Office (reparación rápida)</h3>
+          <div class="callout callout--warn">
+            <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+            <ul>
+              <li>Avisa al usuario: tiene que guardar su trabajo y cerrar todos los programas de Office. Puede tardar unos minutos.</li>
+              <li>Suele pedir permisos de administrador. Si no los tienes, escala.</li>
+              <li>Haz solo la <strong>reparación rápida</strong>, que reemplaza los archivos dañados. La «reparación en línea» reinstala Office y es cosa de nivel 2.</li>
+            </ul>
+          </div>
+          <div class="callout callout--win">
+            <div class="callout__label"><span aria-hidden="true">⊞</span> Windows 10 / Windows 11</div>
+            <ul>
+              <li><strong>Windows 10:</strong> clic derecho en el botón Inicio &gt; <em>Aplicaciones y características</em>, selecciona el producto de Microsoft 365 u Office y pulsa <em>Modificar</em>. Elige <em>Reparación rápida</em>.</li>
+              <li><strong>Windows 11:</strong> clic derecho en el botón Inicio &gt; <em>Aplicaciones instaladas</em>, en el producto de Microsoft 365 u Office pulsa los tres puntos y elige <em>Modificar</em>. Después elige <em>Reparación rápida</em>.</li>
+            </ul>
+          </div>
+          <p>Cuando termine, abre Outlook y comprueba si ya envía y recibe. Si el nuevo Outlook es el que falla, el procedimiento de Windows para reparar una aplicación (<em>Configuración &gt; Aplicaciones</em>, opción <em>Opciones avanzadas &gt; Reparar</em>) puede estar disponible, pero no siempre aparece: si no está, escala. No uses «Restablecer»: borra los datos de la aplicación.</p>
+
+          <h3>Servicio de Microsoft 365 con incidencia o buzón lleno</h3>
+          <p>No se arregla desde el equipo. Informa al usuario de que es una incidencia del servicio o del buzón, escala a nivel 2 con los datos recogidos y, si es una incidencia general, aplica el aviso que la empresa tenga para los usuarios.</p>
+
+          <p>
+            <strong>Antes de cerrar:</strong> pide al usuario que envíe un correo de prueba y que compruebe que
+            recibe uno, y que la Bandeja de salida está vacía. Para adjuntar al ticket una foto del estado del
+            equipo, genera el informe con la opción <strong>7 · Informe HTML</strong> del Toolkit.
+          </p>
+        </section>
+
+        <section class="guide-section" aria-labelledby="escalar">
+          <h2 id="escalar">Cuándo escalar a nivel 2</h2>
+          <ul>
+            <li>Fallan <strong>varios usuarios</strong> a la vez (posible incidencia del servicio de Microsoft 365 o del correo de la empresa).</li>
+            <li>Outlook en la web también falla, o el usuario no puede entrar con su cuenta, y la guía de contraseñas no lo resuelve.</li>
+            <li>Hay que trabajar con el <strong>perfil de Outlook</strong> (crear uno nuevo, reconfigurar la cuenta) o con el <strong>buzón</strong> (ampliar espacio, revisar reglas, recuperar mensajes): siempre lo hace nivel 2.</li>
+            <li>El buzón está lleno y el usuario no puede liberar espacio por sí mismo.</li>
+            <li>La reparación rápida no ha servido, o no tienes permisos de administrador para hacerla. La reparación en línea o reinstalar Office también son de nivel 2.</li>
+            <li>Outlook se cierra solo o se abre en modo seguro de forma repetida.</li>
+            <li>Los mensajes rebotan con un código de error, o solo fallan ciertos destinatarios o dominios. Anota el código exacto.</li>
+            <li>El usuario ve <strong>reglas de reenvío o mensajes enviados que no reconoce</strong>, o le piden que confirme accesos que él no ha hecho: posible cuenta comprometida. Sigue el procedimiento de seguridad de la empresa. Consulta también la guía <a href="correo-sospechoso-phishing.html">He recibido un correo sospechoso (phishing)</a>.</li>
+          </ul>
+          <div class="callout callout--warn">
+            <div class="callout__label"><span aria-hidden="true">⚠</span> Precaución</div>
+            <p>
+              No elimines perfiles, no borres ni muevas archivos <code>.ost</code> o <code>.pst</code>, no edites el
+              registro, no desactives el antivirus «para probar» y no reinstales Office. No forman parte del nivel 1:
+              los realiza nivel 2 según el procedimiento de la empresa.
+            </p>
+          </div>
+        </section>
+
+        <section class="guide-section" aria-labelledby="ticket">
+          <h2 id="ticket">Qué anotar en el ticket</h2>
+          <ul class="checklist">
+            <li>Usuario (con su identidad verificada), nombre del equipo, buzón afectado y hora de inicio del problema.</li>
+            <li>Programa: Outlook clásico o nuevo Outlook, y versión de Windows (10 u 11).</li>
+            <li>Qué falla: enviar, recibir o ambos, y si afecta a todos los correos o solo a alguno (adjunto, destinatario).</li>
+            <li>Mensaje o código de error exacto, incluido el de los rebotes, con captura si es posible.</li>
+            <li>Alcance: solo este usuario o varios (indica quiénes).</li>
+            <li>Resultado de la prueba con Outlook en la web (funciona o no) y estado de la conexión a Internet.</li>
+            <li>Estado de la Bandeja de salida y si había modo sin conexión.</li>
+            <li>Acciones realizadas, con su resultado y la hora (por ejemplo «adjunto quitado, enviado», «reparación rápida, sin cambios»).</li>
+            <li>Informe HTML del Toolkit (opción 7) adjunto. Si el ticket lo va a ver alguien ajeno a la empresa, usa la anonimización opcional del informe.</li>
+            <li>Estado final: resuelto (y qué lo resolvió) o escalado a nivel 2, con el motivo. Nunca la contraseña.</li>
+          </ul>
+        </section>
+
+        <section class="guide-section" aria-labelledby="prevencion">
+          <h2 id="prevencion">Prevención</h2>
+          <ul>
+            <li>No enviar adjuntos muy grandes por correo: compartir un enlace de OneDrive o de la carpeta de red.</li>
+            <li>Vigilar el tamaño del buzón y archivar o eliminar correos antiguos, decidiéndolo el usuario, antes de que se llene.</li>
+            <li>No dejar Outlook en modo sin conexión y comprobar la barra de estado cuando un mensaje no salga.</li>
+            <li>Cambiar la contraseña en todos los dispositivos (móvil, otro equipo) en cuanto se cambia en uno, para evitar bloqueos.</li>
+            <li>Reiniciar el equipo cuando Windows lo pida tras las actualizaciones y mantener Office actualizado según la política de la empresa.</li>
+            <li>Ejecutar de forma periódica el diagnóstico del Toolkit (opciones 2 y 7) en equipos con incidencias repetidas, para tener un punto de comparación.</li>
+          </ul>
+        </section>
+      </article>
+
+      <nav class="guide-nav guide-nav--bottom" aria-label="Enlaces al final de la guía">
+        <a href="index.html">← Volver a las guías</a>
+        <a href="../index.html">Web principal</a>
+      </nav>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 Iván Marcos Couso · <a href="../index.html">Web principal</a></p>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
