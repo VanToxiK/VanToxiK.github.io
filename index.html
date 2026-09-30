@@ -116,6 +116,27 @@
         </article>
         <article class="card project-card">
           <div class="project-card__header">
+            <h3 class="card__title">Homelab — Servidor Debian bastionado</h3>
+            <span class="badge badge--dev">En desarrollo</span>
+          </div>
+          <p class="card__text">Portátil antiguo (HP Pavilion 15) reutilizado como servidor casero y reconstruido desde cero con Debian 13 tras haber sido comprometido en el pasado, aplicando la seguridad desde el diseño: instalación sin entorno gráfico y con la ISO verificada (SHA256), acceso SSH solo con clave ed25519 y sin root, firewall UFW con límite de intentos, Fail2ban sobre el journal de systemd, actualizaciones de seguridad automáticas y ningún puerto expuesto a Internet. Las incidencias resueltas durante la instalación están documentadas (síntoma, diagnóstico, solución y lección aprendida).</p>
+          <p class="card__text"><strong>Próximos pasos:</strong> Docker, Uptime Kuma, Pi-hole y acceso remoto seguro con Tailscale.</p>
+          <!-- TODO: añadir capturas de pantalla (sin IPs ni datos sensibles). -->
+          <ul class="tech-tags">
+            <li class="tech-tag">Debian 13</li>
+            <li class="tech-tag">Linux</li>
+            <li class="tech-tag">SSH</li>
+            <li class="tech-tag">UFW</li>
+            <li class="tech-tag">Fail2ban</li>
+            <li class="tech-tag">systemd</li>
+            <li class="tech-tag">Git</li>
+          </ul>
+          <div class="project-card__actions">
+            <a class="btn btn--secondary" href="https://github.com/VanToxiK/homelab" target="_blank" rel="noopener">Ver código</a>
+          </div>
+        </article>
+        <article class="card project-card">
+          <div class="project-card__header">
             <h3 class="card__title">IT Backup &amp; Health Monitor</h3>
             <span class="badge badge--planned">Planificado</span>
           </div>
